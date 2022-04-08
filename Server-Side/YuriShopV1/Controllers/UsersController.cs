@@ -27,12 +27,12 @@ namespace YuriShopV1.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<User>> GetAllUsers()
         {
-
+            return null;
         }
         [HttpGet("{id}")]
         public ActionResult<User> GetUserById(int id)
         {
-
+            return null;
         }
     }
 }
