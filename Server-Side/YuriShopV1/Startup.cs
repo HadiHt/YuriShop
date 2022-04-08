@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using YuriShopV1.Data.Users;
 
 namespace YuriShopV1
 {
@@ -27,6 +28,13 @@ namespace YuriShopV1
         {
 
             services.AddControllers();
+            services.AddScoped<IAddressRepo, IAddressRepo>();
+            services.AddScoped<ICardRepo, ICardRepo>();
+            services.AddScoped<IOrderRepo, IOrderRepo>();
+            services.AddScoped<IProductRepo, IProductRepo>();
+            services.AddScoped<IShopRepo, IShopRepo>();
+            services.AddScoped<IUserRepo, IUserRepo>();
+            services.AddScoped<IWishListRepo, IWishListRepo>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "YuriShopV1", Version = "v1" });
