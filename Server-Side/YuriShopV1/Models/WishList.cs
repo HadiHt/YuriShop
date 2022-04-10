@@ -1,13 +1,16 @@
-﻿namespace YuriShopV1.Models
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace YuriShopV1.Models
 {
+    [Keyless]
     public class WishList
     {
+        [ForeignKey("UserRefId")]
         public User User { get; set; }
         public int UserRefId { get; set; }
 
-        public Shop Shop { get; set; }
-        public int ShopRefId { get; set; }
-
+        [ForeignKey("ProductRefId")]
         public Product Product { get; set; }
         public int ProductRefId { get; set; }
     }
