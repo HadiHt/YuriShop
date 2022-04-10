@@ -1,0 +1,10 @@
+.modal{
+    position: fixed;
+    background-color: rgba(0, 0, 1, 0.466);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    margin-left: 22px;
+    width: 160px;
+}

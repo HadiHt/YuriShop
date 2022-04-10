@@ -1,0 +1,12 @@
+.but{
+    border-radius: 15px;
+    background-color: transparent;
+    border-style: none;
+    width: auto;
+    height:40px;
+    font-size: 11pt;
+    cursor: pointer;
+}
+.but:hover{
+    background-color: rgb(69, 70, 131);
+}
