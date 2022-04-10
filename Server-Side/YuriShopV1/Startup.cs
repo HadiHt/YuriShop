@@ -13,7 +13,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using YuriShopV1.Data;
+using YuriShopV1.Data.Addresses;
+using YuriShopV1.Data.Cards;
+using YuriShopV1.Data.Orders;
+using YuriShopV1.Data.Products;
+using YuriShopV1.Data.Shops;
 using YuriShopV1.Data.Users;
+using YuriShopV1.Data.WishLists;
 
 namespace YuriShopV1
 {
@@ -33,13 +39,13 @@ namespace YuriShopV1
 
             services.AddControllers();
 
-            services.AddScoped<IAddressRepo, MockDbContextcs>();
-            //services.AddScoped<ICardRepo, MockDbContextcs>();
-            //services.AddScoped<IOrderRepo, MockDbContextcs>();
-            //services.AddScoped<IProductRepo, MockDbContextcs>();
-            //services.AddScoped<IShopRepo, IShopRepo>();
-            //services.AddScoped<IUserRepo, IUserRepo>();
-            //services.AddScoped<IWishListRepo, IWishListRepo>();
+            services.AddScoped<IAddressRepo, SqlAddressRepo>();
+            services.AddScoped<ICardRepo, SqlCardRepo>();
+            services.AddScoped<IOrderRepo, SqlOrderRepo>();
+            services.AddScoped<IProductRepo, SqlProductRepo>();
+            services.AddScoped<IShopRepo, SqlShopRepo>();
+            services.AddScoped<IUserRepo, SqlUserRepo>();
+            services.AddScoped<IWishListRepo, SqlWishListRepo>();
 
             services.AddSwaggerGen(c =>
             {

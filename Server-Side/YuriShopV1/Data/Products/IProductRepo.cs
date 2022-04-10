@@ -7,6 +7,6 @@ namespace YuriShopV1.Data.Users
     {
         IEnumerable<Product> GetAllProducts();
         Product GetProductById(int id);
-        Product GetProductByShopId(int id);
+        IEnumerable<Product> GetAllProductsByShopId(int id);
     }
 }
