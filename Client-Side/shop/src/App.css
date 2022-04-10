@@ -1,0 +1,20 @@
+.App {
+  text-align: justify;
+}
+.input-icons {
+  width: 45%;
+  margin: auto;
+  background-color: transparent;
+}
+.input-icons i {
+  position: absolute;
+  padding: 10px;
+  min-width: 20px;
+  background-color: transparent;
+}
+*{
+  color: aliceblue;
+}
+.icon{
+  background-color: transparent;
+}
