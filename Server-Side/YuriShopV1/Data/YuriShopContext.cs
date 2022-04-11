@@ -17,5 +17,6 @@ namespace YuriShopV1.Data
         public DbSet<Shop> Shop { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<WishList> WishList { get; set; }
+        public DbSet<Application> Application { get; set; }
     }
 }
