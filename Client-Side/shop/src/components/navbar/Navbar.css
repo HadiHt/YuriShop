@@ -21,6 +21,8 @@
     border-radius: 50%;
     height: 40px;
     width: 40px;
+    margin-right: auto;
+    margin-left: 1%;
 }
 .option{
     justify-content: left;
@@ -50,4 +52,14 @@
     width: 30px;
     height: 30px;
     background-color: transparent;
-} 
+}
+@media screen and (max-width: 787PX) {
+    .navbar{
+        display: none;
+    }
+}
+@media screen and (min-width: 788PX) {
+    .collapsed{
+        display: none;
+    }
+}
