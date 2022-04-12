@@ -1,0 +1,36 @@
+.envelope {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 15px 15px 15px 15px;
+}
+.image-preview{
+    width: 50%;
+}
+.category{
+    margin-right: 2%;
+    margin-bottom: 2%;
+    overflow: auto;
+    max-width: wrap;
+    border: 1px solid steelblue;
+    justify-content: space-around;
+}
+@media (max-width:787px) and (min-width:200px){
+    .responsive{
+        flex: 0 0 auto;
+        width: 50%;
+    }
+    .box{
+        max-width: 66%;
+    }
+}
+@media (min-width:788px){
+    .responsive{
+        flex: 0 0 auto;
+        width: 25%;
+    }
+    .box{
+        max-width: 66%;
+    }
+}
