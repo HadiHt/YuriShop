@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using YuriShopV1.Data.Users;
 using YuriShopV1.Models;
@@ -25,6 +26,7 @@ namespace YuriShopV1.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<User>> GetAllUsers()
         {
+            Console.WriteLine("test");
             return Ok(_userRepo.GetAllUsers());
         }
         [HttpGet("{id}")]
