@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using YuriShopV1.Data.Users;
 using YuriShopV1.Models;
@@ -11,15 +12,13 @@ namespace YuriShopV1.Controllers
     {
         private readonly IAddressRepo _addressRepo;
         private readonly ICardRepo _cardRepo;
-        private readonly IOrderRepo _orderRepo;
         private readonly IUserRepo _userRepo;
         private readonly IWishListRepo _wishlistRepo;
 
-        public UsersController(IAddressRepo addressRepo, ICardRepo cardRepo, IOrderRepo orderRepo, IUserRepo userRepo, IWishListRepo wishlistRepo )
+        public UsersController(IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo, IWishListRepo wishlistRepo )
         {
             _addressRepo = addressRepo;
             _cardRepo = cardRepo;
-            _orderRepo = orderRepo;
             _userRepo = userRepo;
             _wishlistRepo = wishlistRepo;
         }
@@ -27,6 +26,7 @@ namespace YuriShopV1.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<User>> GetAllUsers()
         {
+            Console.WriteLine("test");
             return Ok(_userRepo.GetAllUsers());
         }
         [HttpGet("{id}")]
@@ -34,17 +34,26 @@ namespace YuriShopV1.Controllers
         {
             return Ok(_userRepo.GetUserById(id));
         }
-        [HttpGet("{id}/address/shop")]
-        public ActionResult<Address> GetAddressByShopId(int id)
-        {
-            var address = _addressRepo.GetAddressByShopId(id);
-            return Ok(address);
-        }
-        [HttpGet("{id}/address/user")]
+
+        [HttpGet("{id}/address")]
         public ActionResult<Address> GetAddressByUserId(int id)
         {
             var address = _addressRepo.GetAddressByUserId(id);
             return Ok(address);
+        }
+
+        [HttpGet("{id}/card")]
+        public ActionResult<Card> GetCardByUserId(int id)
+        {
+            var card = _cardRepo.GetCardByUserId(id);
+            return Ok(card);
+        }
+
+        [HttpGet("{id}/wishlist")]
+        public ActionResult<WishList> GetWishListByUserId(int id)
+        {
+            var wishlist = _wishlistRepo.GetAllWishListsByUserId(id);
+            return Ok(wishlist);
         }
     }
 }

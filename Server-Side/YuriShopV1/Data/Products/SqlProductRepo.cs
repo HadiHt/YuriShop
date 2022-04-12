@@ -27,5 +27,9 @@ namespace YuriShopV1.Data.Products
         {
             return _context.Product.Where(p => p.ShopRefId == id).ToList();
         }
+        public IEnumerable<Product> GetAllProductsByCategory(string Category)
+        {
+            return _context.Product.Where(p => p.Category.Equals(Category)).ToList();
+        }
     }
 }

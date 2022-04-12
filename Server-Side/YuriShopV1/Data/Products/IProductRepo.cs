@@ -8,5 +8,6 @@ namespace YuriShopV1.Data.Users
         IEnumerable<Product> GetAllProducts();
         Product GetProductById(int id);
         IEnumerable<Product> GetAllProductsByShopId(int id);
+        IEnumerable<Product> GetAllProductsByCategory(string Category);
     }
 }

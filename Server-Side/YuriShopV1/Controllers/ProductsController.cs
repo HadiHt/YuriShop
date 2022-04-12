@@ -37,5 +37,10 @@ namespace YuriShopV1.Controllers
         {
             return Ok(_productRepo.GetAllProductsByShopId(id));
         }
+        [HttpGet("/Category/{category}")]
+        public ActionResult<IEnumerable<Product>> GetAllProductsByCategory(string Category)
+        {
+            return Ok(_productRepo.GetAllProductsByCategory(Category));
+        }
     }
 }

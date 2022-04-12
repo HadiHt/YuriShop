@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using YuriShopV1.Data;
 using YuriShopV1.Data.Addresses;
+using YuriShopV1.Data.Applications;
 using YuriShopV1.Data.Cards;
 using YuriShopV1.Data.Orders;
 using YuriShopV1.Data.Products;
@@ -46,6 +47,7 @@ namespace YuriShopV1
             services.AddScoped<IShopRepo, SqlShopRepo>();
             services.AddScoped<IUserRepo, SqlUserRepo>();
             services.AddScoped<IWishListRepo, SqlWishListRepo>();
+            services.AddScoped<IApplicationRepo, SqlApplicationRepo>();
 
             services.AddSwaggerGen(c =>
             {
