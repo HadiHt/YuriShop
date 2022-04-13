@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using YuriShopV1.Data.Users;
 using YuriShopV1.Models;
@@ -31,6 +32,19 @@ namespace YuriShopV1.Data.Orders
         public Order GetOrderById(int id)
         {
             return _context.Order.FirstOrDefault(p => p.OrderId == id);
+        }
+
+        public void CreateOrder(Order order)
+        {
+            if (order == null)
+            {
+                throw new ArgumentNullException(nameof(order));
+            }
+            _context.Order.Add(order);
+        }
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

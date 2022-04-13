@@ -40,6 +40,8 @@ namespace YuriShopV1
 
             services.AddControllers();
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddScoped<IAddressRepo, SqlAddressRepo>();
             services.AddScoped<ICardRepo, SqlCardRepo>();
             services.AddScoped<IOrderRepo, SqlOrderRepo>();

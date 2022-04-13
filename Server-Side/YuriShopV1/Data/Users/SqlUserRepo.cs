@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using YuriShopV1.Models;
 
@@ -20,6 +21,19 @@ namespace YuriShopV1.Data.Users
         public User GetUserById(int id)
         {
             return _context.User.FirstOrDefault(p => p.UserId == id);
+        }
+
+        public void CreateUser(User user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+            _context.User.Add(user);
+        }
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }
