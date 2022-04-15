@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YuriShopV1.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class AddedKeys20 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -51,6 +52,8 @@ namespace YuriShopV1.Migrations
                     Size = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<double>(type: "float", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
+                    SoldQuantity = table.Column<int>(type: "int", nullable: false),
+                    TimeCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ShopRefId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -68,24 +71,55 @@ namespace YuriShopV1.Migrations
                 name: "Address",
                 columns: table => new
                 {
+                    AddressId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Area = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Building = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Details = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserRefId = table.Column<int>(type: "int", nullable: false),
-                    ShopRefId = table.Column<int>(type: "int", nullable: false)
+                    UserRefId = table.Column<int>(type: "int", nullable: true),
+                    ShopRefId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_Address", x => x.AddressId);
                     table.ForeignKey(
                         name: "FK_Address_Shop_ShopRefId",
                         column: x => x.ShopRefId,
                         principalTable: "Shop",
                         principalColumn: "ShopId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Address_User_UserRefId",
+                        column: x => x.UserRefId,
+                        principalTable: "User",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Application",
+                columns: table => new
+                {
+                    ApplicationId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Area = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Building = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Details = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ShopType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductsToSell = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ValidationNumber = table.Column<int>(type: "int", nullable: false),
+                    UserRefId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Application", x => x.ApplicationId);
+                    table.ForeignKey(
+                        name: "FK_Application_User_UserRefId",
                         column: x => x.UserRefId,
                         principalTable: "User",
                         principalColumn: "UserId",
@@ -96,28 +130,30 @@ namespace YuriShopV1.Migrations
                 name: "Card",
                 columns: table => new
                 {
-                    CardNumber = table.Column<int>(type: "int", nullable: false),
+                    CardNumber = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Brand = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ExpirationDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CVV = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserRefId = table.Column<int>(type: "int", nullable: false),
-                    ShopRefId = table.Column<int>(type: "int", nullable: false)
+                    UserRefId = table.Column<int>(type: "int", nullable: true),
+                    ShopRefId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_Card", x => x.CardNumber);
                     table.ForeignKey(
                         name: "FK_Card_Shop_ShopRefId",
                         column: x => x.ShopRefId,
                         principalTable: "Shop",
                         principalColumn: "ShopId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Card_User_UserRefId",
                         column: x => x.UserRefId,
                         principalTable: "User",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -152,11 +188,14 @@ namespace YuriShopV1.Migrations
                 name: "WishList",
                 columns: table => new
                 {
+                    WishListId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserRefId = table.Column<int>(type: "int", nullable: false),
                     ProductRefId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_WishList", x => x.WishListId);
                     table.ForeignKey(
                         name: "FK_WishList_Product_ProductRefId",
                         column: x => x.ProductRefId,
@@ -179,6 +218,11 @@ namespace YuriShopV1.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Address_UserRefId",
                 table: "Address",
+                column: "UserRefId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Application_UserRefId",
+                table: "Application",
                 column: "UserRefId");
 
             migrationBuilder.CreateIndex(
@@ -221,6 +265,9 @@ namespace YuriShopV1.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Address");
+
+            migrationBuilder.DropTable(
+                name: "Application");
 
             migrationBuilder.DropTable(
                 name: "Card");

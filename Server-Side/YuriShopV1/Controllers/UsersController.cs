@@ -85,6 +85,7 @@ namespace YuriShopV1.Controllers
             //need to check validation of address 
             var AddressModel = _mapper.Map<Address>(address);
             _addressRepo.CreateAddress(AddressModel);
+            _addressRepo.SaveChanges();
             return Ok(AddressModel);
         }
     }

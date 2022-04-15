@@ -21,6 +21,11 @@ namespace YuriShopV1.Migrations
 
             modelBuilder.Entity("YuriShopV1.Models.Address", b =>
                 {
+                    b.Property<int>("AddressId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
                     b.Property<string>("Area")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -46,6 +51,8 @@ namespace YuriShopV1.Migrations
 
                     b.Property<int?>("UserRefId")
                         .HasColumnType("int");
+
+                    b.HasKey("AddressId");
 
                     b.HasIndex("ShopRefId");
 
@@ -108,14 +115,16 @@ namespace YuriShopV1.Migrations
 
             modelBuilder.Entity("YuriShopV1.Models.Card", b =>
                 {
+                    b.Property<int>("CardNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
                     b.Property<string>("Brand")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CVV")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CardNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("ExpirationDate")
@@ -131,6 +140,8 @@ namespace YuriShopV1.Migrations
 
                     b.Property<int?>("UserRefId")
                         .HasColumnType("int");
+
+                    b.HasKey("CardNumber");
 
                     b.HasIndex("ShopRefId");
 
@@ -269,11 +280,18 @@ namespace YuriShopV1.Migrations
 
             modelBuilder.Entity("YuriShopV1.Models.WishList", b =>
                 {
+                    b.Property<int>("WishListId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
                     b.Property<int>("ProductRefId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserRefId")
                         .HasColumnType("int");
+
+                    b.HasKey("WishListId");
 
                     b.HasIndex("ProductRefId");
 
