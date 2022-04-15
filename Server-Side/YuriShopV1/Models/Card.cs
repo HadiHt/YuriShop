@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace YuriShopV1.Models
 {
-    [Keyless]
     public class Card
     {
+        [Key]
         [Required]
         public int CardNumber { get; set; }
         [Required]

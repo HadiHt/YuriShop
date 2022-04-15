@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using YuriShopV1.Data.Users;
+using YuriShopV1.Dtos.Addresses;
+using YuriShopV1.Dtos.Cards;
+using YuriShopV1.Dtos.Shops;
 using YuriShopV1.Models;
 
 namespace YuriShopV1.Controllers
@@ -9,14 +13,16 @@ namespace YuriShopV1.Controllers
     [ApiController]
     public class ShopsController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly IShopRepo _shopRepo;
         private readonly IAddressRepo _addressRepo;
         private readonly ICardRepo _cardRepo;
         private readonly IUserRepo _userRepo;
 
 
-        public ShopsController(IShopRepo shopRepo ,IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo)
+        public ShopsController(IMapper mapper, IShopRepo shopRepo ,IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo)
         {
+            _mapper = mapper;
             _shopRepo = shopRepo;
             _addressRepo = addressRepo;
             _cardRepo = cardRepo;
@@ -24,28 +30,42 @@ namespace YuriShopV1.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Shop>> GetAllShops()
+        public ActionResult<IEnumerable<ShopReadDto>> GetAllShops()
         {
-            return Ok(_shopRepo.GetAllShops());
+            var Shops = _shopRepo.GetAllShops();
+            return Ok(_mapper.Map<IEnumerable<ShopReadDto>>(Shops));
         }
         [HttpGet("{id}")]
-        public ActionResult<Shop> GetShopById(int id)
+        public ActionResult<ShopReadDto> GetShopById(int id)
         {
-            return Ok(_shopRepo.GetShopById(id));
+            var Shop = _shopRepo.GetShopById(id);
+            if (Shop != null)
+            {
+                return Ok(_mapper.Map<ShopReadDto>(Shop));
+            }
+            return NotFound();
         }
 
         [HttpGet("{id}/address")]
-        public ActionResult<Address> GetAddressByShopId(int id)
+        public ActionResult<AddressReadDto> GetAddressByShopId(int id)
         {
             var address = _addressRepo.GetAddressByShopId(id);
-            return Ok(address);
+            if (address != null)
+            {
+                return Ok(_mapper.Map<AddressReadDto>(address));
+            }
+            return NotFound();
         }
 
         [HttpGet("{id}/card")]
-        public ActionResult<Card> GetCardByShopId(int id)
+        public ActionResult<CardReadDto> GetCardByShopId(int id)
         {
             var card = _cardRepo.GetCardByShopId(id);
-            return Ok(card);
+            if (card != null)
+            {
+                return Ok(_mapper.Map<CardReadDto>(card));
+            }
+            return NotFound();
         }
     }
 }

@@ -7,5 +7,7 @@ namespace YuriShopV1.Data.Users
     {
         IEnumerable<User> GetAllUsers();
         User GetUserById(int id);
+        void CreateUser(User user);
+        bool SaveChanges();
     }
 }

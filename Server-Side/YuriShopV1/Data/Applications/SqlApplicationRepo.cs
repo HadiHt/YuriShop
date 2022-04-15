@@ -2,6 +2,7 @@
 using YuriShopV1.Models;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace YuriShopV1.Data.Applications
 {
@@ -22,6 +23,19 @@ namespace YuriShopV1.Data.Applications
         public Application GetApplicationById(int id)
         {
             return _context.Application.FirstOrDefault(p => p.ApplicationId == id);
+        }
+
+        public void CreateApplication(Application application)
+        {
+            if (application == null)
+            {
+                throw new ArgumentNullException(nameof(application));
+            }
+            _context.Application.Add(application);
+        }
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }
