@@ -2,6 +2,7 @@
 {
     public class CardReadDto
     {
+        public int CardId { get; set; }
         public int CardNumber { get; set; }
         public string Brand { get; set; }
         public string ExpirationDate { get; set; }

@@ -36,7 +36,7 @@ namespace YuriShopV1.Controllers
             var Users = _userRepo.GetAllUsers();
             return Ok(_mapper.Map<IEnumerable<UserReadDto>>(Users));
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetUserById")]
         public ActionResult<UserReadDto> GetUserById(int id)
         {
             var User = _userRepo.GetUserById(id);
@@ -47,7 +47,7 @@ namespace YuriShopV1.Controllers
             return NotFound();
         }
 
-        [HttpGet("{id}/address")]
+        [HttpGet("{id}/address", Name="GetAddressByUserId")]
         public ActionResult<AddressReadDto> GetAddressByUserId(int id)
         {
             var address = _addressRepo.GetAddressByUserId(id);
@@ -58,7 +58,7 @@ namespace YuriShopV1.Controllers
             return NotFound();
         }
 
-        [HttpGet("{id}/card")]
+        [HttpGet("{id}/card", Name="GetCardByUserId")]
         public ActionResult<CardReadDto> GetCardByUserId(int id)
         {
             var card = _cardRepo.GetCardByUserId(id);
@@ -86,7 +86,35 @@ namespace YuriShopV1.Controllers
             var AddressModel = _mapper.Map<Address>(address);
             _addressRepo.CreateAddress(AddressModel);
             _addressRepo.SaveChanges();
-            return Ok(AddressModel);
+
+            var addressReadDto = _mapper.Map<AddressReadDto>(AddressModel);
+            return CreatedAtRoute(nameof(GetAddressByUserId), new { Id = addressReadDto.AddressId }, addressReadDto);
+            //return Ok(AddressModel);
+        }
+        [HttpPost("SignUp")]
+        public ActionResult<UserReadDto> CreateUser(UserWriteDto user)
+        {
+            //need to check validation of address 
+            var UserModel = _mapper.Map<User>(user);
+            _userRepo.CreateUser(UserModel);
+            _userRepo.SaveChanges();
+
+            var userReadDto = _mapper.Map<UserReadDto>(UserModel);
+            return CreatedAtRoute(nameof(GetUserById), new { Id = userReadDto.UserId }, userReadDto);
+            //return Ok(AddressModel);
+        }
+
+        [HttpPost("{id}/Card")]
+        public ActionResult<CardReadDto> CreateCard(CardWriteDto card)
+        {
+            //need to check validation of address 
+            var CardModel = _mapper.Map<Card>(card);
+            _cardRepo.CreateCard(CardModel);
+            _cardRepo.SaveChanges();
+
+            var cardReadDto = _mapper.Map<CardReadDto>(CardModel);
+            return CreatedAtRoute(nameof(GetCardByUserId), new { Id = cardReadDto.CardId }, cardReadDto);
+            //return Ok(AddressModel);
         }
     }
 }
