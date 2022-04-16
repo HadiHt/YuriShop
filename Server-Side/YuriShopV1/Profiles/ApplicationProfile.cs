@@ -9,6 +9,7 @@ namespace YuriShopV1.Profiles
         public ApplicationProfile()
         {
             CreateMap<Application, ApplicationReadDto>();
+            CreateMap<ApplicationWriteDto, Application>();
         }
     }
 }
