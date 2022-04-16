@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\UNI\\Yuri Shop\\YuriShop\\Server-Side\\YuriShopV1\\YuriShopV1.csproj": {}
+    "C:\\Users\\10User\\Desktop\\YuriShop\\Server-Side\\YuriShopV1\\YuriShopV1.csproj": {}
   },
   "projects": {
-    "E:\\UNI\\Yuri Shop\\YuriShop\\Server-Side\\YuriShopV1\\YuriShopV1.csproj": {
+    "C:\\Users\\10User\\Desktop\\YuriShop\\Server-Side\\YuriShopV1\\YuriShopV1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\UNI\\Yuri Shop\\YuriShop\\Server-Side\\YuriShopV1\\YuriShopV1.csproj",
+        "projectUniqueName": "C:\\Users\\10User\\Desktop\\YuriShop\\Server-Side\\YuriShopV1\\YuriShopV1.csproj",
         "projectName": "YuriShopV1",
-        "projectPath": "E:\\UNI\\Yuri Shop\\YuriShop\\Server-Side\\YuriShopV1\\YuriShopV1.csproj",
-        "packagesPath": "C:\\Users\\hadih\\.nuget\\packages\\",
-        "outputPath": "E:\\UNI\\Yuri Shop\\YuriShop\\Server-Side\\YuriShopV1\\obj\\",
+        "projectPath": "C:\\Users\\10User\\Desktop\\YuriShop\\Server-Side\\YuriShopV1\\YuriShopV1.csproj",
+        "packagesPath": "C:\\Users\\10User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\10User\\Desktop\\YuriShop\\Server-Side\\YuriShopV1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hadih\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\10User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -69,20 +69,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[5.0.0, 5.0.0]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -91,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

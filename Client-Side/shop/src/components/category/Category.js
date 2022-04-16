@@ -1,8 +1,8 @@
 import React from 'react'
-import Mouse from '../elements/Mouse.jpg'
-import Speaker from '../elements/Speaker.jpg'
-import Monitor from '../elements/Monitor.jpg'
-import Keybord from '../elements/Keybord.jpg'
+import Mouse from '../elements/img1.jpg'
+import Speaker from '../elements/img2.jpg'
+import Monitor from '../elements/img3.jpg'
+import Keybord from '../elements/img4.jpg'
 import './Category.css'
 
 const Category = () => {

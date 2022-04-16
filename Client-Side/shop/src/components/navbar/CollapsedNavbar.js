@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import options from './Options'
 
 const CollapsedNavbar = () => {
-    const [toogle, setData] = useState(true);
+    const [toogle, setData] = useState(false);
     const show=() => {
         console.log(toogle);
         setData(!toogle);

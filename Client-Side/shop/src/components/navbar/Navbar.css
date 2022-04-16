@@ -7,6 +7,9 @@
     font-size: medium;
     width : 100%;
     background-color: transparent;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
 }
 .optionList{
     display: flex;

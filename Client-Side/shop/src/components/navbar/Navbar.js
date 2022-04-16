@@ -6,7 +6,7 @@ import prof from '../elements/prof.png'
 
 const Navbar = () => {
   return (
-    <di className='navbar'>
+    <div className='navbar'>
       <nav className='nav'>
         <h1 className='logo'>logo <i className='fa fa-instagram icon'></i></h1>
         <div className='input-icons'>
@@ -27,7 +27,7 @@ const Navbar = () => {
           <li className='option'><img className='prof' alt='profile pic' src={prof}></img></li>
         </ul>
       </nav>
-    </di>
+    </div>
   )
 }
 
