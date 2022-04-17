@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using YuriShopV1.Data.Users;
 using YuriShopV1.Models;
 
@@ -20,6 +21,19 @@ namespace YuriShopV1.Data.Cards
         public Card GetCardByUserId(int id)
         {
             return _context.Card.FirstOrDefault(p => p.UserRefId == id);
+        }
+
+        public void CreateCard(Card card)
+        {
+            if (card == null)
+            {
+                throw new ArgumentNullException(nameof(card));
+            }
+            _context.Card.Add(card);
+        }
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

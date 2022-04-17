@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Mvc;
+=======
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+>>>>>>> c370cac2708f5388ccc041c233473bb4b49c6f7d
 using System;
 using System.Collections.Generic;
 using YuriShopV1.Data.Users;
+using YuriShopV1.Dtos.Addresses;
+using YuriShopV1.Dtos.Cards;
+using YuriShopV1.Dtos.Users;
+using YuriShopV1.Dtos.WishLists;
 using YuriShopV1.Models;
 
 namespace YuriShopV1.Controllers
@@ -10,43 +19,83 @@ namespace YuriShopV1.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly IMapper _mapper;
         private readonly IAddressRepo _addressRepo;
         private readonly ICardRepo _cardRepo;
-        private readonly IOrderRepo _orderRepo;
         private readonly IUserRepo _userRepo;
         private readonly IWishListRepo _wishlistRepo;
 
-        public UsersController(IAddressRepo addressRepo, ICardRepo cardRepo, IOrderRepo orderRepo, IUserRepo userRepo, IWishListRepo wishlistRepo )
+        public UsersController(IMapper mapper,IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo, IWishListRepo wishlistRepo )
         {
+            _mapper = mapper;
             _addressRepo = addressRepo;
             _cardRepo = cardRepo;
-            _orderRepo = orderRepo;
             _userRepo = userRepo;
             _wishlistRepo = wishlistRepo;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<User>> GetAllUsers()
+        public ActionResult<IEnumerable<UserReadDto>> GetAllUsers()
         {
+<<<<<<< HEAD
             Console.WriteLine("Hadi hitle");
             return Ok(_userRepo.GetAllUsers());
+=======
+            var Users = _userRepo.GetAllUsers();
+            return Ok(_mapper.Map<IEnumerable<UserReadDto>>(Users));
+>>>>>>> c370cac2708f5388ccc041c233473bb4b49c6f7d
         }
         [HttpGet("{id}")]
-        public ActionResult<User> GetUserById(int id)
+        public ActionResult<UserReadDto> GetUserById(int id)
         {
-            return Ok(_userRepo.GetUserById(id));
+            var User = _userRepo.GetUserById(id);
+            if(User != null)
+            {
+                return Ok(_mapper.Map<UserReadDto>(User));
+            }
+            return NotFound();
         }
-        [HttpGet("{id}/address/shop")]
-        public ActionResult<Address> GetAddressByShopId(int id)
-        {
-            var address = _addressRepo.GetAddressByShopId(id);
-            return Ok(address);
-        }
-        [HttpGet("{id}/address/user")]
-        public ActionResult<Address> GetAddressByUserId(int id)
+
+        [HttpGet("{id}/address")]
+        public ActionResult<AddressReadDto> GetAddressByUserId(int id)
         {
             var address = _addressRepo.GetAddressByUserId(id);
-            return Ok(address);
+            if (address != null)
+            {
+                return Ok(_mapper.Map<AddressReadDto>(address));
+            }
+            return NotFound();
+        }
+
+        [HttpGet("{id}/card")]
+        public ActionResult<CardReadDto> GetCardByUserId(int id)
+        {
+            var card = _cardRepo.GetCardByUserId(id);
+            if (card != null)
+            {
+                return Ok(_mapper.Map<CardReadDto>(card));
+            }
+            return NotFound();
+        }
+
+        [HttpGet("{id}/wishlist")]
+        public ActionResult<WishListReadDto> GetWishListByUserId(int id)
+        {
+            var wishlist = _wishlistRepo.GetAllWishListsByUserId(id);
+            if (wishlist != null)
+            {
+                return Ok(_mapper.Map<WishListReadDto>(wishlist));
+            }
+            return NotFound();
+        }
+        [HttpPost("{id}/address")]
+        public ActionResult<AddressReadDto> CreateUserAddress(AddressWriteDto address)
+        {
+            //need to check validation of address 
+            var AddressModel = _mapper.Map<Address>(address);
+            _addressRepo.CreateAddress(AddressModel);
+            _addressRepo.SaveChanges();
+            return Ok(AddressModel);
         }
     }
 }

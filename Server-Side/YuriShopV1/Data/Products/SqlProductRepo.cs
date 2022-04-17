@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using YuriShopV1.Data.Users;
 using YuriShopV1.Models;
@@ -26,6 +27,23 @@ namespace YuriShopV1.Data.Products
         public IEnumerable<Product> GetAllProductsByShopId(int id)
         {
             return _context.Product.Where(p => p.ShopRefId == id).ToList();
+        }
+        public IEnumerable<Product> GetAllProductsByCategory(string Category)
+        {
+            return _context.Product.Where(p => p.Category.Equals(Category)).ToList();
+        }
+
+        public void CreateProduct(Product product)
+        {
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+            _context.Product.Add(product);
+        }
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

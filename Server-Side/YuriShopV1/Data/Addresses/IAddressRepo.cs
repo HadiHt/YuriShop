@@ -7,5 +7,7 @@ namespace YuriShopV1.Data.Users
     {
         Address GetAddressByUserId(int id);
         Address GetAddressByShopId(int id);
+        void CreateAddress(Address address);
+        bool SaveChanges();
     }
 }

@@ -21,6 +21,11 @@ namespace YuriShopV1.Migrations
 
             modelBuilder.Entity("YuriShopV1.Models.Address", b =>
                 {
+                    b.Property<int>("AddressId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
                     b.Property<string>("Area")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -47,6 +52,8 @@ namespace YuriShopV1.Migrations
                     b.Property<int?>("UserRefId")
                         .HasColumnType("int");
 
+                    b.HasKey("AddressId");
+
                     b.HasIndex("ShopRefId");
 
                     b.HasIndex("UserRefId");
@@ -54,16 +61,70 @@ namespace YuriShopV1.Migrations
                     b.ToTable("Address");
                 });
 
+            modelBuilder.Entity("YuriShopV1.Models.Application", b =>
+                {
+                    b.Property<int>("ApplicationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Area")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Building")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Details")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProductsToSell")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShopType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserRefId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ValidationNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("ApplicationId");
+
+                    b.HasIndex("UserRefId");
+
+                    b.ToTable("Application");
+                });
+
             modelBuilder.Entity("YuriShopV1.Models.Card", b =>
                 {
+                    b.Property<int>("CardNumber")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
                     b.Property<string>("Brand")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CVV")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CardNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("ExpirationDate")
@@ -79,6 +140,8 @@ namespace YuriShopV1.Migrations
 
                     b.Property<int?>("UserRefId")
                         .HasColumnType("int");
+
+                    b.HasKey("CardNumber");
 
                     b.HasIndex("ShopRefId");
 
@@ -146,6 +209,12 @@ namespace YuriShopV1.Migrations
                     b.Property<string>("Size")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SoldQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeCreated")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("ProductId");
 
                     b.HasIndex("ShopRefId");
@@ -211,11 +280,18 @@ namespace YuriShopV1.Migrations
 
             modelBuilder.Entity("YuriShopV1.Models.WishList", b =>
                 {
+                    b.Property<int>("WishListId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
                     b.Property<int>("ProductRefId")
                         .HasColumnType("int");
 
                     b.Property<int>("UserRefId")
                         .HasColumnType("int");
+
+                    b.HasKey("WishListId");
 
                     b.HasIndex("ProductRefId");
 
@@ -235,6 +311,17 @@ namespace YuriShopV1.Migrations
                         .HasForeignKey("UserRefId");
 
                     b.Navigation("Shop");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("YuriShopV1.Models.Application", b =>
+                {
+                    b.HasOne("YuriShopV1.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserRefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

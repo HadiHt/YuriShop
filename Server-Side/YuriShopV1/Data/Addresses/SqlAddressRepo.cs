@@ -1,6 +1,7 @@
 ﻿using YuriShopV1.Data.Users;
 using YuriShopV1.Models;
 using System.Linq;
+using System;
 
 namespace YuriShopV1.Data.Addresses
 {
@@ -20,6 +21,20 @@ namespace YuriShopV1.Data.Addresses
         public Address GetAddressByUserId(int id)
         {
             return _context.Address.FirstOrDefault(p => p.UserRefId == id);
+        }
+
+        public void CreateAddress(Address address)
+        {
+            if (address == null)
+            {
+                throw new ArgumentNullException(nameof(address));
+            }
+            _context.Address.Add(address);
+        }
+
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);    
         }
     }
 }

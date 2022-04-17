@@ -4,9 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace YuriShopV1.Models
 {
-    [Keyless]
     public class Address
     {
+        [Key]
+        [Required]
+        public int AddressId { get; set; }
         [Required]
         public string Street { get; set; }
         [Required]
