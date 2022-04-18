@@ -215,6 +215,10 @@ namespace YuriShopV1.Migrations
                     b.Property<DateTime>("TimeCreated")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ProductId");
 
                     b.HasIndex("ShopRefId");

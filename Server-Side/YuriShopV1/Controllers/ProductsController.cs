@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using YuriShopV1.Data.Users;
@@ -52,13 +53,13 @@ namespace YuriShopV1.Controllers
             }
             return NotFound();
         }
-        [HttpGet("/Category/{category}")]
+        [HttpGet("Category/{category}")]
         public ActionResult<IEnumerable<ProductReadDto>> GetAllProductsByCategory(string Category)
         {
             var Products = _productRepo.GetAllProductsByCategory(Category);
             if (Products != null)
             {
-                Ok(_mapper.Map<IEnumerable<ProductReadDto>>(Products));
+                return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(Products));
             }
             return NotFound();
         }

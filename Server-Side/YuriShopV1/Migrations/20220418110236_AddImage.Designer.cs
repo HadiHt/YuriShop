@@ -10,8 +10,8 @@ using YuriShopV1.Data;
 namespace YuriShopV1.Migrations
 {
     [DbContext(typeof(YuriShopContext))]
-    [Migration("20220415182119_AddedKeys2.0")]
-    partial class AddedKeys20
+    [Migration("20220418110236_AddImage")]
+    partial class AddImage
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -216,6 +216,10 @@ namespace YuriShopV1.Migrations
 
                     b.Property<DateTime>("TimeCreated")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProductId");
 

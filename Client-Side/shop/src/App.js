@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App page">
       <Explore/>
-      {/* <Upload/> */}
+      <Upload/>
       {/* <Slider/> */}
     </div>
   );

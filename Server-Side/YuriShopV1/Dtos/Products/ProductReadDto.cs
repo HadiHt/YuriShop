@@ -12,6 +12,7 @@ namespace YuriShopV1.Dtos.Products
         public double Price { get; set; }
         public int Quantity { get; set; }
         public int SoldQuantity { get; set; }
+        public string image { get; set; }
         public DateTime TimeCreated { get; set; }
         public int ShopRefId { get; set; }
     }

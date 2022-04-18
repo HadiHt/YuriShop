@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-﻿using Microsoft.AspNetCore.Mvc;
-=======
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
->>>>>>> c370cac2708f5388ccc041c233473bb4b49c6f7d
 using System;
 using System.Collections.Generic;
 using YuriShopV1.Data.Users;
@@ -37,13 +33,8 @@ namespace YuriShopV1.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<UserReadDto>> GetAllUsers()
         {
-<<<<<<< HEAD
-            Console.WriteLine("Hadi hitle");
-            return Ok(_userRepo.GetAllUsers());
-=======
             var Users = _userRepo.GetAllUsers();
             return Ok(_mapper.Map<IEnumerable<UserReadDto>>(Users));
->>>>>>> c370cac2708f5388ccc041c233473bb4b49c6f7d
         }
         [HttpGet("{id}")]
         public ActionResult<UserReadDto> GetUserById(int id)

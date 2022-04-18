@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -55,6 +56,9 @@ namespace YuriShopV1
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "YuriShopV1", Version = "v1" });
             });
+            services.AddAuthentication(
+        CertificateAuthenticationDefaults.AuthenticationScheme)
+        .AddCertificate();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -66,7 +70,7 @@ namespace YuriShopV1
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "YuriShopV1 v1"));
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -76,6 +80,17 @@ namespace YuriShopV1
             {
                 endpoints.MapControllers();
             });
+            
+            app.Use(async (context, next) =>
+            {
+                context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                context.Response.Headers.Add("X-XSS-Protection", "1");
+                context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+                context.Response.Headers.Add("Referrer-Policy", "no-referrer");
+                await next();
+            });
+            app.UseStaticFiles();
+            app.UseAuthentication();
         }
     }
 }

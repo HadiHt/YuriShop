@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YuriShopV1.Migrations
 {
-    public partial class AddedKeys20 : Migration
+    public partial class AddImage : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -53,6 +53,7 @@ namespace YuriShopV1.Migrations
                     Price = table.Column<double>(type: "float", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     SoldQuantity = table.Column<int>(type: "int", nullable: false),
+                    image = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TimeCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ShopRefId = table.Column<int>(type: "int", nullable: false)
                 },
