@@ -1,22 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using YuriShopV1.Models;
 
-namespace YuriShopV1.Dtos.Addresses
+namespace YuriShopV1.Dtos.Cards
 {
-    public class AddressWriteDto
+    public class CardWriteDto
     {
         [Required]
-        public string Street { get; set; }
+        public int CardNumber { get; set; }
         [Required]
-        public string City { get; set; }
+        public string Brand { get; set; }
         [Required]
-        public string Area { get; set; }
+        public string ExpirationDate { get; set; }
         [Required]
-        public string Building { get; set; }
+        public int CVV { get; set; }
         [Required]
-        public string Details { get; set; }
+        public string Name { get; set; }
 
         [ForeignKey("UserRefId")]
         public User User { get; set; }

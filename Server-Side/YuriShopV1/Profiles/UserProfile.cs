@@ -9,6 +9,7 @@ namespace YuriShopV1.Profiles
         public UserProfile()
         {
             CreateMap<User, UserReadDto>();
+            CreateMap<UserWriteDto, User>();
         }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YuriShopV1.Migrations
 {
-    public partial class AddedKeys20 : Migration
+    public partial class AddedKeys : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -130,8 +130,9 @@ namespace YuriShopV1.Migrations
                 name: "Card",
                 columns: table => new
                 {
-                    CardNumber = table.Column<int>(type: "int", nullable: false)
+                    CardId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CardNumber = table.Column<int>(type: "int", nullable: false),
                     Brand = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ExpirationDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CVV = table.Column<int>(type: "int", nullable: false),
@@ -141,7 +142,7 @@ namespace YuriShopV1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Card", x => x.CardNumber);
+                    table.PrimaryKey("PK_Card", x => x.CardId);
                     table.ForeignKey(
                         name: "FK_Card_Shop_ShopRefId",
                         column: x => x.ShopRefId,

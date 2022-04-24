@@ -10,8 +10,8 @@ using YuriShopV1.Data;
 namespace YuriShopV1.Migrations
 {
     [DbContext(typeof(YuriShopContext))]
-    [Migration("20220415182119_AddedKeys2.0")]
-    partial class AddedKeys20
+    [Migration("20220415205726_AddedKeys")]
+    partial class AddedKeys
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -117,7 +117,7 @@ namespace YuriShopV1.Migrations
 
             modelBuilder.Entity("YuriShopV1.Models.Card", b =>
                 {
-                    b.Property<int>("CardNumber")
+                    b.Property<int>("CardId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -127,6 +127,9 @@ namespace YuriShopV1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CVV")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CardNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("ExpirationDate")
@@ -143,7 +146,7 @@ namespace YuriShopV1.Migrations
                     b.Property<int?>("UserRefId")
                         .HasColumnType("int");
 
-                    b.HasKey("CardNumber");
+                    b.HasKey("CardId");
 
                     b.HasIndex("ShopRefId");
 
