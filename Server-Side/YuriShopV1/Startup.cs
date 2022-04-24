@@ -45,6 +45,8 @@ namespace YuriShopV1
             services.AddControllers();
             services.AddTransient<CategoryImageSave>();
             services.AddTransient<CategoryImageUpload>();
+            services.AddTransient<ProfileImageSave>();
+            services.AddTransient<ProfileImageUpload>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace YuriShopV1.Services
 {
-    public class CategoryImageUpload
+    public class ProfileImageUpload
     {
         public byte[] list { get; set; }
         public List<string> stringlist = new List<string>();
@@ -18,30 +18,29 @@ namespace YuriShopV1.Services
 
 
         private readonly IWebHostEnvironment _environment;
-        public CategoryImageUpload(IWebHostEnvironment environment)
+        public ProfileImageUpload(IWebHostEnvironment environment)
         {
             _environment = environment;
         }
-        public async Task<List<string>> UploadCategory()
+        public async Task<List<string>> UploadProfile()
         {
             try
             {
-                if (!Directory.Exists(_environment.WebRootPath + "\\Categories\\"))
+                if (!Directory.Exists(_environment.WebRootPath + "\\Profiles\\"))
                 {
                     return null;
                 }
                 else
                 {
                     FileManagerModel model = new();
-                    var userImagesPath = Path.Combine(_environment.WebRootPath + "\\Categories\\");
+                    var userImagesPath = Path.Combine(_environment.WebRootPath + "\\Profiles\\");
                     DirectoryInfo dir = new(userImagesPath);
                     FileInfo[] files = dir.GetFiles();
                     foreach (var file in files)
                     {
-                        list =(File.ReadAllBytes(file.FullName));
+                        list = (File.ReadAllBytes(file.FullName));
                         string filee = Convert.ToBase64String(list);
-                        var x = file.Name.Split(".");
-                        stringlist.Add(x[0] +":"+filee);
+                        stringlist.Add(filee);
                     }
 
                     return stringlist;
