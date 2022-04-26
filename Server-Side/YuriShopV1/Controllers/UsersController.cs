@@ -170,5 +170,20 @@ namespace YuriShopV1.Controllers
             return CreatedAtRoute(nameof(GetApplicationById), new { Id = applicationReadDto.ApplicationId }, applicationReadDto);
             //return Ok(AddressModel);
         }
+
+        [HttpPut("{id}/address")]
+        public ActionResult UpdateAddress(int id, AddressUpdateDto address)
+        {
+            var AddressModelFromRepo = _addressRepo.GetAddressByUserId(id);
+            if (AddressModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(address, AddressModelFromRepo);
+            _addressRepo.UpdateAddress(AddressModelFromRepo);
+            _addressRepo.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

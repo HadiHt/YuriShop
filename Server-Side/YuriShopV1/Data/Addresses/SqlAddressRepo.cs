@@ -31,6 +31,14 @@ namespace YuriShopV1.Data.Addresses
             }
             _context.Address.Add(address);
         }
+        public void UpdateAddress(Address address)
+        {
+            if (address == null)
+            {
+                throw new ArgumentNullException(nameof(address));
+            }
+            _context.Address.Update(address);
+        }
 
         public bool SaveChanges()
         {

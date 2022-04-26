@@ -48,5 +48,10 @@ namespace YuriShopV1.Data.Products
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public IEnumerable<Product> GetAllProductsByName(string ProductName)
+        {
+            return _context.Product.Where(p => p.Name.Contains(ProductName)).ToList();
+        }
     }
 }
