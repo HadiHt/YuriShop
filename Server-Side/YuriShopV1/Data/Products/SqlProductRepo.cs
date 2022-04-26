@@ -32,7 +32,10 @@ namespace YuriShopV1.Data.Products
         {
             return _context.Product.Where(p => p.Category == Category).ToList();
         }
-
+        public IEnumerable<Product> GetAllProductsByName(string Name)
+        {
+             return _context.Product.Where(p => p.Name.Contains(Name)).ToList();
+        }
         public void CreateProduct(Product product)
         {
             if (product == null)

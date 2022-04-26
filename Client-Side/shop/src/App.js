@@ -1,14 +1,33 @@
 import './App.css';
-import Explore from './components/pages/Explore';
-import Upload from './components/elements/Upload';
-import Slider from './components/elements/Slider/Slider';
+import Footer from './components/footer/Footer'
+import Home from './pages/explore/home';
+import Header from './components/testNav/TestNav';
+import CategoryProducts from './pages/categoryProducts/CategoryProducts';
+import Login from './pages/Log-In/LogIn';
+import { userContext } from './userContext';
+import { useState } from 'react';
+import ProductView from './pages/ProductView/ProductView';
+
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
+  const [user,setUser] =useState('')
   return (
-    <div className="App page">
-      <Explore/>
-      <Upload/>
-      {/* <Slider/> */}
+    <div className="App">
+      <Header />
+      <userContext.Provider value={{user, setUser}}>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="category/:john" element={<CategoryProducts />} />
+          <Route path="logIn" element={<Login />} />
+          <Route path="order" element={<CategoryProducts />} />
+          <Route path="product-details/:id" element={<ProductView/>}/>
+        </Routes>
+      </userContext.Provider>
+      {/* <Footer /> */}
     </div>
   );
 }

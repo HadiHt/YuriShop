@@ -6,19 +6,19 @@ import Keybord from '../img4.jpg'
 
 const dataSlider = [
     {
-        id: '4',
+        id: '1',
         url: Mouse
     },
     {
-        id: '5',
+        id: '2',
         url: Speaker
     },
     {
-        id: '6',
+        id: '3',
         url: Monitor
     },
     {
-        id: '7',
+        id: '4',
         url: Keybord
     },
 ];

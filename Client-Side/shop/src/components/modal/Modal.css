@@ -5,6 +5,26 @@
     align-items: center;
     justify-content: center;
     top: 0;
-    margin-left: 22px;
     width: 160px;
+    margin-left: 2000px;
+    margin-top: 80px;
+}
+.searchBarModal{
+    top: 80px;
+    position: fixed;
+    border-radius: 15px;
+    right:49%;
+    background-color: rgba(0, 0, 1, 0.466);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+}
+.search-result{
+    margin-bottom: 3%;
+    margin-left: 3%;
+    width: 30vw;
+}
+.search-result :hover{
+    background-color: antiquewhite;
 }

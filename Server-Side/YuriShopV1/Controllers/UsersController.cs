@@ -88,5 +88,15 @@ namespace YuriShopV1.Controllers
             _addressRepo.SaveChanges();
             return Ok(AddressModel);
         }
+        [HttpGet("{email}/Email")]
+        public ActionResult<UserReadDto> GetUserByEmail(string email)
+        {
+            var User = _userRepo.GetUserByEmail(email);
+            if (User != null)
+            {
+                return Ok(_mapper.Map<UserReadDto>(User));
+            }
+            return NotFound();
+        }
     }
 }

@@ -8,6 +8,7 @@ using YuriShopV1.Models;
 
 namespace YuriShopV1.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -57,6 +58,16 @@ namespace YuriShopV1.Controllers
         public ActionResult<IEnumerable<ProductReadDto>> GetAllProductsByCategory(string Category)
         {
             var Products = _productRepo.GetAllProductsByCategory(Category);
+            if (Products != null)
+            {
+                return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(Products));
+            }
+            return NotFound();
+        }
+        [HttpGet("Name/{name}")]
+        public ActionResult<IEnumerable<ProductReadDto>> GetAllProductsByName(string Name)
+        {
+            var Products = _productRepo.GetAllProductsByName(Name);
             if (Products != null)
             {
                 return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(Products));
