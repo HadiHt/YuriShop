@@ -22,10 +22,6 @@ namespace YuriShopV1.Data.Users
         {
             return _context.User.FirstOrDefault(p => p.UserId == id);
         }
-        public User GetUserByEmail(string Email)
-        {
-            return _context.User.FirstOrDefault(p => p.Email == Email);
-        }
 
         public void CreateUser(User user)
         {

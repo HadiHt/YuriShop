@@ -10,7 +10,6 @@ namespace YuriShopV1.Data.Users
         Product GetProductById(int id);
         IEnumerable<Product> GetAllProductsByShopId(int id);
         IEnumerable<Product> GetAllProductsByCategory(string Category);
-        IEnumerable<Product> GetAllProductsByName(string Name);
         void CreateProduct(Product product);
         bool SaveChanges();
     }

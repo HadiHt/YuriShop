@@ -10,6 +10,7 @@ namespace YuriShopV1.Profiles
         {
             CreateMap<Address, AddressReadDto>();
             CreateMap<AddressWriteDto, Address>();
+            CreateMap<AddressUpdateDto, Address>();
         }
     }
 }

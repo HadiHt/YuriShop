@@ -9,6 +9,7 @@ namespace YuriShopV1.Profiles
         public WishListProfile()
         {
             CreateMap<WishList, WishListReadDto>();
+            CreateMap<WishListWriteDto, WishList>();
         }
     }
 }

@@ -8,6 +8,8 @@ namespace YuriShopV1.Models
     {
         [Key]
         [Required]
+        public int CardId { get; set; }
+        [Required]
         public int CardNumber { get; set; }
         [Required]
         public string Brand { get; set; }

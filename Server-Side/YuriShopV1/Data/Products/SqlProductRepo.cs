@@ -27,15 +27,15 @@ namespace YuriShopV1.Data.Products
         public IEnumerable<Product> GetAllProductsByShopId(int id)
         {
             return _context.Product.Where(p => p.ShopRefId == id).ToList();
+            
         }
         public IEnumerable<Product> GetAllProductsByCategory(string Category)
         {
+
             return _context.Product.Where(p => p.Category == Category).ToList();
+            
         }
-        public IEnumerable<Product> GetAllProductsByName(string Name)
-        {
-             return _context.Product.Where(p => p.Name.Contains(Name)).ToList();
-        }
+
         public void CreateProduct(Product product)
         {
             if (product == null)

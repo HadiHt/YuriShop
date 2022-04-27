@@ -5,7 +5,6 @@ using YuriShopV1.Models;
 
 namespace YuriShopV1.Dtos.Addresses
 {
-    [Keyless]
     public class AddressWriteDto
     {
         [Required]

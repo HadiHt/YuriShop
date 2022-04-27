@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UV74xbe8JmH5n5P6cudNrMMAqQ3dCgEzOZuTParSghjtfSDCTlB6OYEU5PzWKkWAp5+l1rYeRdAAnXNjSDlYbw==",
+  "dgSpecHash": "NJSeyC+zIzosynMXp9X80FBKJuSIxaMhif67aIq+V1TE2mCuMXwLsoBpMItw1YAAIXkmTknQQz0OsjWdSmY48g==",
   "success": true,
   "projectFilePath": "C:\\Users\\10User\\Desktop\\YuriShop\\Server-Side\\YuriShopV1\\YuriShopV1.csproj",
   "expectedPackageFiles": [
@@ -8,7 +8,6 @@
     "C:\\Users\\10User\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\10User\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\10User\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\10User\\.nuget\\packages\\microsoft.aspnetcore.authentication.certificate\\5.0.8\\microsoft.aspnetcore.authentication.certificate.5.0.8.nupkg.sha512",
     "C:\\Users\\10User\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\10User\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\10User\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",

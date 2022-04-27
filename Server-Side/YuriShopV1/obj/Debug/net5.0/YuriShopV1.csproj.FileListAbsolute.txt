@@ -144,4 +144,3 @@ C:\Users\10User\Desktop\YuriShop\Server-Side\YuriShopV1\obj\Debug\net5.0\refint\
 C:\Users\10User\Desktop\YuriShop\Server-Side\YuriShopV1\obj\Debug\net5.0\YuriShopV1.pdb
 C:\Users\10User\Desktop\YuriShop\Server-Side\YuriShopV1\obj\Debug\net5.0\YuriShopV1.genruntimeconfig.cache
 C:\Users\10User\Desktop\YuriShop\Server-Side\YuriShopV1\obj\Debug\net5.0\ref\YuriShopV1.dll
-C:\Users\10User\Desktop\YuriShop\Server-Side\YuriShopV1\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Certificate.dll

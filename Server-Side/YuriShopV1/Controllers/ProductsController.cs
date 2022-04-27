@@ -60,17 +60,7 @@ namespace YuriShopV1.Controllers
             var Products = _productRepo.GetAllProductsByCategory(Category);
             if (Products != null)
             {
-                return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(Products));
-            }
-            return NotFound();
-        }
-        [HttpGet("Name/{name}")]
-        public ActionResult<IEnumerable<ProductReadDto>> GetAllProductsByName(string Name)
-        {
-            var Products = _productRepo.GetAllProductsByName(Name);
-            if (Products != null)
-            {
-                return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(Products));
+               return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(Products));
             }
             return NotFound();
         }

@@ -6,6 +6,7 @@ import { useEffect, useState, useContext } from 'react'
 import Axios from 'axios'
 import Category from "../../components/content/category/Category";
 import { userContext } from "../../userContext";
+import Upload from "../../components/elements/Upload";
 
 const Home=()=> {
     const [Data, setData] = useState([]);
@@ -46,6 +47,7 @@ const Home=()=> {
         </div>
         <div onClick={()=>{setUser('jejejeje')}}>click</div>
       </div>
+      <Upload/>
     </div>
   );
 }

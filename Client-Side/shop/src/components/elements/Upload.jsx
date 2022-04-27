@@ -10,6 +10,7 @@ const Upload = () => {
         reader.onload = function () {
             base64String = reader.result.replace("data:", "")
                 .replace(/^.+,/, "");
+            console.log(typeof reader.result)
         }
         reader.readAsDataURL(file);
     }

@@ -28,13 +28,13 @@ namespace YuriShopV1.Controllers
             _productRepo = productRepo;
         }
         [HttpGet]
-        public ActionResult<IEnumerable<OrderReadDto>> GetAllProducts()
+        public ActionResult<IEnumerable<OrderReadDto>> GetAllOrders()
         {
             var orders = _orderRepo.GetAllOrders();
             return Ok(_mapper.Map<IEnumerable<OrderReadDto>>(orders));
         }
-        [HttpGet("{id}")]
-        public ActionResult<OrderReadDto> GetProductById(int id)
+        [HttpGet("{id}", Name = "GetOrderById")]
+        public ActionResult<OrderReadDto> GetOrderById(int id)
         {
             var orders = _orderRepo.GetOrderById(id);
             if (orders != null)
@@ -63,6 +63,29 @@ namespace YuriShopV1.Controllers
             }
             return NotFound();
         }
-    }
+        [HttpPost("order")]
+        public ActionResult<OrderReadDto> CreateOrder(OrderWriteDto order)
+        {
+            var OrderModel = _mapper.Map<Order>(order);
+            _orderRepo.CreateOrder(OrderModel);
+            _orderRepo.SaveChanges();
 
+            var orderReadDto = _mapper.Map<OrderReadDto>(OrderModel);
+            return CreatedAtRoute(nameof(GetOrderById), new { Id = orderReadDto.OrderId }, orderReadDto);
+        }
+        [HttpPut("{id}/order")]
+        public ActionResult UpdateAddress(int id, OrderUpdateDto order)
+        {
+            var OrderModelFromRepo = _orderRepo.GetOrderById(id);
+            if (OrderModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(order, OrderModelFromRepo);
+            _orderRepo.UpdateOrder(OrderModelFromRepo);
+            _orderRepo.SaveChanges();
+
+            return NoContent();
+        }
+    }
 }
