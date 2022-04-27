@@ -14,22 +14,19 @@ namespace YuriShopV1.Services
         {
             _environment = environment;
         }
-        public async Task<string> SaveCategory (IFormFile objFile)
+        public async Task<string> SaveCategory(string base64)
         {
             try
             {
-                if(objFile.Length >0)
+                if(base64.Length >0)
                 {
-                    if(!Directory.Exists(_environment.WebRootPath + "\\Categories\\"))
+                    string[] arr = base64.Split(":");
+                    if (!Directory.Exists(_environment.WebRootPath + "\\Categories\\"))
                     {
                         Directory.CreateDirectory(_environment.WebRootPath + "\\Categories\\");
                     }
-                    await using (FileStream fileStream = System.IO.File.Create(_environment.WebRootPath + "\\Categories\\" + objFile.FileName))
-                    {
-                        objFile.CopyTo(fileStream);
-                        fileStream.Flush();
-                        return "\\Categories\\" + objFile.FileName;
-                    }
+                        File.WriteAllBytes(_environment.WebRootPath + "\\Categories\\" + arr[0]+".jpg", Convert.FromBase64String(arr[1]));
+                        return "\\Categories\\"+arr[0];
                 }
                 else
                 {

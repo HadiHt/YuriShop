@@ -1,0 +1,21 @@
+.category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 10px;
+    padding: 20px;
+    background-color: white;
+    z-index: 1;
+    width: 25%;
+}
+.category__info {
+    height: 100px;
+    margin-bottom: 15px;
+}
+.category>img {
+    float: left;
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+}

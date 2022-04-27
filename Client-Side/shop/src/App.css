@@ -1,0 +1,23 @@
+.App {
+  text-align: justify;
+}
+.input-icons {
+  width: 45%;
+  margin: auto;
+  background-color: transparent;
+}
+.input-icons i {
+  position: absolute;
+  padding: 10px;
+  min-width: 20px;
+  background-color: transparent;
+}
+*{
+  color: rgb(0, 0, 0);
+}
+.icon{
+  background-color: transparent;
+}
+.page{
+  margin-top: 60px;
+}
