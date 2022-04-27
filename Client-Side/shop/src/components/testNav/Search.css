@@ -2,23 +2,22 @@
     display: flex;
 }
 .search {
-    flex: 1;
     align-items: center;
-    width:60%;
-    position: relative;
+    width:70%;
+    flex: 4;
 }
 .search input {
     height: 12px;
     padding: 10px;
     border: none;
     border-radius: 15px 0px 0px 15px;
-    width: 55%;
+    width: 60%;
 }
 
 .searchIcon {
     padding: 5px;
     height: 22px !important;
-    background-color: #4c6086;
+    background-color: #6b4485;
     align-items: center;
     border-radius: 0 15px 15px 0;
     cursor: pointer;
@@ -40,8 +39,14 @@ input:focus {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     overflow: hidden;
     overflow-y: auto;
-    width: 96%;
+    width: 40%;
 }
+@media (max-width:720px) {
+    .dataResult{
+        width:30%
+    }
+}
+
 
 .dataResult::-webkit-scrollbar {
     display: none;

@@ -1,12 +1,12 @@
 import './App.css';
 import Footer from './components/footer/Footer'
 import Home from './pages/explore/home';
-import Header from './components/testNav/TestNav';
 import CategoryProducts from './pages/categoryProducts/CategoryProducts';
 import Login from './pages/Log-In/LogIn';
 import { userContext } from './userContext';
 import { useState } from 'react';
 import ProductView from './pages/ProductView/ProductView';
+import Navbar from './components/testNav/Navbar';
 
 import {
   Routes,
@@ -17,7 +17,8 @@ function App() {
   const [user,setUser] =useState('')
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
+      <Navbar/>
       <userContext.Provider value={{user, setUser}}>
         <Routes>
           <Route exact path="/" element={<Home />} />
