@@ -18,6 +18,17 @@
 .icon{
   background-color: transparent;
 }
-.page{
-  margin-top: 60px;
+
+.but{
+  border-radius: 15px;
+  background-color: transparent;
+  border-style: none;
+  width: 100px;
+  font-size: 11pt;
+  cursor: pointer;
+  align-items: center;
+}
+.but:hover{
+  background-color: rgb(69, 70, 131);
+  color: white;
 }
