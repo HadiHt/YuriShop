@@ -12,6 +12,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import UserProfile from './pages/UserProfile/UserProfile';
 
 function App() {
   const [user,setUser] =useState('')
@@ -26,6 +27,7 @@ function App() {
           <Route path="logIn" element={<Login />} />
           <Route path="order" element={<CategoryProducts />} />
           <Route path="product-details/:id" element={<ProductView/>}/>
+          <Route path="UserProfile" element={<UserProfile />} />
         </Routes>
       </userContext.Provider>
       {/* <Footer /> */}

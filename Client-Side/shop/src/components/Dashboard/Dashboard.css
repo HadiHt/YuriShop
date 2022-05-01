@@ -1,0 +1,44 @@
+.SidebarContainer {
+  width: 100%;
+  top: 35vh;
+  height: 100%;
+  /* position: fixed; */
+  display: flex;
+  flex-direction: column;
+}
+.SelectedSideBar {
+  background-color: red;
+}
+.SideBarTitle {
+  align-self: center;
+  justify-self: center;
+  padding-top: 10px;
+  font-weight: 500;
+}
+.DashboardList {
+  list-style-type: none;
+  padding: 0px;
+  width: 100%;
+}
+.DashboardList > * {
+  justify-self: center;
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  font-size: 17px;
+  font-weight: 500;
+  border-bottom: solid 1px grey;
+}
+.NotSelected1,
+.NotSelected2,
+.NotSelected3,
+.NotSelected4 {
+  background-color: white;
+}
+.Selected1,
+.Selected2,
+.Selected3,
+.Selected4 {
+  background-image: linear-gradient(to right, #1e244e, #8260a6);
+  color: white;
+}

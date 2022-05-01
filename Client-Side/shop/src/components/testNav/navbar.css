@@ -1,5 +1,5 @@
 .navbar{
-    height: auto;
+    height: 78px;
 }
 .logo_And_Search, .menu__options{
     display: flex;
