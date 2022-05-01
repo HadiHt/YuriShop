@@ -13,9 +13,14 @@ const UserProfile = () => {
   const [height, setHeight] = useState([]);
   const inputRef = useRef();
   const inputRef1 = useRef();
+  const inputRef2 = useRef();
 
   useEffect(() => {
-    setHeight([inputRef.current.clientHeight, inputRef1.current.clientHeight]);
+    setHeight([
+      inputRef.current.clientHeight,
+      inputRef1.current.clientHeight,
+      inputRef2.current.clientHeight,
+    ]);
   }, []);
   return (
     <div className="UserProfileContainer">
@@ -26,15 +31,15 @@ const UserProfile = () => {
         </div>
       </div>
       <div className="ProfilePageContentContainer">
-        <div className="Bios">
+        <div className="Bios" ref={inputRef}>
           <p className="BiosTitle">BIOS INFO</p>
           <Bios />
         </div>
-        <div className="Address" ref={inputRef}>
+        <div className="Address" ref={inputRef1}>
           <p className="AddressTitle">ADDRESS</p>
           <Address />
         </div>
-        <div className="Order" ref={inputRef1}>
+        <div className="Order" ref={inputRef2}>
           <p className="OrderTitle">ORDERS</p>
           <Order />
         </div>

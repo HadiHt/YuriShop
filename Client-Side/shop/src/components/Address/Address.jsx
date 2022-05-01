@@ -1,7 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Address.css";
 
 const Address = () => {
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/UserProfile/:id/EditAddress`;
+    navigate(path);
+  };
   return (
     <div className="AddressContainer">
       <div className="BottomAddressContainer">
@@ -14,7 +20,9 @@ const Address = () => {
           <p>Building: Farhat</p>
           <p>More Details: ....</p>
         </span>
-        <button className="EditAddressButton">Edit Address Details</button>
+        <button onClick={routeChange} className="EditAddressButton">
+          Edit Address Details
+        </button>
       </div>
     </div>
   );

@@ -1,7 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Bios.css";
 
 const Bios = () => {
+  let navigate = useNavigate();
+  const routeChange = () => {
+    let path = `/UserProfile/:id/EditBiosInfo`;
+    navigate(path);
+  };
   return (
     <div className="BottomBiosContainer">
       <span className="BiosDetails">
@@ -10,7 +16,9 @@ const Bios = () => {
         <p>Phone Number: 03095494</p>
         <p>About: bla bla bla blas</p>
       </span>
-      <button className="EditProfileButton">Edit Profile</button>
+      <button onClick={routeChange} className="EditProfileButton">
+        Edit Profile
+      </button>
     </div>
   );
 };
