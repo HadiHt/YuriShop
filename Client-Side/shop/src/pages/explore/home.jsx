@@ -5,8 +5,8 @@ import Product from "../../components/content/product-view/product";
 import { useEffect, useState, useContext } from 'react'
 import Axios from 'axios'
 import Category from "../../components/content/category/Category";
-import { userContext } from "../../userContext";
-import Upload from "../../components/elements/Upload";
+import { userContext } from "../../contexts/userContext";
+import { cartContext } from "../../contexts/cartContext";
 
 const Home=()=> {
     const [Data, setData] = useState([]);
@@ -18,7 +18,8 @@ const Home=()=> {
                 setData(res.data);
             }).catch(err => console.log(err))
     }, [])
-    const arr = Data.map((data, index) => {
+    const {cart, setCart}= useContext(cartContext);
+    const arr = cart.map((data, index) => {
         return (
             <div  key={index}>
                 {/* <Product
@@ -27,15 +28,24 @@ const Home=()=> {
             price={data.price}
             image={'data:image/png;base64,'+data.image}
           /> */}
-              
+              {data.id}
             </div>
         )
     });
     const {user, setUser}= useContext(userContext);
+    const clickToAdd = () =>{
+    setCart([...cart,
+      {
+          id: '3',
+          url: "Spseaker"
+      }]);
+      console.log(cart);
+    }
   return (
     <div className="home">
       <div className="home__container">
         <Slider/>
+        <button onClick={clickToAdd}>click to Add</button>
         <div>{user}</div>
         <div className="home__row">
               <Category ID={'furniture'} Category={'furniture'}/>
@@ -45,6 +55,7 @@ const Home=()=> {
               <Category ID={'books'} Category={'books'}/>
               <Category ID={'art'} Category={'art'}/>
         </div>
+        {arr}
         <div onClick={()=>{setUser('jejejeje')}}>click</div>
       </div>
     </div>

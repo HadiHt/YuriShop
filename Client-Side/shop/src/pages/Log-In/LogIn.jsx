@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import './Login.css'
 import { Link, useNavigate } from "react-router-dom";
-import { userContext } from '../../userContext';
+import { userContext } from '../../contexts/userContext';
 import Axios from 'axios';
 
 const Login = () => {
@@ -16,20 +16,24 @@ const Login = () => {
     }
 
     const Auth = () => {
-        Axios.get('http://localhost:5000/api/Users/' + email + '/Email')
-            .then(res => {
-                console.log(res.data);
-                setData(res.data);
-            }
-            ).catch(err => console.log(err));
-            console.log(Data.email);
-            if (Data.email === email && Data.password === password) {
-                setUser(Data.userId);
-                navigate('/');
-            }
-            else {
-                console.log('invalid');
-            }
+        // Axios.get('http://localhost:5000/api/Users/' + email + '/Email')
+        //     .then(res => {
+        //         console.log(res.data);
+        //         setData(res.data);
+        //     }
+        //     ).catch(err => console.log(err));
+        //     console.log(Data.email);
+        //     if (Data.email === email && Data.password === password) {
+        //         setUser(Data.userId);
+        //         navigate('/');
+        //     }
+        //     else {
+        //         console.log('invalid');
+        //     }
+        // Encode the String
+        var encodedStringBase64 = btoa(email);
+        setUser(encodedStringBase64);
+        navigate('/');
     }
 
     return (
@@ -50,7 +54,7 @@ const Login = () => {
                     <button onClick={Auth} className='login__signInButton'>Sign In</button>
                 </div>
                 <p>By signing-in you agree to the Yuri Shop Conditions of Use & Sale.</p>
-                <button className='login__registerButton'>Create your Amazon Account</button>
+                <button onClick={()=>{navigate('/signUp')}} className='login__registerButton'>Create your Amazon Account</button>
             </div>
         </div>
     )

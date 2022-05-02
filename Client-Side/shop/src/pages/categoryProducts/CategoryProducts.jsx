@@ -18,6 +18,7 @@ const CategoryProducts = () => {
         return (
             <div key={index}>
                 <ProductItem product={data}
+                type="view"
                 />
             </div>
         )

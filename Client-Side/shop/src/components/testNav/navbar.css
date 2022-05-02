@@ -14,7 +14,7 @@
 .navbar ul{
     display: flex;
     align-items: center;
-    background: linear-gradient(50deg, rgb(22, 31, 71), rgb(137, 100, 172));
+    background: linear-gradient(50deg, rgb(37, 50, 107), rgb(147, 155, 226));
     color: white;
     width: auto;
 }

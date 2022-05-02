@@ -15,7 +15,7 @@ const Category = ({ID,Category}) => {
     <div id={ID} className="category__info">
       <h5>{Category}</h5>
     </div>
-    <img id={ID} src='https://www.minotti.com/media/immagini/24195_n_WEST--.jpg'></img>
+    <img id={ID} src='https://ecommerce.ccc2020.fr/wp-content/uploads/2020/10/electronic-gadgets.jpeg'></img>
   </div>
   )
 }

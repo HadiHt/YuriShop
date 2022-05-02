@@ -30,7 +30,6 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
-    height: 70px;
     overflow: hidden;
     color: #323232;
 }
@@ -47,13 +46,25 @@
     letter-spacing: 2px;
     padding: 6px;
 }
-#btn_buy{
-    background: #555;
-    margin-right: 5px;
-}
-#btn_view{
-    background: teal;
+.btn_remove{
+    background: rgb(226, 43, 43);
     margin-left: 5px;
+    color: white;
+    border: none;
+    width: 40%;
+    font-size: 15pt;
+    border-radius: 15px;
+    height: 40px;
+}
+.btn_view{
+    background: blueviolet;
+    margin-left: 5px;
+    color: white;
+    border: none;
+    width: 40%;
+    font-size: 15pt;
+    border-radius: 15px;
+    height: 40px;
 }
 .product_header{
     display: flex;
