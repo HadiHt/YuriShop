@@ -10,6 +10,7 @@ using YuriShopV1.Dtos.Cards;
 using YuriShopV1.Dtos.Users;
 using YuriShopV1.Dtos.WishLists;
 using YuriShopV1.Models;
+using YuriShopV1.Services;
 
 namespace YuriShopV1.Controllers
 {
@@ -23,8 +24,9 @@ namespace YuriShopV1.Controllers
         private readonly ICardRepo _cardRepo;
         private readonly IUserRepo _userRepo;
         private readonly IWishListRepo _wishlistRepo;
+        private readonly UserManager _userManager;
 
-        public UsersController(IMapper mapper,IApplicationRepo applicationRepo,IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo, IWishListRepo wishlistRepo )
+        public UsersController(IMapper mapper,IApplicationRepo applicationRepo,IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo, IWishListRepo wishlistRepo , UserManager userManager)
         {
             _mapper = mapper;
             _applicationRepo = applicationRepo;
@@ -32,6 +34,7 @@ namespace YuriShopV1.Controllers
             _cardRepo = cardRepo;
             _userRepo = userRepo;
             _wishlistRepo = wishlistRepo;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -50,18 +53,26 @@ namespace YuriShopV1.Controllers
             }
             return NotFound();
         }
+        [HttpGet("login")]
+        public ActionResult<UserReadDto> ValidateUser(UserWriteDto checkUser)
+        {
+                var User = _userManager.CheckEmailAndPassword(checkUser);
+                return Ok(_mapper.Map<UserReadDto>(User));
+        }
 
         [HttpPost("SignUp")]
         public ActionResult<UserReadDto> CreateUser(UserWriteDto user)
         {
-            //need to check validation of address 
-            var UserModel = _mapper.Map<User>(user);
-            _userRepo.CreateUser(UserModel);
-            _userRepo.SaveChanges();
+            if(_userRepo.GetUserByEmail(user.Email) == null)
+            {
+                var UserModel = _mapper.Map<User>(user);
+                _userRepo.CreateUser(UserModel);
+                _userRepo.SaveChanges();
 
-            var userReadDto = _mapper.Map<UserReadDto>(UserModel);
-            return CreatedAtRoute(nameof(GetUserById), new { Id = userReadDto.UserId }, userReadDto);
-            //return Ok(AddressModel);
+                var userReadDto = _mapper.Map<UserReadDto>(UserModel);
+                return CreatedAtRoute(nameof(GetUserById), new { Id = userReadDto.UserId }, userReadDto);
+            }
+            return Conflict(new { message = "This Email is already taken!" });
         }
 
         [HttpGet("{id}/address", Name="GetAddressByUserId")]
@@ -169,6 +180,21 @@ namespace YuriShopV1.Controllers
             var applicationReadDto = _mapper.Map<ApplicationReadDto>(ApplicationModel);
             return CreatedAtRoute(nameof(GetApplicationById), new { Id = applicationReadDto.ApplicationId }, applicationReadDto);
             //return Ok(AddressModel);
+        }
+
+        [HttpPut("{id}/address")]
+        public ActionResult UpdateAddress(int id, AddressUpdateDto address)
+        {
+            var AddressModelFromRepo = _addressRepo.GetAddressByUserId(id);
+            if (AddressModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(address, AddressModelFromRepo);
+            _addressRepo.UpdateAddress(AddressModelFromRepo);
+            _addressRepo.SaveChanges();
+
+            return NoContent();
         }
     }
 }

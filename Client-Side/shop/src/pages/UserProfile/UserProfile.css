@@ -1,0 +1,44 @@
+.UserProfileContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-top: 25px;
+}
+
+.ProfilePageContentContainer {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 20px;
+  border-left: solid 1px grey;
+}
+.Dashboard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.t {
+  position: fixed;
+  width: 24.3vw;
+}
+.Bios,
+.Address,
+.Order,
+.Wishlist {
+  width: 100%;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.BiosTitle,
+.AddressTitle,
+.OrderTitle,
+.WishlistTitle {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 500;
+  align-self: center;
+}

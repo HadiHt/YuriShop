@@ -44,6 +44,16 @@ namespace YuriShopV1.Controllers
             }
             return NotFound();
         }
+        [HttpGet("name/{name}")]
+        public ActionResult<IEnumerable<ProductReadDto>> GetAllProductsByName(string name)
+        {
+            var Product = _productRepo.GetAllProductsByName(name);
+            if (Product != null)
+            {
+                return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(Product));
+            }
+            return NotFound();
+        }
         [HttpGet("{id}/shop")]
         public ActionResult<IEnumerable<ProductReadDto>> GetAllProductsByShopId(int id)
         {

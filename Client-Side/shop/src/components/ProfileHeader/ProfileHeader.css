@@ -1,0 +1,23 @@
+.ProfileHeaderContainer {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  width: 100%;
+  row-gap: 10px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+}
+.ProfileImage {
+  height: 125px;
+  width: 125px;
+  border-radius: 50%;
+  background-color: grey;
+  justify-self: center;
+  align-self: center;
+}
+.TopBiosContainer > * {
+  /* background-image: linear-gradient(to bottom, #202550, #7e5da2);
+  border-radius: 10px;
+  padding: 7px 14px 7px 14px; */
+  color: linear-gradient(to right, #202550, #7e5da2);
+}

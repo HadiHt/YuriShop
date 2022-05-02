@@ -24,5 +24,10 @@ namespace YuriShopV1.Data
         {
             throw new System.NotImplementedException();
         }
+
+        public void UpdateAddress(Address address)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
