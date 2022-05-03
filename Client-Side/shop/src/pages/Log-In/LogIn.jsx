@@ -8,7 +8,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { user, setUser } = useContext(userContext);
-    const [Data, setData] = useState([]);
+    const [wrongCredentials, setWrongCredentials] = useState(false);
     const navigate = useNavigate();
 
     const s = () => {
@@ -16,24 +16,23 @@ const Login = () => {
     }
 
     const Auth = () => {
-        // Axios.get('http://localhost:5000/api/Users/' + email + '/Email')
-        //     .then(res => {
-        //         console.log(res.data);
-        //         setData(res.data);
-        //     }
-        //     ).catch(err => console.log(err));
-        //     console.log(Data.email);
-        //     if (Data.email === email && Data.password === password) {
-        //         setUser(Data.userId);
-        //         navigate('/');
-        //     }
-        //     else {
-        //         console.log('invalid');
-        //     }
-        // Encode the String
-        var encodedStringBase64 = btoa(email);
-        setUser(encodedStringBase64);
-        navigate('/');
+
+        Axios.post('http://localhost:5000/api/Users/login',{
+            "email": email,
+            "password": password
+          })
+            .then(res => {
+                console.log(res.data);
+                if (res.data===""){
+                    console.log("Bad Credentials");
+                    setWrongCredentials(true);
+                } else {
+                    setUser(res.data);
+                    setWrongCredentials(false)
+                    navigate('/');
+                }
+            }
+            ).catch(err => console.log(err));
     }
 
     return (
@@ -45,12 +44,13 @@ const Login = () => {
             </Link>
             <div className='login__container'>
                 <h1>Sign-in</h1>
-                <div>{user}</div>
+                <div>{console.log(user)}</div>
                 <div>
                     <h5>E-mail</h5>
                     <input type='text' value={email} onChange={e => setEmail(e.target.value)} />
                     <h5>Password</h5>
                     <input type='password' value={password} onChange={e => setPassword(e.target.value)} />
+                    {wrongCredentials && <p className='error__message'>Wrong Log in credentials, please try again or Sign-Up</p>}
                     <button onClick={Auth} className='login__signInButton'>Sign In</button>
                 </div>
                 <p>By signing-in you agree to the Yuri Shop Conditions of Use & Sale.</p>

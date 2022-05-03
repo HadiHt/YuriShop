@@ -26,7 +26,7 @@ namespace YuriShopV1.Controllers
         private readonly IWishListRepo _wishlistRepo;
         private readonly UserManager _userManager;
 
-        public UsersController(IMapper mapper, IApplicationRepo applicationRepo, IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo, IWishListRepo wishlistRepo, UserManager userManager)
+        public UsersController(IMapper mapper,IApplicationRepo applicationRepo,IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo, IWishListRepo wishlistRepo , UserManager userManager)
         {
             _mapper = mapper;
             _applicationRepo = applicationRepo;
@@ -47,23 +47,23 @@ namespace YuriShopV1.Controllers
         public ActionResult<UserReadDto> GetUserById(int id)
         {
             var User = _userRepo.GetUserById(id);
-            if (User != null)
+            if(User != null)
             {
                 return Ok(_mapper.Map<UserReadDto>(User));
             }
             return NotFound();
         }
-        [HttpGet("login")]
+        [HttpPost("login")]
         public ActionResult<UserReadDto> ValidateUser(UserWriteDto checkUser)
         {
-            var User = _userManager.CheckEmailAndPassword(checkUser);
-            return Ok(_mapper.Map<UserReadDto>(User));
+                var User = _userManager.CheckEmailAndPassword(checkUser);
+                return Ok(_mapper.Map<UserReadDto>(User));
         }
 
         [HttpPost("SignUp")]
         public ActionResult<UserReadDto> CreateUser(UserWriteDto user)
         {
-            if (_userRepo.GetUserByEmail(user.Email) == null)
+            if(_userRepo.GetUserByEmail(user.Email) == null)
             {
                 var UserModel = _mapper.Map<User>(user);
                 _userRepo.CreateUser(UserModel);
@@ -75,7 +75,7 @@ namespace YuriShopV1.Controllers
             return Conflict(new { message = "This Email is already taken!" });
         }
 
-        [HttpGet("{id}/address", Name = "GetAddressByUserId")]
+        [HttpGet("{id}/address", Name="GetAddressByUserId")]
         public ActionResult<AddressReadDto> GetAddressByUserId(int id)
         {
             var address = _addressRepo.GetAddressByUserId(id);
@@ -99,7 +99,7 @@ namespace YuriShopV1.Controllers
             //return Ok(AddressModel);
         }
 
-        [HttpGet("{id}/card", Name = "GetCardByUserId")]
+        [HttpGet("{id}/card", Name="GetCardByUserId")]
         public ActionResult<CardReadDto> GetCardByUserId(int id)
         {
             var card = _cardRepo.GetCardByUserId(id);

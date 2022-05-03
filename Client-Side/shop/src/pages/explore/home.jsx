@@ -41,6 +41,12 @@ const Home=()=> {
       }]);
       console.log(cart);
     }
+    // Define the string
+var decodedStringBtoA = '123';
+
+// Encode the String
+var encodedStringBtoA = btoa(decodedStringBtoA);
+console.log(encodedStringBtoA)
   return (
     <div className="home">
       <div className="home__container">

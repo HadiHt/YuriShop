@@ -9,8 +9,6 @@ namespace YuriShopV1.Profiles
         public OrderProfile()
         {
             CreateMap<Order, OrderReadDto>();
-            CreateMap<OrderWriteDto, Order>();
-            CreateMap<OrderUpdateDto, Order>();
         }
     }
 }

@@ -6,34 +6,34 @@ using System.Threading.Tasks;
 
 namespace YuriShopV1.Services
 {
-    public class CategoryImageSave
+    public class ShopProfileImageSave
     {
         private readonly IWebHostEnvironment _environment;
 
-        public CategoryImageSave(IWebHostEnvironment environment)
+        public ShopProfileImageSave(IWebHostEnvironment environment)
         {
             _environment = environment;
         }
-        public async Task<string> SaveCategory(string base64)
+        public async Task<string> SaveProfile(string base64)
         {
             try
             {
-                if(base64.Length >0)
+                if (base64.Length > 0)
                 {
                     string[] arr = base64.Split(":");
-                    if (!Directory.Exists(_environment.WebRootPath + "\\Categories\\"))
+                    if (!Directory.Exists(_environment.WebRootPath + "\\ShopsProfiles\\"))
                     {
-                        Directory.CreateDirectory(_environment.WebRootPath + "\\Categories\\");
+                        Directory.CreateDirectory(_environment.WebRootPath + "\\ShopsProfiles\\");
                     }
-                        File.WriteAllBytes(_environment.WebRootPath + "\\Categories\\" + arr[0]+".jpg", Convert.FromBase64String(arr[1]));
-                        return "\\Categories\\"+arr[0];
+                    File.WriteAllBytes(_environment.WebRootPath + "\\ShopsProfiles\\" + arr[0] + ".jpg", Convert.FromBase64String(arr[1]));
+                    return "\\ShopsProfiles\\" + arr[0];
                 }
                 else
                 {
                     return "failed";
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return e.Message.ToString();
             }
