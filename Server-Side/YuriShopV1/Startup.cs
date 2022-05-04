@@ -49,6 +49,8 @@ namespace YuriShopV1
             services.AddTransient<UserProfileImageUpload>();
             services.AddTransient<ShopProfileImageSave>();
             services.AddTransient<ShopProfileImageUpload>();
+            services.AddTransient<ProductImageSave>();
+            services.AddTransient<ProductImageUpload>();
             services.AddScoped<UserManager>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

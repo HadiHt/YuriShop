@@ -1,0 +1,13 @@
+.cartProducts{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    justify-items: center;
+}
+.buttonsContainer{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+.hoemBut{
+    flex: 1;
+}

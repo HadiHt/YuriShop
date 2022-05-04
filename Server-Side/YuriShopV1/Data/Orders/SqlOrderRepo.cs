@@ -42,6 +42,14 @@ namespace YuriShopV1.Data.Orders
             }
             _context.Order.Add(order);
         }
+        public void UpdateOrder(Order order)
+        {
+            if (order == null)
+            {
+                throw new ArgumentNullException(nameof(order));
+            }
+            _context.Order.Update(order);
+        }
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);

@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
+import AddToCart from '../../components/elements/Button/Button';
 import Axios from 'axios';
 import './ProductView.css'
 
@@ -26,11 +27,11 @@ function ProductView() {
                     <span>{Data.price}K L.L</span>
                     <form>
                         <label >Quantity (Max:{Data.quantity}):</label>
-                        <input type="number" id="quantity" name="quantity" min={0} max={Data.quantity} />
+                        <input type="number" id={"quantity-"+Data.productId} name="quantity" min={0} max={Data.quantity} />
                     </form>
-                    <Link to="/cart" className="cart">
-                        Add To Cart
-                    </Link>
+                    
+                        <AddToCart id={Data.productId}/>
+                   
                 </div>
             </div>
         </>

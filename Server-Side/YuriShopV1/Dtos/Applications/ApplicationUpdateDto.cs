@@ -1,12 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using YuriShopV1.Models;
 
-namespace YuriShopV1.Dtos.Addresses
+namespace YuriShopV1.Dtos.Applications
 {
-    public class AddressUpdateDto
+    public class ApplicationUpdateDto
     {
+        [Required]
+        public string Username { get; set; }
         [Required]
         public string Street { get; set; }
         [Required]
@@ -17,15 +18,15 @@ namespace YuriShopV1.Dtos.Addresses
         public string Building { get; set; }
         [Required]
         public string Details { get; set; }
+        [Required]
+        public string ShopType { get; set; }
+        [Required]
+        public string ProductsToSell { get; set; }
+        [Required]
+        public int ValidationNumber { get; set; }
 
         [ForeignKey("UserRefId")]
         public User User { get; set; }
-#nullable enable
-        public int? UserRefId { get; set; }
-#nullable disable
-        [ForeignKey("ShopRefId")]
-        public Shop Shop { get; set; }
-#nullable enable
-        public int? ShopRefId { get; set; }
+        public int UserRefId { get; set; }
     }
 }

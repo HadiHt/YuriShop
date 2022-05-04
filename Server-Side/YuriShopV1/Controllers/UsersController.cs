@@ -53,7 +53,7 @@ namespace YuriShopV1.Controllers
             }
             return NotFound();
         }
-        [HttpGet("login")]
+        [HttpPost("login")]
         public ActionResult<UserReadDto> ValidateUser(UserWriteDto checkUser)
         {
                 var User = _userManager.CheckEmailAndPassword(checkUser);

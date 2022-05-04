@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import SearchBar from './Search'
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './navbar.css'
 
 const Navbar = () => {
+    const navigate = useNavigate()
     const [toogle, setData] = useState(true);
     const show = () => {
         console.log(toogle);
@@ -13,7 +16,7 @@ const Navbar = () => {
         <nav className='navbar'>
             <ul>
                 <div className='logo_And_Search'>
-                    <li className='navbar__logo'> <img alt="" src={process.env.PUBLIC_URL + '/YS_Logo.png'}></img></li>
+                    <li className='navbar__logo'> <img onClick={() => navigate('/')} alt="" src={process.env.PUBLIC_URL + '/YS_Logo.png'}></img></li>
                     <SearchBar />
                     <li className='navbar__toogle'><button onClick={show} className='but'><i className='fa fa-bars'></i></button></li>
                 </div>
@@ -27,8 +30,8 @@ const Navbar = () => {
                         </a>
                     </li>
                     <li className='navbar__link'><a href='/order'><button className='but'>Orders</button></a></li>
-                    <li className='navbar__link'>
-                        <a href='/cart'> <i className='fa fa-shopping-cart'><strong> 0</strong></i></a>
+                    <li onClick={()=>navigate('/cart')} className='navbar__link'>
+                        <i className='fa fa-shopping-cart'><strong> 0</strong></i>
                     </li>
                 </div>
             </ul>
