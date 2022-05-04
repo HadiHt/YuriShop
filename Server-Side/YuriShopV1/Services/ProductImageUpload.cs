@@ -33,41 +33,10 @@ namespace YuriShopV1.Services
                     byteArray = (File.ReadAllBytes(fileInfo.FullName));
                     string filee = Convert.ToBase64String(byteArray);
                     byteArray = null;
-                    return filee;
-                }
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message.ToString());
-                return null;
-            }
-        }
-
-        public async Task<List<string>> UploadProducts(List<string> listt)
-        {
-            try
-            {
-                if (!Directory.Exists(_environment.WebRootPath + "\\Products\\"))
-                {
-                    return null;
-                }
-                else
-                {
-                    foreach (string element in listt)
-                    {
-                        
-                        var elementSpaceless = element.Replace(" ", String.Empty);
-                        var ProductImagesPath = Path.Combine(_environment.WebRootPath + "\\Products\\" + elementSpaceless + ".jpg");
-                        Console.WriteLine(ProductImagesPath);
-
-                        FileInfo fileInfo = new FileInfo(ProductImagesPath);
-                        byteArray = (File.ReadAllBytes(fileInfo.FullName));
-                        string filee = Convert.ToBase64String(byteArray);
-                        StringList.Add(filee);
-                        byteArray = null;
-                    }
-                    return StringList;
+                        return filee;
+                    
+                    
                 }
 
             }

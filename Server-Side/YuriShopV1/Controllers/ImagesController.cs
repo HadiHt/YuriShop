@@ -93,6 +93,7 @@ namespace YuriShopV1.Controllers
         {
             return (_productImageUpload.UploadProduct(id));
         }
+
         [HttpPost("Products")]
         public async Task<List<string>> GetProductsImagesByIds()
         {
@@ -100,13 +101,14 @@ namespace YuriShopV1.Controllers
             Request.Body.Position = 0;
             var rawRequestBody = await new StreamReader(Request.Body).ReadToEndAsync();
             var splitArray = rawRequestBody.Split(",");
-            foreach (string element in splitArray)
+            string[] arr = new string[splitArray.Length];
+            for(int i = 0; i <splitArray.Length; i++)
             {
-                Console.WriteLine(element);
-                list.Add(_productImageUpload.UploadProduct(element));
+                arr[i] = _productImageUpload.UploadProduct(splitArray[i]);
             }
-            Console.WriteLine(list);
-            return list;
+            
+
+            return arr.ToList();
         }
 
     }
