@@ -67,5 +67,19 @@ namespace YuriShopV1.Controllers
             }
             return NotFound();
         }
+        [HttpPut("{id}/shop")]
+        public ActionResult UpdateUser(int id, ShopUpdateDto shop)
+        {
+            var ShopModelFromRepo = _shopRepo.GetShopById(id);
+            if (ShopModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(shop, ShopModelFromRepo);
+            _shopRepo.UpdateShop(ShopModelFromRepo);
+            _shopRepo.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

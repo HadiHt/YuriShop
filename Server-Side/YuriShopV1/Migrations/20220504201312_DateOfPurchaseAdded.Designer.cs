@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YuriShopV1.Data;
 
 namespace YuriShopV1.Migrations
 {
     [DbContext(typeof(YuriShopContext))]
-    partial class YuriShopContextModelSnapshot : ModelSnapshot
+    [Migration("20220504201312_DateOfPurchaseAdded")]
+    partial class DateOfPurchaseAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

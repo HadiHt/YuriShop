@@ -6,6 +6,8 @@
         public string State { get; set; }
         public int Quantity { get; set; }
         public int UserRefId { get; set; }
+        public string DateOfPurchase { get; set; }
+
         public int ProductRefId { get; set; }
     }
 }

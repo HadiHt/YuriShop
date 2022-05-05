@@ -17,6 +17,7 @@ namespace YuriShopV1.Models
         [ForeignKey("UserRefId")]
         public User User { get; set; }
         public int UserRefId { get; set; }
+        public string DateOfPurchase { get; set; }
 
         [ForeignKey("ProductRefId")]
         public Product Product { get; set; }

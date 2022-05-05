@@ -39,5 +39,14 @@ namespace YuriShopV1.Data.Users
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void UpdateUser(User user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+            _context.User.Update(user);
+        }
     }
 }

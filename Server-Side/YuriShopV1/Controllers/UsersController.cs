@@ -196,5 +196,47 @@ namespace YuriShopV1.Controllers
 
             return NoContent();
         }
+        [HttpPut("{id}/card")]
+        public ActionResult UpdateCard(int id, CardUpddateDto card)
+        {
+            var CardModelFromRepo = _cardRepo.GetCardByUserId(id);
+            if (CardModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(card, CardModelFromRepo);
+            _cardRepo.UpdateCard(CardModelFromRepo);
+            _cardRepo.SaveChanges();
+
+            return NoContent();
+        }
+        [HttpPut("{pid}/{uid}/wishList")]
+        public ActionResult UpdateWishList(int pid,int uid, WishListUpdateDto wishList)
+        {
+            var WishListModelFromRepo = _wishlistRepo.GetWishListByUserIdAndProductId(pid,uid);
+            if (WishListModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(wishList, WishListModelFromRepo);
+            _wishlistRepo.UpdateWishList(WishListModelFromRepo);
+            _wishlistRepo.SaveChanges();
+
+            return NoContent();
+        }
+        [HttpPut("{id}/user")]
+        public ActionResult UpdateUser(int id, UserUpdateDto user)
+        {
+            var UserModelFromRepo = _userRepo.GetUserById(id);
+            if (UserModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(user, UserModelFromRepo);
+            _userRepo.UpdateUser(UserModelFromRepo);
+            _userRepo.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

@@ -9,6 +9,8 @@ namespace YuriShopV1.Profiles
         public ShopProfile()
         {
             CreateMap<Shop, ShopReadDto>();
+            CreateMap<ShopWriteDto,Shop>();
+            CreateMap<ShopUpdateDto, Shop>();
         }
     }
 }

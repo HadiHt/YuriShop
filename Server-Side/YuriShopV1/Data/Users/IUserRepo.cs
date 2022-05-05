@@ -9,6 +9,7 @@ namespace YuriShopV1.Data.Users
         User GetUserById(int id);
         User GetUserByEmail(string email);
         void CreateUser(User user);
+        void UpdateUser(User user);
         bool SaveChanges();
     }
 }
