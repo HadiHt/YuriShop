@@ -9,7 +9,9 @@ const ProductItem = ({ product, type }) => {
 
     const removeProductFromCart = (e) => {
         const arr1 = cart.filter((data) => {
-        return (data.productId !== e.target.id &&  data.quantity !== product.quantity)
+            if(data.productId !== product.productId && data.quantity !== product.productId){
+                return data
+            }
         });
         setCart(arr1);
     }
@@ -46,7 +48,7 @@ const ProductItem = ({ product, type }) => {
                     onClick={() => navigate('/product-details/' + url)}>
                     view
                 </button> : ""}
-                {type == "cart" ? <button className="btn_remove" 
+                {type == "cart" ? <button id={product.productId} className="btn_remove" 
                     onClick={removeProductFromCart}>
                     remove
                 </button> : ""}

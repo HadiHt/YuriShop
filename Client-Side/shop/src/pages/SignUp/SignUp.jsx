@@ -53,7 +53,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className='signup'>
+        <div className='page signup'>
             <Link to='/'>
                 <div className="signup__logo">
                     <h2>logo <i className='fa fa-instagram'></i></h2>

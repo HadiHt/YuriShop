@@ -6,6 +6,7 @@
     background-color: #ffff;
     margin: 10px;
     padding: 5px;
+    border-radius: 15px;
 }
 .product_card img{
     width: 100;

@@ -1,68 +1,36 @@
 import React from "react";
 import "./home.css";
 import Slider from "../../components/elements/Slider/Slider";
-import Product from "../../components/content/product-view/product";
 import { useEffect, useState, useContext } from 'react'
 import Axios from 'axios'
 import Category from "../../components/content/category/Category";
 import { userContext } from "../../contexts/userContext";
-import { cartContext } from "../../contexts/cartContext";
 
-const Home=()=> {
-    const [Data, setData] = useState([]);
+const Home = () => {
+  const [Data, setData] = useState([]);
 
-    useEffect(() => {
-        Axios.get('http://localhost:5000/api/Products')
-            .then(res => {
-                console.log(res.data);
-                setData(res.data);
-            }).catch(err => console.log(err))
-    }, [])
-    const {cart, setCart}= useContext(cartContext);
-    const arr = cart.map((data, index) => {
-        return (
-            <div  key={index}>
-                {/* <Product
-            category={data.category}
-            title={data.name}
-            price={data.price}
-            image={'data:image/png;base64,'+data.image}
-          /> */}
-              {data.id}
-            </div>
-        )
-    });
-    const {user, setUser}= useContext(userContext);
-    const clickToAdd = () =>{
-    setCart([...cart,
-      {
-          id: '3',
-          url: "Spseaker"
-      }]);
-      console.log(cart);
-    }
-    // Define the string
-var decodedStringBtoA = '123';
+  useEffect(() => {
+    Axios.get('http://localhost:5000/api/Images/Category')
+      .then(res => {
+        console.log(res.data);
+        setData(res.data);
+      }).catch(err => console.log(err))
+  }, []);
 
-// Encode the String
-var encodedStringBtoA = btoa(decodedStringBtoA);
-console.log(encodedStringBtoA)
+  const arr = Data.map((data, index) => {
+    const category = data.split(":");
+    return (
+      <Category Category={category}/>
+    )
+  });
+
   return (
-    <div className="home">
+    <div className="home page">
       <div className="home__container">
-        <Slider/>
-        <button onClick={clickToAdd}>click to Add</button>
-        <div>{user}</div>
+        <Slider />
         <div className="home__row">
-              <Category ID={'furniture'} Category={'furniture'}/>
-              <Category ID={'electronics'} Category={'electronics'}/>
-              <Category ID={'clothing'} Category={'clothing'}/>
-              <Category ID={'accessories'} Category={'accessories'}/>
-              <Category ID={'books'} Category={'books'}/>
-              <Category ID={'art'} Category={'art'}/>
+          {arr}
         </div>
-        {arr}
-        <div onClick={()=>{setUser('jejejeje')}}>click</div>
       </div>
     </div>
   );

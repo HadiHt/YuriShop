@@ -21,9 +21,9 @@ function App() {
   return (
     <div className="App">
       {/* <Header /> */}
-      <Navbar />
       <UserProvider>
         <CartProvider>
+          <Navbar />
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route path="category/:john" element={<CategoryProducts />} />
@@ -31,7 +31,7 @@ function App() {
             <Route path="signUp" element={<SignUp />} />
             <Route path="order" element={<CategoryProducts />} />
             <Route path="product-details/:id" element={<ProductView />} />
-            <Route path='/cart' element={<CartView/>} />
+            <Route path='/cart' element={<CartView />} />
           </Routes>
         </CartProvider>
       </UserProvider>

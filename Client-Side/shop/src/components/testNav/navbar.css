@@ -1,5 +1,8 @@
 .navbar{
-    height: auto;
+    height:78px;
+    width: 100%;
+    position: fixed;
+    top: 0%;
 }
 .logo_And_Search, .menu__options{
     display: flex;
@@ -46,6 +49,16 @@
     flex: 1;
     margin-right: 5px;
 }
+.userProfile img{
+    border-radius: 100%;
+    width: 60px;
+    height: 60px;
+    position: static;
+    right: 2%;
+}
+.coll{
+    display: none;
+}
 @media (max-width:700px){
     .navbar__toogle{
         display: block;
@@ -62,6 +75,12 @@
         margin-bottom: 15px;
     }
     .hide{
+        display: none;
+    }
+    .coll{
+        display: block;
+    }
+    .normal{
         display: none;
     }
 }
