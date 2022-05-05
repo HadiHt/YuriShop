@@ -41,9 +41,9 @@ namespace YuriShopV1.Data.WishLists
             _context.WishList.Update(wishList);
         }
 
-        public WishList GetWishListByUserIdAndProductId(int productId, int userId)
+        public WishList GetWishListByWishListId(int id)
         {
-            return _context.WishList.FirstOrDefault(p => p.ProductRefId == productId && p.UserRefId == userId);
+            return _context.WishList.FirstOrDefault(p => p.WishListId == id);
         }
     }
 }

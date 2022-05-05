@@ -210,10 +210,10 @@ namespace YuriShopV1.Controllers
 
             return NoContent();
         }
-        [HttpPut("{pid}/{uid}/wishList")]
-        public ActionResult UpdateWishList(int pid,int uid, WishListUpdateDto wishList)
+        [HttpPut("{id}/wishList")]
+        public ActionResult UpdateWishList(int id, WishListUpdateDto wishList)
         {
-            var WishListModelFromRepo = _wishlistRepo.GetWishListByUserIdAndProductId(pid,uid);
+            var WishListModelFromRepo = _wishlistRepo.GetWishListByWishListId(id);
             if (WishListModelFromRepo == null)
             {
                 return NotFound();
