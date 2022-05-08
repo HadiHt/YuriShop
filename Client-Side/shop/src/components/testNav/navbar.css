@@ -14,23 +14,22 @@
 .menu__options{
     flex: 1;
 }
-.navbar ul{
+.co{
     display: flex;
     align-items: center;
-    background: linear-gradient(50deg, rgb(37, 50, 107), rgb(147, 155, 226));
+    background: rgb(70, 67, 67);
     color: white;
-    width: auto;
+    width: 100%;
+    list-style: none;
 }
 .navbar__logo {
     width: 100px;
-    margin: 0 20px;
+    margin: 0 ;
     cursor: pointer;
+    margin-left: 20px;
 }
 .navbar__logo img{
     width:100%
-}
-.navbar li{
-    list-style-type: none;
 }
 .navbar a{
     text-decoration: none;
@@ -39,15 +38,14 @@
     display: none;
 }
 .navbar__link :hover{
-    background-color: blueviolet;
+    background-color: rgb(92, 97, 97);
     border-radius: 15px;
-    color: aliceblue;
+    color: white;
     cursor: pointer;
 }
 .navbar__link {
-    max-width: 90px;
+    width:100%;
     flex: 1;
-    margin-right: 5px;
 }
 .userProfile img{
     border-radius: 100%;
@@ -63,7 +61,7 @@
     .navbar__toogle{
         display: block;
     }
-    .navbar ul{
+    .co{
         flex-direction: column;
     }
     .menu__options{
@@ -83,4 +81,10 @@
     .normal{
         display: none;
     }
+}
+.navbar__link button{
+    color: rgb(221, 214, 214);
+}
+i{
+    color: rgb(221, 214, 214);
 }

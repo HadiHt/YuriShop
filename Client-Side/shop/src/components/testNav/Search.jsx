@@ -8,7 +8,7 @@ function SearchBar({ placeholder, data }) {
     useEffect(() => {
         Axios.get('http://localhost:5000/api/Products')
             .then(res => {
-                console.log(res.data);
+           //     console.log(res.data);
                 setData(res.data);
             }).catch(err => console.log(err))
     }, [])
@@ -47,25 +47,14 @@ function SearchBar({ placeholder, data }) {
     return (
         <div className="search">
             <div className="searchInputs">
-                <input
-                    id = 'searchBar'
-                    type="text"
-                    placeholder='Search..'
-                    value={searched}
-                    onChange={HandleChange}
-                />
+                <input id = 'searchBar'type="text"placeholder='Search..'value={searched}onChange={HandleChange}/>
                 <div className="searchIcon">
-                    {!show ? (
-                        <i className="fa fa-search" />
-                    ) : (
-                        <i className="fa fa-trash"/>
-                    )}
+                    {!show ? (<i className="fa fa-search" />) : (<i className="fa fa-trash"/>)}
                 </div>
             </div>
             {show && <div className="dataResult">
                 {arr}
             </div>}
-
         </div>
     );
 }

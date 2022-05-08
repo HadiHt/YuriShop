@@ -20,7 +20,7 @@ const Navbar = () => {
         if (user !== "") {
             Axios.get('http://localhost:5000/api/Images/UserProfile/userId'+user.userId)
                 .then(res => {
-                    console.log(res.data);
+                //    console.log(res.data);
                     setDataa(res.data);
                 }).catch(err => console.log(err));
         }
@@ -41,7 +41,7 @@ const Navbar = () => {
     }
     return (
         <nav className='navbar'>
-            <ul>
+            <div className='co'>
                 <div className='logo_And_Search'>
                     <li className='navbar__logo'> <img onClick={() => navigate('/')} alt="" src={process.env.PUBLIC_URL + '/YS_Logo.png'}></img></li>
                     <SearchBar />
@@ -50,21 +50,20 @@ const Navbar = () => {
                 </div>
                 <div className={'menu__options ' + navClass}>
                     <li className='navbar__link'>
-                        {user === "" && <a href='/logIn'>
+                        {user === "" &&
                             <button className='but'>
-                                Hello Guest!
-                                Sign in
+                                Hello Guest! Sign in
                             </button>
-                        </a>}
-                        {user !== "" && <button className='but' onCLick={()=>navigate('/profile/id')}>hello {user.name}</button>}
+                        }
+                        {user !== "" && <button className='but' onClick={()=>{navigate('/profile/id')}}>hello {user.firstName}</button>}
                     </li>
                     <li className='navbar__link'><button onClick={order} className='but'>Orders</button></li>
                     <li className='navbar__link'>
-                        <button onClick={dotocart} className='but'><i className='fa fa-shopping-cart'><strong> {cart.length}</strong></i></button>
+                        <button onClick={dotocart} className='but'><i className='fa fa-shopping-cart'>  {cart.length}</i></button>
                     </li>
                 </div>
                 {user !== "" ? <li className='normal userProfile'><img src={'data:image/png;base64,'+Data} alt=""></img></li> : ""}
-            </ul>
+            </div>
         </nav>
     )
 }

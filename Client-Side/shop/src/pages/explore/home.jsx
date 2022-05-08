@@ -4,7 +4,8 @@ import Slider from "../../components/elements/Slider/Slider";
 import { useEffect, useState, useContext } from 'react'
 import Axios from 'axios'
 import Category from "../../components/content/category/Category";
-import { userContext } from "../../contexts/userContext";
+import { cardContext } from "../../contexts/cardContext";
+import { addressContext } from "../../contexts/addressContext";
 
 const Home = () => {
   const [Data, setData] = useState([]);
@@ -12,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     Axios.get('http://localhost:5000/api/Images/Category')
       .then(res => {
-        console.log(res.data);
+    //    console.log(res.data);
         setData(res.data);
       }).catch(err => console.log(err))
   }, []);

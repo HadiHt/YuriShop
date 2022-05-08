@@ -7,11 +7,13 @@
     margin: 10px;
     padding: 5px;
     border-radius: 15px;
+    border: 2px solid #7e7b80;;
 }
 .product_card img{
     width: 100;
     height: 200px;
     display: block;
+    margin: auto;
     object-fit: cover;
 }
 .product_header h2{
@@ -58,7 +60,7 @@
     height: 40px;
 }
 .btn_view{
-    background: blueviolet;
+    background: #7e7b80;
     margin-left: 5px;
     color: white;
     border: none;
