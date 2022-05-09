@@ -6,7 +6,7 @@ import { userContext } from '../../../contexts/userContext';
 
 const OrderSummary = ({Data,AddOrder}) => {
     const { user } = useContext(userContext);
-    const { cart } = useContext(cartContext);
+    const { cart,setCart } = useContext(cartContext);
     const [errorMessage, setErrorMessage] = useState(false);
     var TotalPrice = 0;
     const items = cart.map((data, index) => {
@@ -30,6 +30,7 @@ const OrderSummary = ({Data,AddOrder}) => {
             cart.map((data) => {
                 AddOrder(user,data, today);
             });
+            setCart([]);
         } else {
             setErrorMessage(true)
         }

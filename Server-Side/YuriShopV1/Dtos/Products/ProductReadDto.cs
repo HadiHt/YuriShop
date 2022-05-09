@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace YuriShopV1.Dtos.Products
 {
     public class ProductReadDto

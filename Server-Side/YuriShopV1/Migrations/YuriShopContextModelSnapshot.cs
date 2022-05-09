@@ -160,9 +160,6 @@ namespace YuriShopV1.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("DateOfPurchase")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("ProductRefId")
                         .HasColumnType("int");
 
@@ -172,6 +169,9 @@ namespace YuriShopV1.Migrations
                     b.Property<string>("State")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TimeCreated")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserRefId")
                         .HasColumnType("int");
@@ -246,6 +246,9 @@ namespace YuriShopV1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -262,9 +265,6 @@ namespace YuriShopV1.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("DataOfBirth")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -277,6 +277,12 @@ namespace YuriShopV1.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PhoneNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isAdmin")

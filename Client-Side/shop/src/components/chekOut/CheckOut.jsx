@@ -2,29 +2,16 @@ import React, { useState, useEffect, useContext } from 'react'
 import { cartContext } from '../../contexts/cartContext'
 import Axios from 'axios'
 import './CheckOut.css'
-import { userContext } from '../../contexts/userContext'
 import OrderSummary from './subComponents/OrderSummary'
-import ActionButton from './ActionButton'
+import { cardContext } from '../../contexts/cardContext'
 
 const CheckOut = () => {
-    const [Data, setData] = useState([]);
-    const { user } = useContext(userContext);
-
-    useEffect(() => {
-        Axios.get('http://localhost:5000/api/Users/' + user.userId + '/card')
-            .then(res => {
-                console.log(res.data);
-                setData(res.data);
-            }).catch((err) => {
-                setData('');
-               // console.log(err)
-            })
-    }, []);
+    const { card } = useContext(cardContext);
     return (
         <div className='Chekout'>
             <img src={process.env.PUBLIC_URL + '/YS_Logo.png'}></img>
             <h3>Summary</h3>
-            <OrderSummary Data={Data} AddOrder={AddOrder}/>
+            <OrderSummary Data={card} AddOrder={AddOrder}/>
         </div>
     )
 }

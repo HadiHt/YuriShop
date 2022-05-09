@@ -4,7 +4,7 @@ import { CartProvider } from "./cartContext";
 import { CardProvider } from "./cardContext";
 import { AddressProvider } from "./addressContext";
 
-export const ContextWrapper = (props) => {
+const ContextWrapper = (props) => {
     
     return (
         <UserProvider>
@@ -18,3 +18,4 @@ export const ContextWrapper = (props) => {
         </UserProvider>
     );
 }
+export default ContextWrapper;

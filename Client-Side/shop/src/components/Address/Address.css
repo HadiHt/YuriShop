@@ -1,0 +1,36 @@
+.AddressContainer {
+  font-family: Verdana, sans-serif;
+  border-radius: 8px;
+  border: 2px solid rgb(126, 93, 162);
+  background-color: white;
+}
+.BottomAddressContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 10px 20px 10px;
+}
+.AddressDetails {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.EditAddressButton {
+  background: #202550;
+  background-image: linear-gradient(to right, #583d83, #7e5da2);
+  -webkit-border-radius: 25;
+  -moz-border-radius: 25;
+  border-radius: 25px;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 7px 14px 7px 14px;
+  text-decoration: none;
+}
+
+.EditAddressButton:hover {
+  background: #4c25a8;
+  background-image: linear-gradient(to right, #4c25a8, #7c36d1);
+  text-decoration: none;
+}

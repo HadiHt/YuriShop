@@ -35,11 +35,6 @@ namespace YuriShopV1.Data.Users
             }
             _context.User.Add(user);
         }
-        public bool SaveChanges()
-        {
-            return (_context.SaveChanges() >= 0);
-        }
-
         public void UpdateUser(User user)
         {
             if (user == null)
@@ -47,6 +42,15 @@ namespace YuriShopV1.Data.Users
                 throw new ArgumentNullException(nameof(user));
             }
             _context.User.Update(user);
+        }
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
+        }
+
+        public User GetUserByUsername(string username)
+        {
+            return _context.User.FirstOrDefault(p => p.Username == username);
         }
     }
 }

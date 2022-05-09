@@ -45,7 +45,7 @@ namespace YuriShopV1.Controllers
             Request.Body.Position = 0;
             var rawRequestBody = await new StreamReader(Request.Body).ReadToEndAsync();
             return await (_categoryImageSave.SaveCategory(rawRequestBody));
-
+            
         }
         [HttpGet("Category")]
         public async Task<List<string>> UploadCategoryImage()
@@ -102,11 +102,11 @@ namespace YuriShopV1.Controllers
             var rawRequestBody = await new StreamReader(Request.Body).ReadToEndAsync();
             var splitArray = rawRequestBody.Split(",");
             string[] arr = new string[splitArray.Length];
-            for (int i = 0; i < splitArray.Length; i++)
+            for(int i = 0; i <splitArray.Length; i++)
             {
                 arr[i] = _productImageUpload.UploadProduct(splitArray[i]);
             }
-
+            
 
             return arr.ToList();
         }

@@ -7,8 +7,10 @@ namespace YuriShopV1.Data.Users
     {
         IEnumerable<Shop> GetAllShops();
         Shop GetShopById(int id);
-        void UpdateShop(Shop shop);
+        Shop GetShopByEmail(string email);
+        Shop GetShopByUsername(string username);
         void CreateShop(Shop shop);
+        void UpdateShop(Shop shop);
         bool SaveChanges();
     }
 }

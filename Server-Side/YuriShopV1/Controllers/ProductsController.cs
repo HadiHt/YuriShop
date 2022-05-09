@@ -75,7 +75,7 @@ namespace YuriShopV1.Controllers
             return NotFound();
         }
         [HttpPut("{id}/product")]
-        public ActionResult UpdateUser(int id, ProductUpdateDto product)
+        public ActionResult UpdateProduct(int id, ProductUpdateDto product)
         {
             var ProductModelFromRepo = _productRepo.GetProductById(id);
             if (ProductModelFromRepo == null)

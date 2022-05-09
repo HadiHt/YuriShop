@@ -55,7 +55,7 @@ const Navbar = () => {
                                 Hello Guest! Sign in
                             </button>
                         }
-                        {user !== "" && <button className='but' onClick={()=>{navigate('/profile/id')}}>hello {user.firstName}</button>}
+                        {user !== "" && <button className='but' onClick={()=>{navigate('/UserProfile')}}>hello {user.firstName}</button>}
                     </li>
                     <li className='navbar__link'><button onClick={order} className='but'>Orders</button></li>
                     <li className='navbar__link'>

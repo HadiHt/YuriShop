@@ -21,7 +21,7 @@ const Login = () => {
     const Auth = () => {
         Axios.post('http://localhost:5000/api/Users/login',{
             "email": email,
-            "password": password
+            "password": password,
           })
             .then(res => {
                 console.log(res.data);
@@ -54,7 +54,7 @@ const Login = () => {
                     <button onClick={Auth} className='login__signInButton'>Sign In</button>
                 </div>
                 <p>By signing-in you agree to the Yuri Shop Conditions of Use & Sale.</p>
-                <button onClick={()=>{navigate('/signUp')}} className='login__registerButton'>Create your Amazon Account</button>
+                <button onClick={()=>{navigate('/signUp')}} className='login__registerButton'>Create your Yuri Account</button>
             </div>
         </div>
     )

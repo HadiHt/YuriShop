@@ -18,6 +18,10 @@ namespace YuriShopV1.Data.WishLists
         {
             return _context.WishList.Where(p => p.UserRefId == id).ToList();
         }
+        public WishList GetWishListByWishListId(int id)
+        {
+            return _context.WishList.FirstOrDefault(p => p.WishListId == id);
+        }
 
         public void CreateWishList(WishList wishList)
         {
@@ -27,11 +31,6 @@ namespace YuriShopV1.Data.WishLists
             }
             _context.WishList.Add(wishList);
         }
-        public bool SaveChanges()
-        {
-            return (_context.SaveChanges() >= 0);
-        }
-
         public void UpdateWishList(WishList wishList)
         {
             if (wishList == null)
@@ -40,10 +39,9 @@ namespace YuriShopV1.Data.WishLists
             }
             _context.WishList.Update(wishList);
         }
-
-        public WishList GetWishListByWishListId(int id)
+        public bool SaveChanges()
         {
-            return _context.WishList.FirstOrDefault(p => p.WishListId == id);
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

@@ -5,8 +5,8 @@ namespace YuriShopV1.Data.Users
 {
     public interface IWishListRepo
     {
-        WishList GetWishListByWishListId(int id);
         IEnumerable<WishList> GetAllWishListsByUserId(int id);
+        WishList GetWishListByWishListId(int id);
         void CreateWishList(WishList wishList);
         void UpdateWishList(WishList wishList);
         bool SaveChanges();

@@ -23,6 +23,14 @@ namespace YuriShopV1.Data.Shops
         {
             return _context.Shop.FirstOrDefault(p => p.ShopId == id);
         }
+        public Shop GetShopByEmail(string email)
+        {
+            return _context.Shop.FirstOrDefault(p => p.Email == email);
+        }
+        public Shop GetShopByUsername(string username)
+        {
+            return _context.Shop.FirstOrDefault(p => p.Username == username);
+        }
 
         public void CreateShop(Shop shop)
         {
@@ -32,11 +40,6 @@ namespace YuriShopV1.Data.Shops
             }
             _context.Shop.Add(shop);
         }
-        public bool SaveChanges()
-        {
-            return (_context.SaveChanges() >= 0);
-        }
-
         public void UpdateShop(Shop shop)
         {
             if (shop == null)
@@ -44,6 +47,10 @@ namespace YuriShopV1.Data.Shops
                 throw new ArgumentNullException(nameof(shop));
             }
             _context.Shop.Update(shop);
+        }
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }
