@@ -6,13 +6,17 @@ import { useContext } from "react";
 
 const Bios = (props) => {
   const [user, setUser] = useState(props.user1);
-
-  user.firstName != null && user.lastName != null
+  console.log(user);
+  const tempUsername = user.email.split("@");
+  user.phoneNumber.toString().length == 7
+    ? (user.phoneNumber = "0" + user.phoneNumber)
+    : void 0;
+  user.firstName != null ? void 0 : (user.firstName = "Not Specified");
+  user.lastName != null ? void 0 : (user.lastName = "Not Specified");
+  user.username != null ? void 0 : (user.username = tempUsername[0]);
+  user.phoneNumber != null && user.phoneNumber != 0
     ? void 0
-    : (user.firstName = "Not Specified");
-  user.firstName != null && user.lastName != null
-    ? void 0
-    : (user.lastName = "");
+    : (user.phoneNumber = "Not Specified");
 
   let navigate = useNavigate();
   const routeChange = () => {
@@ -22,12 +26,11 @@ const Bios = (props) => {
   return (
     <div className="BottomBiosContainer">
       <span className="BiosDetails">
-        <p>
-          Name: {user.firstName} {user.lastName}{" "}
-        </p>
+        <p>First Name: {user.firstName}</p>
+        <p>Last Name: {user.lastName}</p>
         <p>Email Address: {user.email}</p>
-        <p>Phone Number: 03095494</p>
-        <p>About: bla bla bla blas</p>
+        <p>Username: {user.username}</p>
+        <p>Phone Number: {user.phoneNumber}</p>
       </span>
       <button onClick={routeChange} className="EditProfileButton">
         Edit Profile

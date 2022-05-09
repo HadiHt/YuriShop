@@ -31,6 +31,15 @@ namespace YuriShopV1.Data.Cards
             }
             _context.Card.Add(card);
         }
+        public void UpdateCard(Card card)
+        {
+            if (card == null)
+            {
+                throw new ArgumentNullException(nameof(card));
+            }
+            _context.Card.Update(card);
+        }
+
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);

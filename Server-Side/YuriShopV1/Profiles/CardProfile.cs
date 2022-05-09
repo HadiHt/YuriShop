@@ -10,6 +10,7 @@ namespace YuriShopV1.Profiles
         {
             CreateMap<Card, CardReadDto>();
             CreateMap<CardWriteDto, Card>();
+            CreateMap<CardUpddateDto, Card>();
         }
     }
 }

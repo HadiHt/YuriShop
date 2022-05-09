@@ -2,11 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using YuriShopV1.Data.Applications;
 using YuriShopV1.Data.Users;
 using YuriShopV1.Dtos.Addresses;
 using YuriShopV1.Dtos.Applications;
 using YuriShopV1.Dtos.Cards;
+using YuriShopV1.Dtos.Shops;
 using YuriShopV1.Dtos.Users;
 using YuriShopV1.Dtos.WishLists;
 using YuriShopV1.Models;
@@ -24,9 +26,10 @@ namespace YuriShopV1.Controllers
         private readonly ICardRepo _cardRepo;
         private readonly IUserRepo _userRepo;
         private readonly IWishListRepo _wishlistRepo;
+        private readonly IShopRepo _shopRepo;
         private readonly UserManager _userManager;
 
-        public UsersController(IMapper mapper,IApplicationRepo applicationRepo,IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo, IWishListRepo wishlistRepo , UserManager userManager)
+        public UsersController(IMapper mapper,IApplicationRepo applicationRepo,IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo, IWishListRepo wishlistRepo , IShopRepo shopRepo, UserManager userManager)
         {
             _mapper = mapper;
             _applicationRepo = applicationRepo;
@@ -34,6 +37,7 @@ namespace YuriShopV1.Controllers
             _cardRepo = cardRepo;
             _userRepo = userRepo;
             _wishlistRepo = wishlistRepo;
+            _shopRepo = shopRepo;
             _userManager = userManager;
         }
 
@@ -54,16 +58,26 @@ namespace YuriShopV1.Controllers
             return NotFound();
         }
         [HttpPost("login")]
-        public ActionResult<UserReadDto> ValidateUser(UserWriteDto checkUser)
+        public async Task<IActionResult> ValidateUser(UserWriteDto checkUser)
         {
-                var User = _userManager.CheckEmailAndPassword(checkUser);
-                return Ok(_mapper.Map<UserReadDto>(User));
+            
+            var (User, Shop)= _userManager.CheckEmailAndPassword(checkUser);
+
+            if (User != null)
+            {
+                return Ok(User);
+            }
+            if (Shop != null)
+            {
+                return Ok(Shop);
+            }
+            return NotFound();
         }
 
         [HttpPost("SignUp")]
-        public ActionResult<UserReadDto> CreateUser(UserWriteDto user)
+        public ActionResult<UserReadDto> CreateUser(UserWriteDto user) 
         {
-            if(_userRepo.GetUserByEmail(user.Email) == null)
+            if(_userRepo.GetUserByEmail(user.Email) == null && _shopRepo.GetShopByEmail(user.Email) == null)
             {
                 var UserModel = _mapper.Map<User>(user);
                 _userRepo.CreateUser(UserModel);
@@ -195,6 +209,67 @@ namespace YuriShopV1.Controllers
             _addressRepo.SaveChanges();
 
             return NoContent();
+        }
+        [HttpPut("{id}/card")]
+        public ActionResult UpdateCard(int id, CardUpddateDto card)
+        {
+            var CardModelFromRepo = _cardRepo.GetCardByUserId(id);
+            if (CardModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(card, CardModelFromRepo);
+            _cardRepo.UpdateCard(CardModelFromRepo);
+            _cardRepo.SaveChanges();
+
+            return NoContent();
+        }
+        [HttpPut("{id}/wishList")]
+        public ActionResult UpdateWishList(int id, WishListUpdateDto wishList)
+        {
+            var WishListModelFromRepo = _wishlistRepo.GetWishListByWishListId(id);
+            if (WishListModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(wishList, WishListModelFromRepo);
+            _wishlistRepo.UpdateWishList(WishListModelFromRepo);
+            _wishlistRepo.SaveChanges();
+
+            return NoContent();
+        }
+        [HttpGet("Username/{Username}")]
+        public ActionResult<UserReadDto> GetUserByUsername(string username)
+        {
+            var User = _userRepo.GetUserByUsername(username);
+            if (User != null)
+            {
+                return Ok(_mapper.Map<UserReadDto>(User));
+            }
+            return NotFound();
+        }
+        [HttpPut("{id}/user")]
+        public ActionResult UpdateUser(int id, UserUpdateDto user)
+        {
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var User = _userManager.CheckUserUsername(user);
+            if (User != null)
+            {
+                var UserModelFromRepo = _userRepo.GetUserById(id);
+                if (UserModelFromRepo == null)
+                {
+                    return NotFound();
+                }
+                _mapper.Map(user, UserModelFromRepo);
+                _userRepo.UpdateUser(UserModelFromRepo);
+                _userRepo.SaveChanges();
+                return NoContent();
+            }
+            else { return Conflict(new { message = "This Username is already taken!" }); }
+            
         }
     }
 }

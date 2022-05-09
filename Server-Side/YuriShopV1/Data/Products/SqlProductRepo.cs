@@ -44,6 +44,14 @@ namespace YuriShopV1.Data.Products
             }
             _context.Product.Add(product);
         }
+        public void UpdateProduct(Product product)
+        {
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+            _context.Product.Update(product);
+        }
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);

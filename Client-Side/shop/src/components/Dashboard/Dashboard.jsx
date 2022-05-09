@@ -9,11 +9,11 @@ const Dashboard = (props) => {
   const [item4, setItem4] = useState("NotSelected4");
   useEffect(() => {
     window.addEventListener("scroll", (event) => {
-      window.scrollY < props.value[0] - 50 && window.scrollY >= 0
+      window.scrollY < props.value[0] - 70 && window.scrollY >= 0
         ? setItem1("Selected1")
         : setItem1("NotSelected1");
       window.scrollY < +props.value[0] + props.value[1] &&
-      window.scrollY >= props.value[0] - 50
+      window.scrollY >= props.value[0] - 70
         ? setItem2("Selected2")
         : setItem2("NotSelected2");
       window.scrollY < props.value[0] + props.value[1] + props.value[2] &&

@@ -1,28 +1,23 @@
 .BottomBiosEditContainer {
-  width: 60%;
+  width: 40%;
   border-radius: 8px;
   border: 2px solid rgb(126, 93, 162);
   font-family: Verdana, sans-serif;
   display: flex;
-  row-gap: 20px;
+  row-gap: 40px;
   flex-direction: column;
-  padding: 40px 110px 50px 110px;
+  padding: 40px 90px 50px 90px;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   background-color: white;
 }
 .BiosEditDetails {
-  column-gap: 250px;
-  display: flex;
   width: 100%;
-  row-gap: 20px;
-  justify-content: space-around;
-}
-.FirstFlex,
-.SecondFlex {
   display: flex;
-  row-gap: 10px;
-  flex-direction: column;
+  flex-wrap: wrap;
+  column-gap: 30px;
+  row-gap: 20px;
+  justify-content: space-between;
 }
 .SaveProfileButton {
   background: #202550;
@@ -43,23 +38,32 @@
   text-decoration: none;
 }
 .EditBiosInput {
-  width: 200px;
+  width: auto;
 }
-.EditBiosTextArea {
-  width: 100%;
-  min-width: 150px;
-  height: 70px;
+.FirstEditFlex,
+.SecondEditFlex,
+.ThirdEditFlex,
+.ForthEditFlex {
+  display: flex;
+  row-gap: 20px;
+  flex-direction: column;
 }
-@media screen and (max-width: 770px) {
+
+@media screen and (max-width: 960px) {
   .BiosEditDetails {
     flex-direction: column;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
     align-items: center;
+    width: fit-content;
   }
   .EditBiosInput {
     width: 150px;
   }
   .EditBiosTextArea {
     align-self: center;
+  }
+  .BottomBiosEditContainer {
+    width: 30%;
   }
 }
