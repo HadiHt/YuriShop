@@ -35,9 +35,22 @@ namespace YuriShopV1.Data.Users
             }
             _context.User.Add(user);
         }
+        public void UpdateUser(User user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+            _context.User.Update(user);
+        }
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public User GetUserByUsername(string username)
+        {
+            return _context.User.FirstOrDefault(p => p.Username == username);
         }
     }
 }

@@ -22,8 +22,12 @@ namespace YuriShopV1.Controllers
         private readonly UserProfileImageUpload _profileImageUpload;
         private readonly ShopProfileImageSave _shopProfileImageSave;
         private readonly ShopProfileImageUpload _shopProfileImageUpload;
+        private readonly ProductImageSave _productImageSave;
+        private readonly ProductImageUpload _productImageUpload;
 
-        public ImagesController(CategoryImageSave categoryImageSave, CategoryImageUpload categoryImageUpload, UserProfileImageSave profileImageSave, UserProfileImageUpload profileImageUpload, ShopProfileImageSave shopProfileImageSave, ShopProfileImageUpload shopProfileImageUpload)
+        private List<string> list;
+
+        public ImagesController(CategoryImageSave categoryImageSave, CategoryImageUpload categoryImageUpload, UserProfileImageSave profileImageSave, UserProfileImageUpload profileImageUpload, ShopProfileImageSave shopProfileImageSave, ShopProfileImageUpload shopProfileImageUpload, ProductImageSave productImageSave, ProductImageUpload productImageUpload)
         {
             _categoryImageSave = categoryImageSave;
             _categoryImageUpload = categoryImageUpload;
@@ -31,6 +35,8 @@ namespace YuriShopV1.Controllers
             _profileImageUpload = profileImageUpload;
             _shopProfileImageSave = shopProfileImageSave;
             _shopProfileImageUpload = shopProfileImageUpload;
+            _productImageSave = productImageSave;
+            _productImageUpload = productImageUpload;
         }
         [HttpPost("Category")]
         public async Task<string> SaveCategoryImage()
@@ -72,6 +78,37 @@ namespace YuriShopV1.Controllers
         public async Task<string> GetShopProfileImageById(string id)
         {
             return await (_shopProfileImageUpload.UploadProfile(id));
+        }
+
+        [HttpPost("Product")]
+        public async Task<string> SaveProductImage()
+        {
+            Request.EnableBuffering();
+            Request.Body.Position = 0;
+            var rawRequestBody = await new StreamReader(Request.Body).ReadToEndAsync();
+            return await (_productImageSave.SaveProduct(rawRequestBody));
+        }
+        [HttpGet("Product/{id}")]
+        public async Task<string> GetProductImageById(string id)
+        {
+            return (_productImageUpload.UploadProduct(id));
+        }
+
+        [HttpPost("Products")]
+        public async Task<List<string>> GetProductsImagesByIds()
+        {
+            Request.EnableBuffering();
+            Request.Body.Position = 0;
+            var rawRequestBody = await new StreamReader(Request.Body).ReadToEndAsync();
+            var splitArray = rawRequestBody.Split(",");
+            string[] arr = new string[splitArray.Length];
+            for(int i = 0; i <splitArray.Length; i++)
+            {
+                arr[i] = _productImageUpload.UploadProduct(splitArray[i]);
+            }
+            
+
+            return arr.ToList();
         }
 
     }

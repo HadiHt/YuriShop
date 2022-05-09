@@ -1,67 +1,68 @@
-.navbar{
-    height: 78px;
+.navbar {
+  height: 78px;
 }
-.logo_And_Search, .menu__options{
-    display: flex;
-    align-items: center;
+.logo_And_Search,
+.menu__options {
+  display: flex;
+  align-items: center;
 }
-.logo_And_Search{
-    flex:3;
+.logo_And_Search {
+  flex: 3;
 }
-.menu__options{
-    flex: 1;
+.menu__options {
+  flex: 1;
 }
-.navbar ul{
-    display: flex;
-    align-items: center;
-    background: linear-gradient(50deg, rgb(22, 31, 71), rgb(137, 100, 172));
-    color: white;
-    width: auto;
+.navbar ul {
+  display: flex;
+  align-items: center;
+  background: rgb(65, 64, 64);
+  color: white;
+  width: auto;
 }
 .navbar__logo {
-    width: 100px;
-    margin: 0 20px;
-    cursor: pointer;
+  width: 100px;
+  margin: 0 20px;
+  cursor: pointer;
 }
-.navbar__logo img{
-    width:100%
+.navbar__logo img {
+  width: 100%;
 }
-.navbar li{
-    list-style-type: none;
+.navbar li {
+  list-style-type: none;
 }
-.navbar a{
-    text-decoration: none;
+.navbar a {
+  text-decoration: none;
 }
-.navbar__toogle{
-    display: none;
+.navbar__toogle {
+  display: none;
 }
-.navbar__link :hover{
-    background-color: blueviolet;
-    border-radius: 15px;
-    color: aliceblue;
-    cursor: pointer;
+.navbar__link :hover {
+  background-color: blueviolet;
+  border-radius: 15px;
+  color: aliceblue;
+  cursor: pointer;
 }
 .navbar__link {
-    max-width: 90px;
-    flex: 1;
-    margin-right: 5px;
+  max-width: 90px;
+  flex: 1;
+  margin-right: 5px;
 }
-@media (max-width:700px){
-    .navbar__toogle{
-        display: block;
-    }
-    .navbar ul{
-        flex-direction: column;
-    }
-    .menu__options{
-        width: 100%;
-        flex-direction: column;
-    }
-    .navbar__link{
-        width: auto;
-        margin-bottom: 15px;
-    }
-    .hide{
-        display: none;
-    }
+@media (max-width: 700px) {
+  .navbar__toogle {
+    display: block;
+  }
+  .navbar ul {
+    flex-direction: column;
+  }
+  .menu__options {
+    width: 100%;
+    flex-direction: column;
+  }
+  .navbar__link {
+    width: auto;
+    margin-bottom: 15px;
+  }
+  .hide {
+    display: none;
+  }
 }

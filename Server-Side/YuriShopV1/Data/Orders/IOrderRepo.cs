@@ -10,6 +10,7 @@ namespace YuriShopV1.Data.Users
         IEnumerable<Order> GetAllOrdersByProductId(int id);
         Order GetOrderById(int id);
         void CreateOrder(Order order);
+        void UpdateOrder(Order order);
         bool SaveChanges();
     }
 }

@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ProfileHeader.css";
 
-const ProfileHeader = () => {
+const ProfileHeader = (props) => {
+  const [user, setUser] = useState(props.user);
+  var displayedUsername = "";
+  var splitEmail = user.email.split("@");
+  user.username
+    ? (displayedUsername = user.username)
+    : (displayedUsername = splitEmail[0]);
+
   return (
     <div className="ProfileHeaderContainer">
       <div className="ProfileImage"></div>
       <div className="TopBiosContainer">
-        <h3>hadi.hoteit</h3>
+        <h3>{displayedUsername}</h3>
       </div>
     </div>
   );

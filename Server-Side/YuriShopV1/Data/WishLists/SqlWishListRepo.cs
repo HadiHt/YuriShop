@@ -18,6 +18,10 @@ namespace YuriShopV1.Data.WishLists
         {
             return _context.WishList.Where(p => p.UserRefId == id).ToList();
         }
+        public WishList GetWishListByWishListId(int id)
+        {
+            return _context.WishList.FirstOrDefault(p => p.WishListId == id);
+        }
 
         public void CreateWishList(WishList wishList)
         {
@@ -26,6 +30,14 @@ namespace YuriShopV1.Data.WishLists
                 throw new ArgumentNullException(nameof(wishList));
             }
             _context.WishList.Add(wishList);
+        }
+        public void UpdateWishList(WishList wishList)
+        {
+            if (wishList == null)
+            {
+                throw new ArgumentNullException(nameof(wishList));
+            }
+            _context.WishList.Update(wishList);
         }
         public bool SaveChanges()
         {

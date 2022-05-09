@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,6 +14,8 @@ namespace YuriShopV1.Models
         public string State { get; set; }
         [Required]
         public int Quantity { get; set; }
+        [Required]
+        public DateTime TimeCreated { get; set; }
 
         [ForeignKey("UserRefId")]
         public User User { get; set; }
