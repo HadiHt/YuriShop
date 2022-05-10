@@ -53,7 +53,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className='signup'>
+        <div className='page signup'>
             <Link to='/'>
                 <div className="signup__logo">
                     <h2>logo <i className='fa fa-instagram'></i></h2>
@@ -76,7 +76,7 @@ const SignUp = () => {
                     {conPassError && <p className='error__message'>
                         passwords does not match
                     </p>}
-                    <button onClick={SignUp} className='signup__registerButton'>Create your Amazon Account</button>
+                    <button onClick={SignUp} className='signup__registerButton'>Create your Yuri Account</button>
 
                 </div>
                 <p>By signing-up you agree to the Yuri Shop Conditions of Use & Sale.</p>

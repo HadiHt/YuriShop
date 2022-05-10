@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import SearchBar from './Search'
-import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import { userContext } from '../../contexts/userContext'
+import Axios from 'axios'
 import './navbar.css'
+import { cartContext } from '../../contexts/cartContext'
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -11,30 +13,57 @@ const Navbar = () => {
         console.log(toogle);
         setData(!toogle);
     }
-    let navClass = toogle ? 'hide':'show'
+    const {cart,setcart}= useContext(cartContext);
+    let navClass = toogle ? 'hide' : 'show'
+    const [Data,setDataa] = useState([]);
+    const { user, setUser } = useContext(userContext);
+        if (user !== "") {
+            Axios.get('http://localhost:5000/api/Images/UserProfile/userId'+user.userId)
+                .then(res => {
+                //    console.log(res.data);
+                    setDataa(res.data);
+                }).catch(err => console.log(err));
+        }
+
+    const order = () => {
+        if (user === ""){
+            navigate("/logIn")
+        }else{
+            navigate('/user/order/id')
+        }
+    }
+    const dotocart = () => {
+        if (user === ""){
+            navigate("/logIn")
+        }else{
+            navigate('/cart')
+        }
+    }
     return (
         <nav className='navbar'>
-            <ul>
+            <div className='co'>
                 <div className='logo_And_Search'>
                     <li className='navbar__logo'> <img onClick={() => navigate('/')} alt="" src={process.env.PUBLIC_URL + '/YS_Logo.png'}></img></li>
                     <SearchBar />
                     <li className='navbar__toogle'><button onClick={show} className='but'><i className='fa fa-bars'></i></button></li>
+                    {user !== "" ? <li className='coll userProfile'><img src={'data:image/png;base64,'+Data} alt=""></img></li> : ""}
                 </div>
-                 <div className={'menu__options '+navClass}>
+                <div className={'menu__options ' + navClass}>
                     <li className='navbar__link'>
-                        <a href='/logIn'>
+                        {user === "" &&
                             <button className='but'>
-                                Hello Guest!
-                                Sign in
+                                Hello Guest! Sign in
                             </button>
-                        </a>
+                        }
+                        {user !== "" && <button className='but' onClick={()=>{navigate('/UserProfile')}}>hello {user.firstName}</button>}
                     </li>
-                    <li className='navbar__link'><a href='/order'><button className='but'>Orders</button></a></li>
-                    <li onClick={()=>navigate('/cart')} className='navbar__link'>
-                        <i className='fa fa-shopping-cart'><strong> 0</strong></i>
+                    <li className='navbar__link'><button onClick={order} className='but'>Orders</button></li>
+                    <li className='navbar__link'>
+                        <button onClick={dotocart} className='but'><i className='fa fa-shopping-cart'>  {cart.length}</i></button>
                     </li>
                 </div>
-            </ul>
+                {user !== "" ? <li className='normal userProfile'><img src={'data:image/png;base64,'+Data} alt=""></img></li> : ""}
+            </div>
         </nav>
     )
 }

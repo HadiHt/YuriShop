@@ -1,5 +1,9 @@
 .detail{
-    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+    border: 2px solid #7e7b80;
+    width: 75%;
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -24,7 +28,7 @@
 }
 .box-detail h2{
     text-transform: uppercase;
-    color: darkblue;
+    color: rgb(105, 103, 103);
     letter-spacing: 2px;
     font-weight: 2rem;
 }
@@ -33,12 +37,19 @@
     margin: 10px 0;
     opacity: 0.8;
 }
-.box-detail .cart{
-    background: rgb(43, 90, 145);
-    color: rgb(255, 255, 255);
+.cart{
     margin-top: 10px;
-    padding: 10px 25px;
-    display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
+    border-radius: 15px;
+    background-color: rgb(70, 67, 67);
+    color: darkgrey;
+    border-style: none;
+    width: 100px;
+    height: 53px;
+    font-size: 11pt;
+    cursor: pointer;
+    align-items: center;
+  }
+  .cart:hover{
+    background-color:  #7e7b80;
+    color: white;
+  }

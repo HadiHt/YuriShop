@@ -1,7 +1,7 @@
 .AddressContainer {
   font-family: Verdana, sans-serif;
   border-radius: 8px;
-  border: 2px solid rgb(126, 93, 162);
+  border: 2px solid rgb(126 123 128);
   background-color: white;
 }
 .BottomAddressContainer {
@@ -17,12 +17,8 @@
   row-gap: 20px;
 }
 .EditAddressButton {
-  background: #202550;
-  background-image: linear-gradient(to right, #583d83, #7e5da2);
-  -webkit-border-radius: 25;
-  -moz-border-radius: 25;
+  background-image: linear-gradient(to right, #464343, #7b7e80);
   border-radius: 25px;
-  font-family: Georgia;
   color: #ffffff;
   font-size: 13px;
   padding: 7px 14px 7px 14px;
@@ -30,7 +26,6 @@
 }
 
 .EditAddressButton:hover {
-  background: #4c25a8;
-  background-image: linear-gradient(to right, #4c25a8, #7c36d1);
+  background-image: linear-gradient(to right, #5c5a5a, #939699);
   text-decoration: none;
 }

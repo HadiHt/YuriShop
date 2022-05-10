@@ -3,9 +3,11 @@ import { cartContext } from '../../contexts/cartContext'
 import './CartView.css'
 import { useNavigate } from 'react-router-dom'
 import ProductItem from '../../components/content/product-view/product-card/ProductCard'
+import CheckOut from '../../components/chekOut/CheckOut'
 
 const CartView = () => {
-  const navigate =useNavigate();
+  const [ hide, setHide ] =useState(false);
+  const navigate = useNavigate();
   const { cart, setCart } = useContext(cartContext);
   const arr = cart.map((data, index) => {
     return (
@@ -17,11 +19,16 @@ const CartView = () => {
   });
   console.log(cart)
   return (
-    <div className='cartProducts'>
-      {arr}
-      <div className='buttonsContainer'>
-        <button className='hoemBut' onClick={() => navigate('/')}> Return to Explore Page </button>
-        <button className='hoemBut'> Confirm Purchase </button>
+    <div className='page'>
+      <div className='checkAndButtons'>
+        <div className='buttonsContainer'>
+          <button className='hoemBut Buttonn' onClick={() => navigate('/')}>{'< '} Return to Explore Page </button>
+          <button className='Buttonn' onClick={()=> setHide(!hide)}> Confirm Purchase {'>'}</button>
+        </div>
+        {hide && <CheckOut />}
+      </div>
+      <div className='cartProducts'>
+        {arr}
       </div>
     </div>
   )

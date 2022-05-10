@@ -1,0 +1,68 @@
+.cardContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cardContainer>h1 {
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  select{
+    height: 30px;
+    margin-bottom: 10px;
+    background-color: white;
+    width: 75%;
+    border-radius: 15px;
+    border: 2px solid;
+  }
+  .cardContainer>input{
+    height: 30px;
+    background-color: white;
+    width: 75%;
+    border-radius: 15px;
+    border: 2px solid;
+    text-align: center;
+  }
+  .AddCard {
+    color: white;
+    background-color: rgb(70, 67, 67);
+    color: darkgrey;
+    border-radius: 15px;
+    width: 50%;
+    height: 30px;
+    border: 1px solid;
+    margin-top: 10px;
+    border: 2px solid rgb(78, 75, 75);
+
+  }
+.AddCard:hover {
+    background-color: #7e7b80;
+    color: white;
+  }
+
+#cvv {
+    width: 85%;
+    text-align: center;
+}
+#ED {
+    width: 100%;
+    text-align: center;
+}
+.subContainer{
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+    justify-content: space-between;
+}
+.subContainer>div>input{
+    height: 30px;
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid;
+}
+.field_missing_error{
+  color: red;
+}
+.success{
+  color: green;
+}

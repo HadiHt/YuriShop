@@ -7,7 +7,27 @@
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+    margin-top: 5px;
 }
 .hoemBut{
-    flex: 1;
+    margin:auto;
+}
+.Buttonn{
+    height: 30px;
+    background-color: rgb(70, 67, 67);
+    color: darkgrey;
+    border-radius: 15px;
+    border-radius: 15px;
+    color: darkgrey;
+    margin: auto;
+    width: 25%px;
+    border: 2px solid rgb(78, 75, 75);
+}
+.Buttonn:hover{
+    background-color:  #7e7b80;
+    color: white;
+}
+.checkAndButtons{
+    display: flex;
+    flex-direction: column;
 }

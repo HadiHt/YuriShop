@@ -15,11 +15,20 @@ function ProductView() {
                 setData(res.data);
             }).catch(err => console.log(err))
     }, [])
+    const [ImgData, setImgData] = useState([]);
+
+    useEffect(() => {
+        Axios.get('http://localhost:5000/api/Images/Product/productid' + params.id)
+            .then(res => {
+                console.log(res.data);
+                setImgData(res.data);
+            }).catch(err => console.log(err))
+    }, []);
     const imge = 'data:image/png;base64,' + Data.image;
     return (
-        <>
-            <div className="page detail">
-                <img src={imge} alt="" />
+        <div className='page'>
+            <div className="detail">
+                <img src={"data:image/png;base64," + ImgData} alt="" />
                 <div className="box-detail">
                     <div className="row">
                         <h2>{Data.name}</h2>
@@ -27,14 +36,14 @@ function ProductView() {
                     <span>{Data.price}K L.L</span>
                     <form>
                         <label >Quantity (Max:{Data.quantity}):</label>
-                        <input type="number" id={"quantity-"+Data.productId} name="quantity" min={0} max={Data.quantity} />
+                        <input type="number" id={"quantity-" + Data.productId} name="quantity" min={0} max={Data.quantity} />
                     </form>
-                    
-                        <AddToCart id={Data.productId}/>
-                   
+
+                    <AddToCart id={Data.productId} />
+
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

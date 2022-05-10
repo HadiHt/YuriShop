@@ -39,6 +39,21 @@
 .Selected2,
 .Selected3,
 .Selected4 {
-  background-image: linear-gradient(to right, #1e244e, #8260a6);
+  background-image: linear-gradient(to right, #464343, #7b7e80);
   color: white;
+}
+@media screen and (max-width: 1000px) {
+  .SidebarContainer {
+    width: 99%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .SidebarContainer {
+    width: 98%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .SidebarContainer {
+    width: 97%;
+  }
 }

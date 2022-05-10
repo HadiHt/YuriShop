@@ -3,6 +3,9 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../../contexts/userContext";
 import Axios from "axios";
+import { cardContext } from "../../contexts/cardContext";
+import { set } from "../../contexts/cardContext";
+import { addressContext } from "../../contexts/addressContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -19,31 +22,33 @@ const Login = () => {
       password: password,
     })
       .then((res) => {
-        //console.log(res.data);
         if (res.data === "") {
           console.log("Bad Credentials");
           setWrongCredentials(true);
         } else {
           setUser(res.data);
+          setCard(res.data.userId);
+          setAddress(res.data.userId);
           setWrongCredentials(false);
           navigate("/");
         }
       })
       .catch((err) => console.log(err));
   };
-
+  const { setCard } = useContext(cardContext);
+  const { setAddress } = useContext(addressContext);
   return (
     <div className="page login">
-      <Link to="/">
-        <div className="login__logo">
-          <h2>
-            logo <i className="fa fa-instagram"></i>
-          </h2>
-        </div>
-      </Link>
+      <div className="navbar__logo">
+        {" "}
+        <img
+          onClick={() => navigate("/")}
+          alt=""
+          src={process.env.PUBLIC_URL + "/YS_Logo.png"}
+        ></img>
+      </div>
       <div className="login__container">
         <h1>Sign-in</h1>
-        {/* <div>{console.log(user)}</div> */}
         <div>
           <h5>E-mail</h5>
           <input
@@ -75,7 +80,7 @@ const Login = () => {
           }}
           className="login__registerButton"
         >
-          Create your Amazon Account
+          Create your Yuri Account
         </button>
       </div>
     </div>

@@ -10,6 +10,8 @@ namespace YuriShopV1.Models
         [Required]
         public int AddressId { get; set; }
         [Required]
+        public string State { get; set; }
+        [Required]
         public string Street { get; set; }
         [Required]
         public string City { get; set; }

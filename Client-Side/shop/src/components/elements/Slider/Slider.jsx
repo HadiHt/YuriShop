@@ -9,7 +9,6 @@ const Slider = () => {
   useEffect(() => {
     Axios.get("http://localhost:5000/api/Products/Category/electronics")
       .then((res) => {
-        //console.log(res.data);
         setData(res.data);
       })
       .catch((err) => console.log(err));

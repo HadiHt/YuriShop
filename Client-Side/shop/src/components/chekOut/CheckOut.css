@@ -1,0 +1,36 @@
+.Chekout{
+    background-color: white;
+    width:50%;
+    margin: 5px auto;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 2px solid #7e7b80;;
+}
+.Chekout img{
+    width: 150px;
+    margin: auto;
+}
+.Chekout h3{
+    color: rgb(79, 33, 122);
+}
+.ToTalSum{
+    display: flex;
+    flex-direction: column;
+    padding: auto;
+}
+.itemRow{
+    display: flex;
+    flex-direction: row;
+}
+.item{
+    flex: 1;
+}
+.itemRow img{
+    width: 100px;
+}
+p {
+    margin-top: 15px;
+    font-size: 12px;
+  }

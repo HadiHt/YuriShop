@@ -29,7 +29,7 @@ const UserProfile = () => {
   return (
     <div className="UserProfileContainer">
       <div className="Dashboard">
-        <div className="t">
+        <div className="DashboardContainer">
           <ProfileHeader user={user} />
           <Dashboard value={height} />
         </div>

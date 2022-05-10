@@ -1,5 +1,7 @@
 .App {
   text-align: justify;
+  display: flex;
+  flex-direction: column;
 }
 .input-icons {
   width: 45%;
@@ -12,23 +14,30 @@
   min-width: 20px;
   background-color: transparent;
 }
-* {
+*{
   color: rgb(0, 0, 0);
 }
-.icon {
+.icon{
   background-color: transparent;
 }
 
-.but {
+.but{
   border-radius: 15px;
   background-color: transparent;
   border-style: none;
   width: 100px;
+  height: 53px;
   font-size: 11pt;
   cursor: pointer;
   align-items: center;
 }
-.but:hover {
+.but:hover{
   background-color: rgb(69, 70, 131);
   color: white;
+}
+.page{
+  padding-top: 90px;
+}
+body > #root > div {
+  height: 100vh;
 }

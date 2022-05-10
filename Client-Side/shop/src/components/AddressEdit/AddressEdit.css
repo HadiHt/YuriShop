@@ -1,5 +1,4 @@
 .BottomAddressEditContainer {
-  width: 60%;
   border-radius: 8px;
   border: 2px solid rgb(126, 93, 162);
   font-family: Verdana, sans-serif;
@@ -12,17 +11,24 @@
   background-color: white;
 }
 .AddressEditDetails {
-  column-gap: 250px;
+  flex-direction: column;
   display: flex;
   width: 100%;
   row-gap: 20px;
   justify-content: space-around;
 }
-.FirstFlex,
-.SecondFlex {
+.FirstAddressFlex,
+.SecondAddressFlex,
+.ThirdAddressFlex {
+  justify-content: center;
+  align-items: center;
   display: flex;
-  row-gap: 10px;
-  flex-direction: column;
+  column-gap: 10px;
+  flex-direction: row;
+  width: 100%;
+}
+.MoreDetailsContainerEdit {
+  width: 50%;
 }
 .SaveProfileButton {
   background: #202550;
@@ -61,5 +67,17 @@
   }
   .EditAddressTextArea {
     align-self: center;
+  }
+}
+@media screen and (max-width: 570px) {
+  .FirstAddressFlex,
+  .SecondAddressFlex {
+    flex-direction: column;
+  }
+  .ThirdAddressFlex {
+    justify-content: flex-start;
+  }
+  .MoreDetailsContainerEdit {
+    margin-left: 10px;
   }
 }
