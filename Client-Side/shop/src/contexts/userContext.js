@@ -23,9 +23,11 @@ export const UserProvider = (props) => {
 //             console.log(res.data);
 //             setDataa(res.data);
 //             Data.sort(function (a, b) {
-//                 var bb = b.dateOfPurchase.split('-');
-//                 var aa = a.dateOfPurchase.split('-');
-//                 return bb[2] - aa[2] || bb[1] - aa[1] || bb[0] - aa[0]
+//                 var bb1 = b.timeCreated.split('T');
+//                 var bb = bb1[0].split('-');
+//                 var aa1 = a.timeCreated.split('T');
+//                 var aa = aa1[0].split('-');
+//                 return bb[0] - aa[0] || bb[1] - aa[1] || bb[2] - aa[2]
 //             });
 //             console.log(Data);
 //         }).catch(err => console.log(err))
