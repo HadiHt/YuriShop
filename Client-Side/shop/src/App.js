@@ -12,7 +12,6 @@ import ContextWrapper from './contexts/ContextWrapper';
 import EditBiosInfo from './pages/EditBiosInfo/EditBiosInfo';
 import EditAddress from './pages/EditAddress/EditAddress';
 import UserProfile from './pages/UserProfile/UserProfile';
-
 import {
   Routes,
   Route,
