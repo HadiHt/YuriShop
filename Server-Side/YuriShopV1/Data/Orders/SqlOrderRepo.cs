@@ -19,11 +19,6 @@ namespace YuriShopV1.Data.Orders
             return _context.Order.ToList();
         }
 
-        public IEnumerable<Order> GetAllOrdersByProductId(int id)
-        {
-            return _context.Order.Where(p =>p.ProductRefId == id).ToList();
-        }
-
         public IEnumerable<Order> GetAllOrdersByUserId(int id)
         {
             return _context.Order.Where(p => p.UserRefId == id).ToList();

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YuriShopV1.Migrations
 {
-    public partial class AddedKeys : Migration
+    public partial class AddedPurchaseTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace YuriShopV1.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,9 +31,10 @@ namespace YuriShopV1.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DataOfBirth = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: true),
                     isAdmin = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -54,6 +56,7 @@ namespace YuriShopV1.Migrations
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     SoldQuantity = table.Column<int>(type: "int", nullable: false),
                     TimeCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Sale = table.Column<float>(type: "real", nullable: false),
                     ShopRefId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -73,6 +76,7 @@ namespace YuriShopV1.Migrations
                 {
                     AddressId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Area = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -164,19 +168,12 @@ namespace YuriShopV1.Migrations
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    UserRefId = table.Column<int>(type: "int", nullable: false),
-                    ProductRefId = table.Column<int>(type: "int", nullable: false)
+                    TimeCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserRefId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Order", x => x.OrderId);
-                    table.ForeignKey(
-                        name: "FK_Order_Product_ProductRefId",
-                        column: x => x.ProductRefId,
-                        principalTable: "Product",
-                        principalColumn: "ProductId",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Order_User_UserRefId",
                         column: x => x.UserRefId,
@@ -211,6 +208,33 @@ namespace YuriShopV1.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Purchase",
+                columns: table => new
+                {
+                    PurchaseId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderRefId = table.Column<int>(type: "int", nullable: false),
+                    ProductRefId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Purchase", x => x.PurchaseId);
+                    table.ForeignKey(
+                        name: "FK_Purchase_Order_OrderRefId",
+                        column: x => x.OrderRefId,
+                        principalTable: "Order",
+                        principalColumn: "OrderId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Purchase_Product_ProductRefId",
+                        column: x => x.ProductRefId,
+                        principalTable: "Product",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Address_ShopRefId",
                 table: "Address",
@@ -237,11 +261,6 @@ namespace YuriShopV1.Migrations
                 column: "UserRefId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_ProductRefId",
-                table: "Order",
-                column: "ProductRefId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Order_UserRefId",
                 table: "Order",
                 column: "UserRefId");
@@ -250,6 +269,16 @@ namespace YuriShopV1.Migrations
                 name: "IX_Product_ShopRefId",
                 table: "Product",
                 column: "ShopRefId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Purchase_OrderRefId",
+                table: "Purchase",
+                column: "OrderRefId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Purchase_ProductRefId",
+                table: "Purchase",
+                column: "ProductRefId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_WishList_ProductRefId",
@@ -274,10 +303,13 @@ namespace YuriShopV1.Migrations
                 name: "Card");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "Purchase");
 
             migrationBuilder.DropTable(
                 name: "WishList");
+
+            migrationBuilder.DropTable(
+                name: "Order");
 
             migrationBuilder.DropTable(
                 name: "Product");
