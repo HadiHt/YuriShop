@@ -13,6 +13,7 @@ namespace YuriShopV1.Data
         public DbSet<Address> Address { get; set; }
         public DbSet<Card> Card { get; set; }
         public DbSet<Order> Order { get; set; }
+        public DbSet<Purchase> Purchase { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Shop> Shop { get; set; }
         public DbSet<User> User { get; set; }

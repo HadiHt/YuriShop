@@ -2,7 +2,7 @@
 
 namespace YuriShopV1.Migrations
 {
-    public partial class PhoneNumberNullable : Migration
+    public partial class UpdatedPurchase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

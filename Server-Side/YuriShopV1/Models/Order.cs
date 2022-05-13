@@ -12,17 +12,13 @@ namespace YuriShopV1.Models
         public int OrderId { get; set; }
         [Required]
         public string State { get; set; }
+
         [Required]
-        public int Quantity { get; set; }
-        [Required]
-        public DateTime TimeCreated { get; set; }
+        public DateTime TimeCreated { get; set; } = DateTime.Now;
 
         [ForeignKey("UserRefId")]
         public User User { get; set; }
         public int UserRefId { get; set; }
 
-        [ForeignKey("ProductRefId")]
-        public Product Product { get; set; }
-        public int ProductRefId { get; set; }
     }
 }

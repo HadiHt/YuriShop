@@ -5,6 +5,7 @@ import { userContext } from '../../contexts/userContext'
 import Axios from 'axios'
 import './navbar.css'
 import { cartContext } from '../../contexts/cartContext'
+import { shopContext } from '../../contexts/shopContext'
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -13,10 +14,12 @@ const Navbar = () => {
         console.log(toogle);
         setData(!toogle);
     }
+    var isGuest =true;
     const {cart,setcart}= useContext(cartContext);
     let navClass = toogle ? 'hide' : 'show'
     const [Data,setDataa] = useState([]);
     const { user, setUser } = useContext(userContext);
+    const { shop, setShop } = useContext(shopContext);
         if (user !== "") {
             Axios.get('http://localhost:5000/api/Images/UserProfile/userId'+user.userId)
                 .then(res => {
@@ -24,9 +27,19 @@ const Navbar = () => {
                     setDataa(res.data);
                 }).catch(err => console.log(err));
         }
+        if (shop!=="") {
+            Axios.get('http://localhost:5000/api/Images/ShopProfile/shopId'+shop.shopId)
+            .then(res => {
+            //    console.log(res.data);
+                setDataa(res.data);
+            }).catch(err => console.log(err));
+        }
+        if(user === "" && shop ===""){
+            isGuest=true;
+        }else {isGuest=false}
 
     const order = () => {
-        if (user === ""){
+        if (user === "" && shop===""){
             navigate("/logIn")
         }else{
             navigate('/order/')
@@ -46,23 +59,24 @@ const Navbar = () => {
                     <li className='navbar__logo'> <img onClick={() => navigate('/')} alt="" src={process.env.PUBLIC_URL + '/YS_Logo.png'}></img></li>
                     <SearchBar />
                     <li className='navbar__toogle'><button onClick={show} className='but'><i className='fa fa-bars'></i></button></li>
-                    {user !== "" ? <li className='coll userProfile'><img src={'data:image/png;base64,'+Data} alt=""></img></li> : ""}
+                    {user !== "" || shop!=="" ? <li className='coll userProfile'><img src={'data:image/png;base64,'+Data} alt=""></img></li> : ""}
                 </div>
                 <div className={'menu__options ' + navClass}>
                     <li className='navbar__link'>
-                        {user === "" &&
+                        {isGuest&&
                             <button className='but'>
                                 Hello Guest! Sign in
                             </button>
                         }
                         {user !== "" && <button className='but' onClick={()=>{navigate('/UserProfile')}}>hello {user.firstName}</button>}
+                        {shop !== "" && <button className='but' onClick={()=>{navigate('/ShopProfile')}}>hello {shop.userName}</button>}
                     </li>
                     <li className='navbar__link'><button onClick={order} className='but'>Orders</button></li>
-                    <li className='navbar__link'>
+                    {shop == "" && <li className='navbar__link'>
                         <button onClick={dotocart} className='but'><i className='fa fa-shopping-cart'>  {cart.length}</i></button>
-                    </li>
+                    </li>}
                 </div>
-                {user !== "" ? <li className='normal userProfile'><img src={'data:image/png;base64,'+Data} alt=""></img></li> : ""}
+                {user !== "" || shop !== ""? <li className='normal userProfile'><img src={'data:image/png;base64,'+Data} alt=""></img></li> : ""}
             </div>
         </nav>
     )

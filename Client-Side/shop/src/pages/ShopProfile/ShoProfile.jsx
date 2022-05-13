@@ -9,15 +9,17 @@ import Order from "../../components/Order/Order";
 import Wishlist from "../../components/Wishlist/Wishlist";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import { userContext } from "../../contexts/userContext";
-import "./UserProfile.css";
+import "../UserProfile/UserProfile.css";
 import { ContactSupport } from "@material-ui/icons";
+import { shopContext } from "../../contexts/shopContext";
+import ShopProducts from "../../components/ShopProducts/ShopProducts";
 
-const UserProfile = () => {
+const ShopProfile = () => {
   const [height, setHeight] = useState([]);
-  const { user, setUser } = useContext(userContext);
   const inputRef = useRef();
   const inputRef1 = useRef();
   const inputRef2 = useRef();
+  const { shop, setUser } = useContext(shopContext);
 
   useEffect(() => {
     setHeight([
@@ -26,34 +28,35 @@ const UserProfile = () => {
       inputRef2.current.clientHeight,
     ]);
   }, []);
+  console.log(shop);
   return (
     <div className="UserProfileContainer">
       <div className="Dashboard">
         <div className="DashboardContainer">
-          <ProfileHeader user={user} />
+          <ProfileHeader user={shop} />
           <Dashboard value={height} />
         </div>
       </div>
       <div className="ProfilePageContentContainer">
         <div className="Bios" ref={inputRef}>
           <p className="BiosTitle">BIOS INFO</p>
-          <Bios user1={user} />
+          <Bios user1={shop} />
         </div>
         <div className="Address" ref={inputRef1}>
           <p className="AddressTitle">ADDRESS</p>
-          <Address user2={user} />
+          <Address user2={shop} />
         </div>
         <div className="Order" ref={inputRef2}>
           <p className="OrderTitle">ORDERS</p>
-          <Order user3={user} />
+          <Order user3={shop} />
         </div>
         <div className="Wishlist">
-          <p className="WishlistTitle">WISHLIST</p>
-          <Wishlist user4={user} />
+          <p className="WishlistTitle">PRODUCTS</p>
+          <ShopProducts/>
         </div>
       </div>
     </div>
   );
 };
 
-export default UserProfile;
+export default ShopProfile;

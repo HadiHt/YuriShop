@@ -18,6 +18,7 @@ import {
 } from "react-router-dom";
 import OrderCard from './components/oderCard/OrderCard';
 import Order from './pages/OrderPage/Order';
+import ShopProfile from './pages/ShopProfile/ShoProfile';
 
 function App() {
   // const [user,setUser] =useState('')
@@ -37,6 +38,7 @@ function App() {
           <Route path="UserProfile/" element={<UserProfile />} />
           <Route path="UserProfile/EditBiosInfo" element={<EditBiosInfo />} />
           <Route path="UserProfile/EditAddress" element={<EditAddress />} />
+          <Route path="ShopProfile" element={<ShopProfile/>} />
         </Routes>
       </ContextWrapper>
       {/* <Footer /> */}
