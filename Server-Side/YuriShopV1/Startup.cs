@@ -21,7 +21,6 @@ using YuriShopV1.Data.Applications;
 using YuriShopV1.Data.Cards;
 using YuriShopV1.Data.Orders;
 using YuriShopV1.Data.Products;
-using YuriShopV1.Data.Purchases;
 using YuriShopV1.Data.Shops;
 using YuriShopV1.Data.Users;
 using YuriShopV1.Data.WishLists;
@@ -58,8 +57,8 @@ namespace YuriShopV1
 
             services.AddScoped<IAddressRepo, SqlAddressRepo>();
             services.AddScoped<ICardRepo, SqlCardRepo>();
-            services.AddScoped<IOrderRepo, SqlOrderRepo>();
             services.AddScoped<IPurchaseRepo, SqlPurchaseRepo>();
+            services.AddScoped<IOrderRepo, SqlOrderRepo>();
             services.AddScoped<IProductRepo, SqlProductRepo>();
             services.AddScoped<IShopRepo, SqlShopRepo>();
             services.AddScoped<IUserRepo, SqlUserRepo>();

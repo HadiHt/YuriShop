@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 using YuriShopV1.Models;
 
-namespace YuriShopV1.Data.Purchases
+namespace YuriShopV1.Data.Users
 {
     public interface IPurchaseRepo
     {
         IEnumerable<Purchase> GetAllPurchases();
-        IEnumerable<Purchase> GetAllPurchasesByOrderId(int id);
+        //IEnumerable<OrderJoinedPurchases> GetAllOrdersByUserId(int id);
         Purchase GetPurchaseById(int id);
         void CreatePurchase(Purchase purchase);
-        void UpdatePurchase(Purchase purchase);
+        //void UpdatePurchase(Order order);
         bool SaveChanges();
     }
 }

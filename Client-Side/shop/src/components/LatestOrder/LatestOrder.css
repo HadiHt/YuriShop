@@ -1,6 +1,9 @@
-.OrderContainer {
+.LatestOrderContainer {
   border-radius: 8px;
   border: 2px solid rgb(126 123 128);
   height: 400px;
   background-color: white;
+}
+.LastOrderPurchases {
+  border-bottom: 1px solid grey;
 }

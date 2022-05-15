@@ -8,7 +8,7 @@ namespace YuriShopV1.Dtos.Orders
     public class OrderUpdateDto
     {
         [Required]
-        public string State { get; set; }
+        public string OrderState { get; set; }
 
         [ForeignKey("UserRefId")]
         public User User { get; set; }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using YuriShopV1.Dtos.Purchases;
+using YuriShopV1.Dtos.Orders;
 using YuriShopV1.Models;
 
 namespace YuriShopV1.Profiles
@@ -10,7 +10,6 @@ namespace YuriShopV1.Profiles
         {
             CreateMap<Purchase, PurchaseReadDto>();
             CreateMap<PurchaseWriteDto, Purchase>();
-            CreateMap<PurchaseUpdateDto, Purchase>();
         }
     }
 }

@@ -11,7 +11,7 @@ namespace YuriShopV1.Models
         [Required]
         public int OrderId { get; set; }
         [Required]
-        public string State { get; set; }
+        public string OrderState { get; set; }
 
         [Required]
         public DateTime TimeCreated { get; set; } = DateTime.Now;
@@ -19,6 +19,7 @@ namespace YuriShopV1.Models
         [ForeignKey("UserRefId")]
         public User User { get; set; }
         public int UserRefId { get; set; }
+        public List<Purchase> Purchases { get; set; }
 
     }
 }

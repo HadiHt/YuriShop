@@ -2,10 +2,8 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using YuriShopV1.Data.Purchases;
 using YuriShopV1.Data.Users;
 using YuriShopV1.Dtos.Orders;
-using YuriShopV1.Dtos.Purchases;
 using YuriShopV1.Models;
 
 namespace YuriShopV1.Controllers
@@ -43,27 +41,7 @@ namespace YuriShopV1.Controllers
             var orders = _orderRepo.GetOrderById(id);
             if (orders != null)
             {
-                return Ok(_mapper.Map<OrderReadDto>(orders));
-            }
-            return NotFound();
-        }
-        [HttpGet("{id}/purchase", Name = "GetPurchaseById")]
-        public ActionResult<PurchaseReadDto> GetPurchaseById(int id)
-        {
-            var purchase = _purchaseRepo.GetPurchaseById(id);
-            if (purchase != null)
-            {
-                return Ok(_mapper.Map<PurchaseReadDto>(purchase));
-            }
-            return NotFound();
-        }
-        [HttpGet("purchases/order/{id}")]
-        public ActionResult<PurchaseReadDto> GetPurchasesByOrderId(int id)
-        {
-            var purchase = _purchaseRepo.GetAllPurchasesByOrderId(id);
-            if (purchase != null)
-            {
-                return Ok(_mapper.Map<IEnumerable<PurchaseReadDto>>(purchase));
+                return Ok(orders);
             }
             return NotFound();
         }
@@ -80,10 +58,12 @@ namespace YuriShopV1.Controllers
         [HttpGet("{id}/user")]
         public ActionResult<IEnumerable<OrderReadDto>> GetAllOrdersByUserId(int id)
         {
-            var orders = _orderRepo.GetAllOrdersByUserId(id);
-            if (orders != null)
+            var Order = _orderRepo.GetAllOrdersByUserId(id);
+            
+            if (Order != null)
             {
-                return Ok(_mapper.Map<IEnumerable<OrderReadDto>>(orders));
+                //var Orders = _mapper.Map<IEnumerable<OrderReadDto>>(OrderModel);
+                return Ok(Order);
             }
             return NotFound();
         }
@@ -103,20 +83,19 @@ namespace YuriShopV1.Controllers
             var PurchaseModel = _mapper.Map<Purchase>(purchase);
             _purchaseRepo.CreatePurchase(PurchaseModel);
             _purchaseRepo.SaveChanges();
-
-            var PurchaseReadDto = _mapper.Map<PurchaseReadDto>(PurchaseModel);
-            return CreatedAtRoute(nameof(GetPurchaseById), new { Id = PurchaseReadDto.PurchaseId}, PurchaseReadDto);
+            return Ok();
         }
         [HttpPut("{id}/order")]
-        public ActionResult UpdateAddress(int id, OrderUpdateDto order)
+        public ActionResult UpdateOrder(int id, OrderUpdateDto order)
         {
-            var OrderModelFromRepo = _orderRepo.GetOrderById(id);
-            if (OrderModelFromRepo == null)
+            var ReadtoOrder = _orderRepo.GetOrderById(id);
+            if (ReadtoOrder == null)
             {
                 return NotFound();
             }
-            _mapper.Map(order, OrderModelFromRepo);
-            _orderRepo.UpdateOrder(OrderModelFromRepo);
+            var orderReadDto = _mapper.Map<Order>(ReadtoOrder);
+            _mapper.Map(order , orderReadDto);
+            _orderRepo.UpdateOrder(orderReadDto);
             _orderRepo.SaveChanges();
 
             return NoContent();
