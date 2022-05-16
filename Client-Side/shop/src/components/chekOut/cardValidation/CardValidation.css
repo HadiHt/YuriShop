@@ -7,13 +7,13 @@
     font-weight: 500;
     margin-bottom: 20px;
   }
-  select{
+.brandSelect{
     height: 30px;
     margin-bottom: 10px;
     background-color: white;
     width: 75%;
     border-radius: 15px;
-    border: 2px solid;
+    border: 2px solid #7e7b80;
   }
   .cardContainer>input{
     height: 30px;

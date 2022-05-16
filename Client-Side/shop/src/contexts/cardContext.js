@@ -8,7 +8,7 @@ export const CardProvider = (props) => {
     const [card, setcard] = useState('');
     function setCard(userObject) {
         if (userObject.hasOwnProperty('isAdmin')) {
-            Axios.get('http://localhost:5000/api/Shops/' + userObject.userId + '/card')
+            Axios.get('http://localhost:5000/api/Users/' + userObject.userId + '/card')
                 .then(res => {
                     console.log(res.data);
                     setcard(res.data);

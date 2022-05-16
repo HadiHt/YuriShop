@@ -164,7 +164,7 @@ namespace YuriShopV1.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("State")
+                    b.Property<string>("OrderState")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -239,6 +239,10 @@ namespace YuriShopV1.Migrations
 
                     b.Property<int>("ProductRefId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ProductState")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -402,7 +406,7 @@ namespace YuriShopV1.Migrations
             modelBuilder.Entity("YuriShopV1.Models.Purchase", b =>
                 {
                     b.HasOne("YuriShopV1.Models.Order", "Order")
-                        .WithMany()
+                        .WithMany("Purchases")
                         .HasForeignKey("OrderRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -435,6 +439,11 @@ namespace YuriShopV1.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("YuriShopV1.Models.Order", b =>
+                {
+                    b.Navigation("Purchases");
                 });
 #pragma warning restore 612, 618
         }

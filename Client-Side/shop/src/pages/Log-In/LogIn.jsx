@@ -7,12 +7,17 @@ import { cardContext } from '../../contexts/cardContext';
 import { set } from '../../contexts/cardContext';
 import { addressContext } from '../../contexts/addressContext';
 import { shopContext } from '../../contexts/shopContext';
+import { orderListContext } from '../../contexts/orderListContext';
+import { allProductContext } from '../../contexts/allProductsContext';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { setUser } = useContext(userContext);
     const { setShop } = useContext(shopContext);
+    const { setOrders } = useContext(orderListContext);
+    const { setProductss } = useContext(allProductContext);
+    const { setCard } = useContext(cardContext);
     const [wrongCredentials, setWrongCredentials] = useState(false);
     const navigate = useNavigate();
 
@@ -36,15 +41,16 @@ const Login = () => {
                     }else{
                         setShop(res.data);
                     }
+                    setProductss();
                     setCard(res.data);
                     setAddress(res.data);
+                    setOrders(res.data);
                     setWrongCredentials(false)
                     navigate('/');
                 }
             }
             ).catch(err => console.log(err));
     }
-    const { setCard } = useContext(cardContext);
     const { setAddress } = useContext(addressContext);
     return (
         <div className='page login'>

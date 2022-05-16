@@ -1,0 +1,15 @@
+.OrderColumnContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 10px;
+    border: 0 0 2px 0 solid;
+}
+.OrderColumnInfo{
+    flex: 1;
+}
+.pimage{
+    width:75px;
+}

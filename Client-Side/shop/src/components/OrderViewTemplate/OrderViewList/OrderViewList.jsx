@@ -1,34 +1,29 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { productListContext } from '../../../contexts/productListContext';
-import Axios from 'axios';
+import axios from 'axios';
 import './OrderViewList.css'
 import { orderListContext } from '../../../contexts/orderListContext';
 import { userContext } from '../../../contexts/userContext';
+import { allProductContext } from '../../../contexts/allProductsContext';
 
 const OrderViewList = () => {
-    const { orderList } = useContext(orderListContext);
-    console.log(orderList)
-    const { user } = useContext(userContext);
-    const [Data,setData] = useState();
-    useEffect(() => {
-        Axios.get('http://localhost:5000/api/Products')
-            .then(res => {
-           //     console.log(res.data);
-                setData(res.data);
-            }).catch(err => console.log(err))
-    }, [])
-    console.log(Data);
-    const arr = orderList.map((data, index) => {
-        console.log(data)
+    const {allProducts} =useContext(allProductContext);
+    
+    console.log(allProducts);
+    const { orderList,index } = useContext(orderListContext);
+    var Data;
+    Data = orderList[index].purchases
+    console.log(Data)
+    const arr = Data.map((data, index) => {
+        console.log(Data)
         var arr1=[];
-        arr1 = Data.filter((data1) => {
+        arr1 = allProducts.filter((data1) => {
             return (data1.productId === data.productRefId)
         })
         console.log(arr1);
         return (
             <div key={index} className='RowOfContents'>
                 <div>{arr1[0].name}</div>
-                <div>{data.state}</div>
+                <div>{data.productState}</div>
             </div>
         )
     });

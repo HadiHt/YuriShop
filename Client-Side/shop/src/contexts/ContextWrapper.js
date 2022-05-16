@@ -5,6 +5,8 @@ import { CardProvider } from "./cardContext";
 import { AddressProvider } from "./addressContext";
 import { OrderProvider } from "./orderListContext";
 import { ShopProvider } from "./shopContext";
+import { ImageProvider } from "./imageContext";
+import { AllProductsProvider } from "./allProductsContext";
 
 const ContextWrapper = (props) => {
 
@@ -15,7 +17,11 @@ const ContextWrapper = (props) => {
                     <AddressProvider>
                         <CardProvider>
                             <OrderProvider>
-                                {props.children}
+                                <ImageProvider>
+                                    <AllProductsProvider>
+                                    {props.children}
+                                    </AllProductsProvider>
+                                </ImageProvider>
                             </OrderProvider>
                         </CardProvider>
                     </AddressProvider>

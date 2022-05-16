@@ -34,7 +34,7 @@ namespace YuriShopV1.Controllers
             var Products = _productRepo.GetAllProducts();
             return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(Products));
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name ="GetProductById")]
         public ActionResult<ProductReadDto> GetProductById(int id)
         {
             var Product = _productRepo.GetProductById(id);
@@ -73,6 +73,16 @@ namespace YuriShopV1.Controllers
                return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(Products));
             }
             return NotFound();
+        }
+        [HttpPost("product")]
+        public ActionResult<ProductReadDto> CreateOrder(ProductWriteDto product)
+        {
+            var ProductModel = _mapper.Map<Product>(product);
+            _productRepo.CreateProduct(ProductModel);
+            _productRepo.SaveChanges();
+
+            var productReadDto = _mapper.Map<ProductReadDto>(ProductModel);
+            return CreatedAtRoute(nameof(GetProductById), new { Id = productReadDto.ProductId }, productReadDto);
         }
         [HttpPut("{id}/product")]
         public ActionResult UpdateProduct(int id, ProductUpdateDto product)

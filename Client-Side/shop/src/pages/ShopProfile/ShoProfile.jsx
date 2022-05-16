@@ -6,20 +6,23 @@ import Dashboard from "../../components/Dashboard/Dashboard";
 import Bios from "../../components/Bios/Bios";
 import Address from "../../components/Address/Address";
 import Order from "../../components/Order/Order";
-import Wishlist from "../../components/Wishlist/Wishlist";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
-import { userContext } from "../../contexts/userContext";
 import "../UserProfile/UserProfile.css";
-import { ContactSupport } from "@material-ui/icons";
 import { shopContext } from "../../contexts/shopContext";
 import ShopProducts from "../../components/ShopProducts/ShopProducts";
+import { useNavigate } from "react-router-dom";
+import './ShopProfile.css'
+import { imageContext } from "../../contexts/imageContext";
 
 const ShopProfile = () => {
+  const {setImage}=useContext(imageContext);
+  const navigate = useNavigate();
   const [height, setHeight] = useState([]);
   const inputRef = useRef();
   const inputRef1 = useRef();
   const inputRef2 = useRef();
   const { shop, setUser } = useContext(shopContext);
+  setImage('');
 
   useEffect(() => {
     setHeight([
@@ -51,7 +54,7 @@ const ShopProfile = () => {
           <Order user3={shop} />
         </div>
         <div className="Wishlist">
-          <p className="WishlistTitle">PRODUCTS</p>
+          <p className="WishlistTitle">PRODUCTS <button className="AddProductButton" onClick={()=>navigate('AddAProduct')}>Add A Product</button></p>
           <ShopProducts/>
         </div>
       </div>

@@ -29,6 +29,7 @@ namespace YuriShopV1.Models
         [ForeignKey("ShopRefId")]
         public Shop Shop { get; set; }
         public int ShopRefId { get; set; }
+        
 
     }
 }

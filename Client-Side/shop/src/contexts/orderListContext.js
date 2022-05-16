@@ -6,32 +6,19 @@ export const orderListContext = createContext('');
 
 export const OrderProvider = (props) => {
     const [orderList, setOrderList] = useState([]);
+    const [index, setIndex] = useState(0);
 
-    function setCOrderList(orderDate,id){
-        Axios.get('http://localhost:5000/api/Orders/'+id+'/user')
+    function setOrders(user) {
+        console.log('hi')
+        Axios.get('http://localhost:5000/api/Orders/' + user.userId + '/user')
             .then(res => {
-              //  console.log(res.data);
-                const arr = res.data.filter((data) => {
-                    return data.timeCreated === orderDate
-                })
-                setOrderList(arr);
-                console.log(arr)
-            }).catch((err) => {
-                setOrderList([]);
-        })
+                setOrderList(res.data)
+                // console.log(Data)
+            }).catch(err => console.log(err))
     }
-    function setCOrderListDefault(id){
-        Axios.get('http://localhost:5000/api/Orders/'+id+'/user')
-            .then(res => {
-              //  console.log(res.data);
-                setOrderList(res.data[0]);
-                console.log(res.data[0])
-            }).catch((err) => {
-                setOrderList([]);
-        })
-    }
+
     return (
-        <orderListContext.Provider value={{ orderList, setOrderList, setCOrderList, setCOrderListDefault }}>
+        <orderListContext.Provider value={{ orderList, setOrderList, setOrders, index, setIndex }}>
             {props.children}
         </orderListContext.Provider>
     );

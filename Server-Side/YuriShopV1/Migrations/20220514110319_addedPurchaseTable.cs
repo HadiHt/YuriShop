@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YuriShopV1.Migrations
 {
-    public partial class AddedPurchaseTable : Migration
+    public partial class addedPurchaseTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -167,7 +167,7 @@ namespace YuriShopV1.Migrations
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrderState = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TimeCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserRefId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -214,9 +214,10 @@ namespace YuriShopV1.Migrations
                 {
                     PurchaseId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    ProductState = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrderRefId = table.Column<int>(type: "int", nullable: false),
-                    ProductRefId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false)
+                    ProductRefId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
