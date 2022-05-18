@@ -24,11 +24,6 @@ namespace YuriShopV1.Models
         public User User { get; set; }
 #nullable enable
         public int? UserRefId { get; set; }
-#nullable disable
-        [ForeignKey("ShopRefId")]
-        public Shop Shop { get; set; }
-#nullable enable
-        public int? ShopRefId { get; set; }
 
 
     }

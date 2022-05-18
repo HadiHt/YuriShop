@@ -5,46 +5,90 @@ import { userContext } from "../../contexts/userContext";
 import { useEffect } from "react";
 import Axios from "axios";
 import "./LatestOrder.css";
+import { Style } from "@material-ui/icons";
 
 const Order = () => {
   const { user, setUser } = useContext(userContext);
-  const [Order, SetOrder] = useState([]);
+  const [OrderExist, SetOrderExist] = useState(["hidden", "visible"]);
   const [Purchases, SetPurchases] = useState([]);
   const [Products, SetProducts] = useState([]);
-  const PurchasesComponent = Products.map((product) => (
-    <div className="LastOrderPurchases">{product.name}</div>
-  ));
+  const [LatestProductsImages, SetLatestProductsImages] = useState([]);
+  var productsid = [];
+  var AllPurchases;
+  var imagesNoQuotes = [];
+  var y;
   useEffect(() => {
-    Axios.get("http://localhost:5000/api/Orders/" + user.userId + "/user")
-      .then((res) => {
-        if (res.data != null) {
-          SetOrder(res.data);
-          Axios.get(
-            "http://localhost:5000/api/Orders/purchases/order/" +
-              Order[Order.length - 1].orderId
-          ).then((res2) => {
-            if (res2.data != null) {
-              SetPurchases(res2.data);
-              Purchases.forEach((purchase) => {
-                console.log(purchase);
-                Axios.get(
-                  "http://localhost:5000/api/Products/" + purchase.productRefId
-                ).then((res3) => {
-                  if (res3.data != null) {
-                    SetProducts(res3.data);
-                    console.log(res3.data);
-                  }
-                });
-              });
-            }
-          });
-        }
-      })
-      .catch((err) => console.log(err));
+    const GetOrder = async () => {
+      const orderCall = await Axios.get(
+        "http://localhost:5000/api/orders/" + user.userId + "/user"
+      )
+        .then((res) => {
+          //console.log(res.data);
+          if (res.data != null) {
+            AllPurchases = res.data[res.data.length - 1].purchases;
+            SetPurchases((p) => (p = AllPurchases));
+            SetOrderExist((prevOrder) => (prevOrder = ["hidden", "visible"]));
+          }
+        })
+        .catch(
+          (err) => console.log(err),
+          SetOrderExist((prevOrder) => (prevOrder = ["visible", "hidden"]))
+        );
+      AllPurchases.forEach((p) => {
+        productsid.push(p.productRefId);
+      });
+      const productCall = await Axios.post(
+        "http://localhost:5000/api/Products/list/products",
+        productsid
+      )
+        .then((res) => {
+          SetProducts((prevProducts) => (prevProducts = res.data));
+        })
+        .catch((err) => console.log(err));
+
+      const imageCall = await Axios.post(
+        "http://localhost:5000/api/images/Products",
+        productsid.toString()
+      )
+        .then((res) => {
+          y = res.data;
+          SetLatestProductsImages(res.data);
+        })
+        .catch((err) => console.log(err));
+    };
+    GetOrder();
   }, []);
   return (
     <div className="LatestOrderContainer">
-      <div className="PurchaseContainer">{PurchasesComponent}</div>
+      <div style={{ visibility: OrderExist[0] }}>No Orders Yet!</div>
+      <div className="LatestProductsContainer">
+        {Products?.map((product, index) => (
+          <div className="LatestProduct">
+            <img
+              className="LatestOrdersImages"
+              src={
+                "data:image/png;base64," +
+                LatestProductsImages[index]?.replace(/['"]+/g, "")
+              }
+              alt=""
+            ></img>
+            <ol className="LatestOrdersDetails">
+              <li>Name :{product.name}</li>
+              <li>Category :{product.category}</li>
+              <li>Color :{product.color}</li>
+              <li>Quantity :{Purchases[index].quantity}</li>
+              <li>Total Price : {product.price * Purchases[index].quantity}</li>
+            </ol>
+          </div>
+        ))}
+      </div>
+      <a
+        className="OrdersPageRedirect"
+        style={{ visibility: OrderExist[1] }}
+        href="http://localhost:3000/user/order/id"
+      >
+        See All Orders...
+      </a>
     </div>
   );
 };
