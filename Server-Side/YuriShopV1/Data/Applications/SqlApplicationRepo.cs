@@ -37,5 +37,14 @@ namespace YuriShopV1.Data.Applications
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void DeleteApplication(Application application)
+        {
+            if (application == null)
+            {
+                throw new ArgumentNullException(nameof(application));
+            }
+            _context.Application.Remove(application);
+        }
     }
 }

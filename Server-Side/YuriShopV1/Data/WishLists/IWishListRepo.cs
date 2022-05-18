@@ -9,6 +9,7 @@ namespace YuriShopV1.Data.Users
         WishList GetWishListByWishListId(int id);
         void CreateWishList(WishList wishList);
         void UpdateWishList(WishList wishList);
+        void DeleteWishList(WishList wishList);
         bool SaveChanges();
     }
 }

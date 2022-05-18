@@ -64,5 +64,14 @@ namespace YuriShopV1.Data.Orders
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void DeletePurchase(Purchase purchase)
+        {
+            if (purchase == null)
+            {
+                throw new ArgumentNullException(nameof(purchase));
+            }
+            _context.Purchase.Remove(purchase);
+        }
     }
 }

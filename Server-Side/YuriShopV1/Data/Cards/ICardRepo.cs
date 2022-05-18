@@ -9,6 +9,7 @@ namespace YuriShopV1.Data.Users
         Card GetCardByShopId(int id);
         void CreateCard(Card card);
         void UpdateCard(Card card);
+        void DeleteCard(Card card);
         bool SaveChanges();
     }
 }

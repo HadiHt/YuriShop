@@ -11,6 +11,7 @@ namespace YuriShopV1.Data.Users
         Shop GetShopByUsername(string username);
         void CreateShop(Shop shop);
         void UpdateShop(Shop shop);
+        void DeleteShop(Shop shop);
         bool SaveChanges();
     }
 }

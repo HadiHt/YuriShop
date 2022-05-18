@@ -61,5 +61,14 @@ namespace YuriShopV1.Data.Products
         {
             return _context.Product.Where(p => p.Name.Contains(ProductName)).ToList();
         }
+
+        public void DeleteProduct(Product product)
+        {
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+            _context.Product.Remove(product);
+        }
     }
 }

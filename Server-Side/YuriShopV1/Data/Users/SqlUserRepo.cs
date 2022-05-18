@@ -52,5 +52,14 @@ namespace YuriShopV1.Data.Users
         {
             return _context.User.FirstOrDefault(p => p.Username == username);
         }
+
+        public void DeleteUser(User user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException(nameof(user));
+            }
+            _context.User.Remove(user);
+        }
     }
 }

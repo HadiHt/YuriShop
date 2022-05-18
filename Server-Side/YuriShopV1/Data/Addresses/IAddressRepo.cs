@@ -9,6 +9,7 @@ namespace YuriShopV1.Data.Users
         Address GetAddressByShopId(int id);
         void CreateAddress(Address address);
         void UpdateAddress(Address address);
+        void DeleteAddress(Address address);
         bool SaveChanges();
     }
 }

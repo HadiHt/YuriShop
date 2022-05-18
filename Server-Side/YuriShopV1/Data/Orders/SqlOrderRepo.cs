@@ -96,5 +96,14 @@ namespace YuriShopV1.Data.Orders
         {
             throw new NotImplementedException();
         }
+
+        public void DeleteOrder(Order order)
+        {
+            if (order == null)
+            {
+                throw new ArgumentNullException(nameof(order));
+            }
+            _context.Order.Remove(order);
+        }
     }
 }

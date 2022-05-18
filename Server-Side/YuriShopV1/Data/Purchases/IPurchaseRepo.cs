@@ -10,6 +10,7 @@ namespace YuriShopV1.Data.Users
         Purchase GetPurchaseById(int id);
         void CreatePurchase(Purchase purchase);
         //void UpdatePurchase(Order order);
+        void DeletePurchase(Purchase purchase);
         bool SaveChanges();
     }
 }

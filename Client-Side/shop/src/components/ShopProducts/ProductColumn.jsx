@@ -21,7 +21,7 @@ const ProductColumn = (product) => {
       <div className='OrderColumnInfo'>{product.product.price}</div>
       <div className='OrderColumnInfo'>{product.product.quantity - product.product.soldQuantity}</div>
       <button className='OrderColumnInfo'>edit</button>
-      <input id={product.productId} className='OrderColumnInfo' type='checkbox'></input>
+      <input id={product.product.productId} name='shopProducts' className='OrderColumnInfo' type='checkbox'></input>
     </div>
   )
 }

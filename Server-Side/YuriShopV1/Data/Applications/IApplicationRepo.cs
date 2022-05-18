@@ -8,6 +8,7 @@ namespace YuriShopV1.Data.Applications
         Application GetApplicationById(int id);
         IEnumerable<Application> GetAllApplications();
         void CreateApplication(Application application);
+        void DeleteApplication(Application application);
         bool SaveChanges();
     }
 }

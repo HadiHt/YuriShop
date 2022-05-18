@@ -98,5 +98,18 @@ namespace YuriShopV1.Controllers
 
             return NoContent();
         }
+        [HttpDelete("{id}/product")]
+        public ActionResult DeleteProduct(int id)
+        {
+            var ProductModelFromRepo = _productRepo.GetProductById(id);
+            if (ProductModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _productRepo.DeleteProduct(ProductModelFromRepo);
+            _productRepo.SaveChanges();
+
+            return NoContent();
+        }
     }
 }
