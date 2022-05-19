@@ -21,8 +21,11 @@
 .OrderExist {
   display: none;
 }
-.OrdersPageRedirect {
+.OrdersPageRedirectLink {
   color: rgb(0, 81, 255);
   font-size: 10px;
   padding-left: 20px;
+}
+.OrdersPageRedirectLink:hover {
+  background-color: white;
 }

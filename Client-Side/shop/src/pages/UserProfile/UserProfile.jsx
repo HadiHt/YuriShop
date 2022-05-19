@@ -31,7 +31,7 @@ const UserProfile = () => {
       <div className="Dashboard">
         <div className="DashboardContainer">
           <ProfileHeader user={user} />
-          <Dashboard value={height} />
+          <Dashboard className="DashboardComponentInPage" value={height} />
         </div>
       </div>
       <div className="ProfilePageContentContainer">
