@@ -1,4 +1,5 @@
 .UserProfileContainer {
+  margin-top: 90px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -20,7 +21,7 @@
   display: flex;
   flex-direction: column;
 }
-.t {
+.DashboardContainer {
   position: fixed;
   width: 24.3vw;
 }
@@ -41,4 +42,19 @@
   font-size: 18px;
   font-weight: 500;
   align-self: center;
+}
+@media screen and (max-width: 600px) {
+  .UserProfileContainer {
+    flex-direction: column;
+  }
+  .SidebarContainer {
+    display: none;
+  }
+  .DashboardContainer {
+    position: static;
+  }
+  .Dashboard {
+    align-items: center;
+    justify-content: center;
+  }
 }

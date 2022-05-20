@@ -6371,19 +6371,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\10User\\.nuget\\packages\\": {}
+    "C:\\Users\\hadih\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\10User\\Desktop\\YuriShop\\Server-Side\\YuriShopV1\\YuriShopV1.csproj",
+      "projectUniqueName": "E:\\UNI\\Yuri Shop\\YuriShop\\Server-Side\\YuriShopV1\\YuriShopV1.csproj",
       "projectName": "YuriShopV1",
-      "projectPath": "C:\\Users\\10User\\Desktop\\YuriShop\\Server-Side\\YuriShopV1\\YuriShopV1.csproj",
-      "packagesPath": "C:\\Users\\10User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\10User\\Desktop\\YuriShop\\Server-Side\\YuriShopV1\\obj\\",
+      "projectPath": "E:\\UNI\\Yuri Shop\\YuriShop\\Server-Side\\YuriShopV1\\YuriShopV1.csproj",
+      "packagesPath": "C:\\Users\\hadih\\.nuget\\packages\\",
+      "outputPath": "E:\\UNI\\Yuri Shop\\YuriShop\\Server-Side\\YuriShopV1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\10User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\hadih\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6446,6 +6446,20 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -6454,16 +6468,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\10User\\Desktop\\YuriShop\\Server-Side\\YuriShopV1\\obj\\project.nuget.cache : Unexpected character encountered while parsing value: <. Path 'expectedPackageFiles', line 7, position 0."
-    }
-  ]
+  }
 }

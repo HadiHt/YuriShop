@@ -10,8 +10,8 @@ using YuriShopV1.Data;
 namespace YuriShopV1.Migrations
 {
     [DbContext(typeof(YuriShopContext))]
-    [Migration("20220426103349_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220514110319_addedPurchaseTable")]
+    partial class addedPurchaseTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,10 @@ namespace YuriShopV1.Migrations
 
                     b.Property<int?>("ShopRefId")
                         .HasColumnType("int");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Street")
                         .IsRequired()
@@ -162,22 +166,17 @@ namespace YuriShopV1.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("ProductRefId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("State")
+                    b.Property<string>("OrderState")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TimeCreated")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserRefId")
                         .HasColumnType("int");
 
                     b.HasKey("OrderId");
-
-                    b.HasIndex("ProductRefId");
 
                     b.HasIndex("UserRefId");
 
@@ -230,6 +229,35 @@ namespace YuriShopV1.Migrations
                     b.ToTable("Product");
                 });
 
+            modelBuilder.Entity("YuriShopV1.Models.Purchase", b =>
+                {
+                    b.Property<int>("PurchaseId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("OrderRefId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductRefId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductState")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("PurchaseId");
+
+                    b.HasIndex("OrderRefId");
+
+                    b.HasIndex("ProductRefId");
+
+                    b.ToTable("Purchase");
+                });
+
             modelBuilder.Entity("YuriShopV1.Models.Shop", b =>
                 {
                     b.Property<int>("ShopId")
@@ -244,6 +272,9 @@ namespace YuriShopV1.Migrations
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PhoneNumber")
+                        .HasColumnType("int");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -261,9 +292,6 @@ namespace YuriShopV1.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<string>("DataOfBirth")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -276,6 +304,12 @@ namespace YuriShopV1.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PhoneNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isAdmin")
@@ -351,19 +385,11 @@ namespace YuriShopV1.Migrations
 
             modelBuilder.Entity("YuriShopV1.Models.Order", b =>
                 {
-                    b.HasOne("YuriShopV1.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductRefId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("YuriShopV1.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserRefId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Product");
 
                     b.Navigation("User");
                 });
@@ -377,6 +403,25 @@ namespace YuriShopV1.Migrations
                         .IsRequired();
 
                     b.Navigation("Shop");
+                });
+
+            modelBuilder.Entity("YuriShopV1.Models.Purchase", b =>
+                {
+                    b.HasOne("YuriShopV1.Models.Order", "Order")
+                        .WithMany("Purchases")
+                        .HasForeignKey("OrderRefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YuriShopV1.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductRefId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("YuriShopV1.Models.WishList", b =>
@@ -396,6 +441,11 @@ namespace YuriShopV1.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("YuriShopV1.Models.Order", b =>
+                {
+                    b.Navigation("Purchases");
                 });
 #pragma warning restore 612, 618
         }

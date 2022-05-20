@@ -22,7 +22,7 @@ export const AddOrder = (user,data, date) => {
             "quantity": data.quantity,
             "userRefId": user.userId,
             "productRefId": data.productId,
-            "timeCreated": date
+            "dateOfPurchase": date
         });
         var config = {
             method: 'post', url: 'http://localhost:5000/api/Orders/order', headers: {

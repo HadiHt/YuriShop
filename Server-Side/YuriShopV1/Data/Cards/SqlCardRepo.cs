@@ -13,10 +13,10 @@ namespace YuriShopV1.Data.Cards
         {
             _context = context;
         }
-        public Card GetCardByShopId(int id)
-        {
-            return _context.Card.FirstOrDefault(p => p.ShopRefId == id);
-        }
+        //public Card GetCardByShopId(int id)
+        //{
+        //    return _context.Card.FirstOrDefault(p => p.ShopRefId == id);
+        //}
 
         public Card GetCardByUserId(int id)
         {

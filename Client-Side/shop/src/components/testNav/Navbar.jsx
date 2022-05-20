@@ -29,7 +29,7 @@ const Navbar = () => {
         if (user === ""){
             navigate("/logIn")
         }else{
-            navigate('/order/')
+            navigate('/user/order/id')
         }
     }
     const dotocart = () => {

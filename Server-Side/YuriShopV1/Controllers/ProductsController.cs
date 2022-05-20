@@ -15,11 +15,11 @@ namespace YuriShopV1.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ICardRepo _cardRepo;
-        private readonly IOrderRepo _orderRepo;
+        private readonly IPurchaseRepo _orderRepo;
         private readonly IUserRepo _userRepo;
         private readonly IProductRepo _productRepo;
 
-        public ProductsController(IMapper mapper, ICardRepo cardRepo, IOrderRepo orderRepo, IUserRepo userRepo, IProductRepo productRepo)
+        public ProductsController(IMapper mapper, ICardRepo cardRepo, IPurchaseRepo orderRepo, IUserRepo userRepo, IProductRepo productRepo)
         {
             _mapper = mapper;
             _cardRepo = cardRepo;
@@ -41,6 +41,16 @@ namespace YuriShopV1.Controllers
             if (Product != null)
             {
                 return Ok(_mapper.Map<ProductReadDto>(Product));
+            }
+            return NotFound();
+        }
+        [HttpPost("list/products")]
+        public ActionResult<IEnumerable<ProductReadDto>> GetProductsByIds(List<int> id)
+        {
+            var Products = _productRepo.GetProductsByIds(id);
+            if (Products != null)
+            {
+                return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(Products));
             }
             return NotFound();
         }

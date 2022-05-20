@@ -6,10 +6,11 @@ import { useContext } from "react";
 
 const Bios = (props) => {
   const [user, setUser] = useState(props.user1);
-  console.log(user);
   const tempUsername = user.email.split("@");
-  user.phoneNumber.toString().length == 7
-    ? (user.phoneNumber = "0" + user.phoneNumber)
+  user.phoneNumber != null
+    ? user.phoneNumber.toString().length == 7
+      ? (user.phoneNumber = "0" + user.phoneNumber)
+      : void 0
     : void 0;
   user.firstName != null ? void 0 : (user.firstName = "Not Specified");
   user.lastName != null ? void 0 : (user.lastName = "Not Specified");

@@ -18,14 +18,16 @@ namespace YuriShopV1.Controllers
         private readonly IOrderRepo _orderRepo;
         private readonly IUserRepo _userRepo;
         private readonly IProductRepo _productRepo;
+        private readonly IPurchaseRepo _purchaseRepo;
 
-        public OrdersController(IMapper mapper, ICardRepo cardRepo, IOrderRepo orderRepo, IUserRepo userRepo, IProductRepo productRepo)
+        public OrdersController(IMapper mapper, ICardRepo cardRepo, IOrderRepo orderRepo, IUserRepo userRepo, IProductRepo productRepo, IPurchaseRepo purchaseRepo)
         {
             _mapper = mapper;
             _cardRepo = cardRepo;
             _orderRepo = orderRepo;
             _userRepo = userRepo;
             _productRepo = productRepo;
+            _purchaseRepo = purchaseRepo;
         }
         [HttpGet]
         public ActionResult<IEnumerable<OrderReadDto>> GetAllOrders()
@@ -39,27 +41,29 @@ namespace YuriShopV1.Controllers
             var orders = _orderRepo.GetOrderById(id);
             if (orders != null)
             {
-                return Ok(_mapper.Map<OrderReadDto>(orders));
+                return Ok(orders);
             }
             return NotFound();
         }
-        [HttpGet("{id}/product")]
-        public ActionResult<IEnumerable<OrderReadDto>> GetAllOrdersByShopId(int id)
-        {
-            var orders = _orderRepo.GetAllOrdersByProductId(id);
-            if (orders != null)
-            {
-                return Ok(_mapper.Map<IEnumerable<OrderReadDto>>(orders));
-            }
-            return NotFound();
-        }
+        //[HttpGet("{id}/product")]
+        //public ActionResult<IEnumerable<OrderReadDto>> GetAllOrdersByShopId(int id)
+        //{
+        //    var orders = _orderRepo.GetAllOrdersByProductId(id);
+        //    if (orders != null)
+        //    {
+        //        return Ok(_mapper.Map<IEnumerable<OrderReadDto>>(orders));
+        //    }
+        //    return NotFound();
+        //}
         [HttpGet("{id}/user")]
         public ActionResult<IEnumerable<OrderReadDto>> GetAllOrdersByUserId(int id)
         {
-            var orders = _orderRepo.GetAllOrdersByUserId(id);
-            if (orders != null)
+            var Order = _orderRepo.GetAllOrdersByUserId(id);
+            
+            if (Order != null)
             {
-                return Ok(_mapper.Map<IEnumerable<OrderReadDto>>(orders));
+                //var Orders = _mapper.Map<IEnumerable<OrderReadDto>>(OrderModel);
+                return Ok(Order);
             }
             return NotFound();
         }
@@ -73,16 +77,25 @@ namespace YuriShopV1.Controllers
             var orderReadDto = _mapper.Map<OrderReadDto>(OrderModel);
             return CreatedAtRoute(nameof(GetOrderById), new { Id = orderReadDto.OrderId }, orderReadDto);
         }
-        [HttpPut("{id}/order")]
-        public ActionResult UpdateAddress(int id, OrderUpdateDto order)
+        [HttpPost("purchase")]
+        public ActionResult<PurchaseReadDto> CreatePurchase(PurchaseWriteDto purchase)
         {
-            var OrderModelFromRepo = _orderRepo.GetOrderById(id);
-            if (OrderModelFromRepo == null)
+            var PurchaseModel = _mapper.Map<Purchase>(purchase);
+            _purchaseRepo.CreatePurchase(PurchaseModel);
+            _purchaseRepo.SaveChanges();
+            return Ok();
+        }
+        [HttpPut("{id}/order")]
+        public ActionResult UpdateOrder(int id, OrderUpdateDto order)
+        {
+            var ReadtoOrder = _orderRepo.GetOrderById(id);
+            if (ReadtoOrder == null)
             {
                 return NotFound();
             }
-            _mapper.Map(order, OrderModelFromRepo);
-            _orderRepo.UpdateOrder(OrderModelFromRepo);
+            var orderReadDto = _mapper.Map<Order>(ReadtoOrder);
+            _mapper.Map(order , orderReadDto);
+            _orderRepo.UpdateOrder(orderReadDto);
             _orderRepo.SaveChanges();
 
             return NoContent();

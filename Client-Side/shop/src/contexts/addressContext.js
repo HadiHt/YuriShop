@@ -9,7 +9,6 @@ export const AddressProvider = (props) => {
     function setAddress(userId){
         Axios.get('http://localhost:5000/api/Users/' + userId + '/address')
             .then(res => {
-                console.log(res.data);
                 setaddress(res.data);
             }).catch((err) => {
                 setaddress('');

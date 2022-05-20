@@ -9,6 +9,5 @@
         public int CVV { get; set; }
         public string Name { get; set; }
         public int? UserRefId { get; set; }
-        public int? ShopRefId { get; set; }
     }
 }
