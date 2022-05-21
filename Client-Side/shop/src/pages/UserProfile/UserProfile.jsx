@@ -5,7 +5,11 @@ import { useEffect } from "react";
 import Dashboard from "../../components/Dashboard/Dashboard";
 import Bios from "../../components/Bios/Bios";
 import Address from "../../components/Address/Address";
-import Order from "../../components/Order/Order";
+<<<<<<< HEAD
+import LastOrder from "../../components/LastOrder/LastOrder";
+=======
+import Order from "../../components/LatestOrder/LatestOrder";
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
 import Wishlist from "../../components/Wishlist/Wishlist";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import { userContext } from "../../contexts/userContext";
@@ -29,9 +33,9 @@ const UserProfile = () => {
   return (
     <div className="UserProfileContainer">
       <div className="Dashboard">
-        <div className="t">
+        <div className="DashboardContainer">
           <ProfileHeader user={user} />
-          <Dashboard value={height} />
+          <Dashboard className="DashboardComponentInPage" value={height} />
         </div>
       </div>
       <div className="ProfilePageContentContainer">
@@ -45,7 +49,7 @@ const UserProfile = () => {
         </div>
         <div className="Order" ref={inputRef2}>
           <p className="OrderTitle">ORDERS</p>
-          <Order user3={user} />
+          <LastOrder user3={user} />
         </div>
         <div className="Wishlist">
           <p className="WishlistTitle">WISHLIST</p>

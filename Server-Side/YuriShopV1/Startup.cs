@@ -57,6 +57,7 @@ namespace YuriShopV1
 
             services.AddScoped<IAddressRepo, SqlAddressRepo>();
             services.AddScoped<ICardRepo, SqlCardRepo>();
+            services.AddScoped<IPurchaseRepo, SqlPurchaseRepo>();
             services.AddScoped<IOrderRepo, SqlOrderRepo>();
             services.AddScoped<IProductRepo, SqlProductRepo>();
             services.AddScoped<IShopRepo, SqlShopRepo>();

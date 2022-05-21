@@ -1,0 +1,14 @@
+.ShopOrderColumnContainer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.ShopOrderColumnInfo{
+    flex: 1;
+}
+.pimage{
+    width:75px;
+}

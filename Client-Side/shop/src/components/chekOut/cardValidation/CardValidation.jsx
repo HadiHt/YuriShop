@@ -52,7 +52,7 @@ const CardValidation = ({ id, actionType, Show }) => {
            
                 <h1>Payment Method</h1>
                 <h5>Choose the brand *</h5>
-                <select value={Brand} onChange={(e) => setBrand(e.target.value)} name="Brand" id="Brand">
+                <select className='brandSelect' value={Brand} onChange={(e) => setBrand(e.target.value)} name="Brand" id="Brand">
                     <option value="Visa">Visa</option>
                     <option value="Master Card">Master Card</option>
                 </select>

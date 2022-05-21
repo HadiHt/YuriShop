@@ -43,5 +43,14 @@ namespace YuriShopV1.Data.WishLists
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void DeleteWishList(WishList wishList)
+        {
+            if (wishList == null)
+            {
+                throw new ArgumentNullException(nameof(wishList));
+            }
+            _context.WishList.Remove(wishList);
+        }
     }
 }

@@ -11,6 +11,7 @@ namespace YuriShopV1.Profiles
             CreateMap<Order, OrderReadDto>();
             CreateMap<OrderWriteDto, Order>();
             CreateMap<OrderUpdateDto, Order>();
+            CreateMap<OrderReadDto, Order>();
         }
     }
 }

@@ -8,6 +8,8 @@ namespace YuriShopV1.Dtos.Addresses
     public class AddressUpdateDto
     {
         [Required]
+        public string State { get; set; }
+        [Required]
         public string Street { get; set; }
         [Required]
         public string City { get; set; }

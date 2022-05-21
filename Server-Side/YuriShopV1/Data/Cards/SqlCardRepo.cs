@@ -13,10 +13,10 @@ namespace YuriShopV1.Data.Cards
         {
             _context = context;
         }
-        public Card GetCardByShopId(int id)
-        {
-            return _context.Card.FirstOrDefault(p => p.ShopRefId == id);
-        }
+        //public Card GetCardByShopId(int id)
+        //{
+        //    return _context.Card.FirstOrDefault(p => p.ShopRefId == id);
+        //}
 
         public Card GetCardByUserId(int id)
         {
@@ -43,6 +43,15 @@ namespace YuriShopV1.Data.Cards
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public void DeleteCard(Card card)
+        {
+            if(card == null)
+            {
+                throw new ArgumentNullException(nameof(card));
+            }
+            _context.Card.Remove(card);
         }
     }
 }

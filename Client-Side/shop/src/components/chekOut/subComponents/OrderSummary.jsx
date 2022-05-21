@@ -3,6 +3,7 @@ import ActionButton from '../ActionButton'
 import CashMethods from './CashMethods'
 import { cartContext } from '../../../contexts/cartContext';
 import { userContext } from '../../../contexts/userContext';
+import Axios from 'axios';
 
 const OrderSummary = ({Data,AddOrder}) => {
     const { user } = useContext(userContext);
@@ -22,15 +23,28 @@ const OrderSummary = ({Data,AddOrder}) => {
     });
     const confirmPurchase = () => {
         if (Data !== '') {
+<<<<<<< HEAD
+            Axios.post('http://localhost:5000/api/Orders/order', {
+                "orderState": "pending",
+                "userRefId": user.userId
+            }).then(function (response) {
+                console.log(response.data);
+                cart.map((data) => {
+                    AddOrder(response.data.orderId,data);
+                });
+                setCart([]);
+            })
+=======
             var today = new Date();
             var dd = String(today.getDate()).padStart(2, '0');
             var mm = String(today.getMonth() + 1).padStart(2, '0');
             var yyyy = today.getFullYear();
-            today = yyyy + '-' + mm + '-' + dd;
+            today = dd + '-' + mm + '-' + yyyy;
             cart.map((data) => {
                 AddOrder(user,data, today);
             });
             setCart([]);
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
         } else {
             setErrorMessage(true)
         }

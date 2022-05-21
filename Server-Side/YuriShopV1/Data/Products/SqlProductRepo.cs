@@ -23,7 +23,15 @@ namespace YuriShopV1.Data.Products
         {
             return _context.Product.FirstOrDefault(p => p.ProductId == id);
         }
-
+        public IEnumerable<Product> GetProductsByIds(List<int> ids)
+        {
+            var products = new List<Product>();
+            foreach (var id in ids)
+            {
+                products.Add(_context.Product.FirstOrDefault(p => p.ProductId == id));
+            }
+            return products;
+        }
         public IEnumerable<Product> GetAllProductsByShopId(int id)
         {
             return _context.Product.Where(p => p.ShopRefId == id).ToList();
@@ -60,6 +68,24 @@ namespace YuriShopV1.Data.Products
         public IEnumerable<Product> GetAllProductsByName(string ProductName)
         {
             return _context.Product.Where(p => p.Name.Contains(ProductName)).ToList();
+        }
+
+        public void DeleteProduct(Product product)
+        {
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+            _context.Product.Remove(product);
+        }
+        public IEnumerable<Product> GetProductsByIds(List<int> ids)
+        {
+            var products = new List<Product>();
+            foreach (var id in ids)
+            {
+                products.Add(_context.Product.FirstOrDefault(p => p.ProductId == id));
+            }
+            return products;
         }
     }
 }

@@ -18,12 +18,10 @@ namespace YuriShopV1.Dtos.Products
         public double Price { get; set; }
         [Required]
         public int Quantity { get; set; }
-        [Required]
-        public int SoldQuantity { get; set; }
-        [Required]
-        public DateTime TimeCreated { get; set; }
-        public float Sale { get; set; }
+<<<<<<< HEAD
+=======
 
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
         [ForeignKey("ShopRefId")]
         public Shop Shop { get; set; }
         public int ShopRefId { get; set; }
