@@ -8,7 +8,6 @@ import { ShopProvider } from "./shopContext";
 import { ImageProvider } from "./imageContext";
 import { AllProductsProvider } from "./allProductsContext";
 
-
 const ContextWrapper = (props) => {
     
     return (
