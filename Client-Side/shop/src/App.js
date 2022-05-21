@@ -13,6 +13,7 @@ import EditBiosInfo from './pages/EditBiosInfo/EditBiosInfo';
 import EditAddress from './pages/EditAddress/EditAddress';
 import UserProfile from './pages/UserProfile/UserProfile';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import AddAProduct from './pages/AddAProduct/AddAProduct';
 import { Routes, Route } from "react-router-dom";
 import OrderCard from './components/oderCard/OrderCard';
@@ -22,6 +23,8 @@ import EditProduct from './pages/EditProduct/EditProduct';
 import EditPurchase from './pages/EditPurchase/EditPurchase';
 =======
 >>>>>>> origin
+=======
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
 
 import {
   Routes,
@@ -36,6 +39,7 @@ function App() {
       <ContextWrapper>
         <Navbar />
         <Routes>
+<<<<<<< HEAD
 <<<<<<< HEAD
           <Route exact path="/" element={<Home />} />
           <Route path="category/:john" element={<CategoryProducts />} />
@@ -52,6 +56,8 @@ function App() {
           <Route path="ShopProfile/EditProduct/:id" element={<EditProduct/>} />
           <Route path="ShopProfile/EditPurchase/:id/:orderId" element={<EditPurchase/>} />
 =======
+=======
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
         <Route exact path="/" element={<Home />} />
             <Route path="category/:john" element={<CategoryProducts />} />
             <Route path="logIn" element={<Login />} />
@@ -62,7 +68,10 @@ function App() {
             <Route path="UserProfile/" element={<UserProfile />} />
             <Route path="UserProfile/EditBiosInfo" element={<EditBiosInfo/>} />
             <Route path="UserProfile/EditAddress" element={<EditAddress/>} />
+<<<<<<< HEAD
 >>>>>>> origin
+=======
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
         </Routes>
       </ContextWrapper>
       {/* <Footer /> */}

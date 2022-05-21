@@ -66,6 +66,7 @@ namespace YuriShopV1.Data.Orders
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         public void DeletePurchase(Purchase purchase)
         {
@@ -79,5 +80,7 @@ namespace YuriShopV1.Data.Orders
 >>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
 =======
 >>>>>>> origin
+=======
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
     }
 }

@@ -7,6 +7,7 @@ import Bios from "../../components/Bios/Bios";
 import Address from "../../components/Address/Address";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import LastOrder from "../../components/LastOrder/LastOrder";
 =======
 import Order from "../../components/LatestOrder/LatestOrder";
@@ -14,6 +15,9 @@ import Order from "../../components/LatestOrder/LatestOrder";
 =======
 import Order from "../../components/LatestOrder/LatestOrder";
 >>>>>>> origin
+=======
+import Order from "../../components/LatestOrder/LatestOrder";
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
 import Wishlist from "../../components/Wishlist/Wishlist";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import { userContext } from "../../contexts/userContext";

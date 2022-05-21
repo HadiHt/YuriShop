@@ -11,6 +11,7 @@ namespace YuriShopV1.Dtos.Orders
         public DateTime TimeCreated { get; set; }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         public int UserRefId { get; set; }
         public List<PurchaseReadDto> Purchases { get; set; }
       //  public int UserRefId { get; set; }
@@ -22,5 +23,9 @@ namespace YuriShopV1.Dtos.Orders
        // public int UserRefId { get; set; }
         public List<PurchaseReadDto> Purchases { get; set; }
 >>>>>>> origin
+=======
+       // public int UserRefId { get; set; }
+        public List<PurchaseReadDto> Purchases { get; set; }
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
     }
 }

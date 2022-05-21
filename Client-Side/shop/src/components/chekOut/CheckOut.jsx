@@ -23,6 +23,7 @@ export const AddOrderPurchase = (orderId,data) => {
             "productRefId": data.productId,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "orderRefId": orderId
 =======
             "dateOfPurchase": date
@@ -30,6 +31,9 @@ export const AddOrderPurchase = (orderId,data) => {
 =======
             "dateOfPurchase": date
 >>>>>>> origin
+=======
+            "dateOfPurchase": date
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
         });
         var config = {
             method: 'post', url: 'http://localhost:5000/api/Orders/purchase', headers: {

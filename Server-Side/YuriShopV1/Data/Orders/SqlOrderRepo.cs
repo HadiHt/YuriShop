@@ -37,11 +37,14 @@ namespace YuriShopV1.Data.Orders
                              TimeCreated = p.TimeCreated,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                              UserRefId = p.UserRefId,
 =======
 >>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
 =======
 >>>>>>> origin
+=======
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
                              Purchases = _mapper.Map < IEnumerable < PurchaseReadDto >>(_context.Purchase.Where(f => f.OrderRefId == p.OrderId).ToList()).ToList()
                          };
 
@@ -65,11 +68,14 @@ namespace YuriShopV1.Data.Orders
                              TimeCreated = p.TimeCreated,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                              UserRefId = p.UserRefId,
 =======
 >>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
 =======
 >>>>>>> origin
+=======
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
                              Purchases = _mapper.Map<IEnumerable<PurchaseReadDto>>(_context.Purchase.Where(f => f.OrderRefId == p.OrderId).ToList()).ToList()
                          };
             return orders.FirstOrDefault();
@@ -112,6 +118,7 @@ namespace YuriShopV1.Data.Orders
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         public void DeleteOrder(Order order)
         {
@@ -125,5 +132,7 @@ namespace YuriShopV1.Data.Orders
 >>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
 =======
 >>>>>>> origin
+=======
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
     }
 }
