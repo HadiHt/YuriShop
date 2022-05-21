@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { userContext } from '../../contexts/userContext';
 import Axios from 'axios';
 import { cardContext } from '../../contexts/cardContext';
@@ -85,6 +86,23 @@ const Login = () => {
                 <button onClick={() => { navigate('/signUp') }} className='login__registerButton'>Create your Yuri Account</button>
             </div>
 =======
+=======
+import { userContext } from "../../contexts/userContext";
+import Axios from "axios";
+import { cardContext } from "../../contexts/cardContext";
+import { set } from "../../contexts/cardContext";
+import { addressContext } from "../../contexts/addressContext";
+
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { user, setUser } = useContext(userContext);
+  const [wrongCredentials, setWrongCredentials] = useState(false);
+  const navigate = useNavigate();
+
+  const s = () => {};
+
+>>>>>>> origin
   const Auth = () => {
     Axios.post("http://localhost:5000/api/Users/login", {
       email: email,
@@ -139,7 +157,10 @@ const Login = () => {
           <button onClick={Auth} className="login__signInButton">
             Sign In
           </button>
+<<<<<<< HEAD
 >>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
+=======
+>>>>>>> origin
         </div>
         <p>
           By signing-in you agree to the Yuri Shop Conditions of Use & Sale.

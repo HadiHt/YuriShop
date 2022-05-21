@@ -11,9 +11,12 @@ namespace YuriShopV1.Data.Users
         void CreatePurchase(Purchase purchase);
         //void UpdatePurchase(Order order);
 <<<<<<< HEAD
+<<<<<<< HEAD
         void DeletePurchase(Purchase purchase);
 =======
 >>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
+=======
+>>>>>>> origin
         bool SaveChanges();
     }
 }

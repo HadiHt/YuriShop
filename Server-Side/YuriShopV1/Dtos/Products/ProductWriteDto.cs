@@ -19,7 +19,10 @@ namespace YuriShopV1.Dtos.Products
         [Required]
         public int Quantity { get; set; }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin
 
 >>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
         [ForeignKey("ShopRefId")]
