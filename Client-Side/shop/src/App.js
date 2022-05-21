@@ -20,6 +20,11 @@ import ShopProfile from './pages/ShopProfile/ShoProfile';
 import EditProduct from './pages/EditProduct/EditProduct';
 import EditPurchase from './pages/EditPurchase/EditPurchase';
 
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
+
 function App() {
   // const [user,setUser] =useState('')
   return (

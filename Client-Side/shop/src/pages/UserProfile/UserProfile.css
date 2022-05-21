@@ -43,3 +43,18 @@
   font-weight: 500;
   align-self: center;
 }
+@media screen and (max-width: 600px) {
+  .UserProfileContainer {
+    flex-direction: column;
+  }
+  .SidebarContainer {
+    display: none;
+  }
+  .DashboardContainer {
+    position: static;
+  }
+  .Dashboard {
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -23,7 +23,7 @@ namespace YuriShopV1.Models
         [Required]
         public int SoldQuantity { get; set; }
         [Required]
-        public DateTime TimeCreated { get; set; }
+        public DateTime TimeCreated { get; set; } = DateTime.Now;
         public float Sale { get; set; }
 
         [ForeignKey("ShopRefId")]

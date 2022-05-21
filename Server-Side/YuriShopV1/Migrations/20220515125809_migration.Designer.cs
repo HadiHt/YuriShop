@@ -10,8 +10,13 @@ using YuriShopV1.Data;
 namespace YuriShopV1.Migrations
 {
     [DbContext(typeof(YuriShopContext))]
+<<<<<<<< HEAD:Server-Side/YuriShopV1/Migrations/20220515125809_migration.Designer.cs
     [Migration("20220515125809_migration")]
     partial class migration
+========
+    [Migration("20220514110319_addedPurchaseTable")]
+    partial class addedPurchaseTable
+>>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451:Server-Side/YuriShopV1/Migrations/20220514110319_addedPurchaseTable.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

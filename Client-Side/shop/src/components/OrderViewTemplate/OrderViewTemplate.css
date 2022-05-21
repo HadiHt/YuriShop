@@ -1,9 +1,0 @@
-.OrderViewTemplate{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    height: 300px;
-    border: 2px solid rgb(68, 63, 63);
-    background-color: white;
-    border-radius: 15px;
-}

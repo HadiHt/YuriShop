@@ -69,16 +69,16 @@ namespace YuriShopV1.Controllers
             return NotFound();
         }
 
-        [HttpGet("{id}/card")]
-        public ActionResult<CardReadDto> GetCardByShopId(int id)
-        {
-            var card = _cardRepo.GetCardByShopId(id);
-            if (card != null)
-            {
-                return Ok(_mapper.Map<CardReadDto>(card));
-            }
-            return NotFound();
-        }
+        //[HttpGet("{id}/card")]
+        //public ActionResult<CardReadDto> GetCardByShopId(int id)
+        //{
+        //    var card = _cardRepo.GetCardByShopId(id);
+        //    if (card != null)
+        //    {
+        //        return Ok(_mapper.Map<CardReadDto>(card));
+        //    }
+        //    return NotFound();
+        //}
         [HttpPut("{id}/shop")]
         public ActionResult UpdateShop(int id, ShopUpdateDto shop)
         {

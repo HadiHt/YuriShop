@@ -49,7 +49,7 @@
     cursor: pointer;
     align-items: center;
   }
-.cart:hover{
+  .cart:hover{
     background-color:  #7e7b80;
     color: white;
-}
+  }

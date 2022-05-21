@@ -64,6 +64,7 @@ namespace YuriShopV1.Data.Orders
         {
             return (_context.SaveChanges() >= 0);
         }
+<<<<<<< HEAD
 
         public void DeletePurchase(Purchase purchase)
         {
@@ -73,5 +74,7 @@ namespace YuriShopV1.Data.Orders
             }
             _context.Purchase.Remove(purchase);
         }
+=======
+>>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
     }
 }

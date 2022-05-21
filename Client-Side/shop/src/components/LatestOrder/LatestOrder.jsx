@@ -6,19 +6,15 @@ import { useEffect } from "react";
 import Axios from "axios";
 import "./LatestOrder.css";
 import { Style } from "@material-ui/icons";
-import { useNavigate } from 'react-router-dom'
 
 const Order = () => {
-  // const navigate = useNavigate()
   const { user, setUser } = useContext(userContext);
-  const [OrderExist, SetOrderExist] = useState(["hidden", "visible"]);
+  const [OrderExist, SetOrderExist] = useState(["none", "inline-block"]);
   const [Purchases, SetPurchases] = useState([]);
   const [Products, SetProducts] = useState([]);
   const [LatestProductsImages, SetLatestProductsImages] = useState([]);
   var productsid = [];
   var AllPurchases;
-  var imagesNoQuotes = [];
-  var y;
   useEffect(() => {
     const GetOrder = async () => {
       const orderCall = await Axios.get(
@@ -26,19 +22,24 @@ const Order = () => {
       )
         .then((res) => {
           //console.log(res.data);
-          if (res.data != null) {
+          if (res.data != null && res.data.length != 0) {
             AllPurchases = res.data[res.data.length - 1].purchases;
             SetPurchases((p) => (p = AllPurchases));
-            SetOrderExist((prevOrder) => (prevOrder = ["hidden", "visible"]));
+            SetOrderExist(
+              (prevOrder) => (prevOrder = ["none", "inline-block"])
+            );
+          } else {
+            SetOrderExist(
+              (prevOrder) => (prevOrder = ["inline-block", "none"])
+            );
           }
         })
-        .catch(
-          (err) => console.log(err),
-          SetOrderExist((prevOrder) => (prevOrder = ["visible", "hidden"]))
-        );
-      AllPurchases.forEach((p) => {
-        productsid.push("productid"+p.productRefId);
-      });
+        .catch((err) => console.log(err));
+      AllPurchases == null
+        ? void 0
+        : AllPurchases.forEach((p) => {
+            productsid.push(p.productRefId);
+          });
       const productCall = await Axios.post(
         "http://localhost:5000/api/Products/list/products",
         productsid
@@ -47,13 +48,12 @@ const Order = () => {
           SetProducts((prevProducts) => (prevProducts = res.data));
         })
         .catch((err) => console.log(err));
-        console.log(productsid)
+
       const imageCall = await Axios.post(
         "http://localhost:5000/api/images/Products",
         productsid.toString()
       )
         .then((res) => {
-          y = res.data;
           SetLatestProductsImages(res.data);
         })
         .catch((err) => console.log(err));
@@ -62,7 +62,7 @@ const Order = () => {
   }, []);
   return (
     <div className="LatestOrderContainer">
-      <div style={{ visibility: OrderExist[0] }}>No Orders Yet!</div>
+      <div style={{ display: OrderExist[0] }}>No Orders Yet!</div>
       <div className="LatestProductsContainer">
         {Products?.map((product, index) => (
           <div className="LatestProduct">
@@ -84,13 +84,13 @@ const Order = () => {
           </div>
         ))}
       </div>
-      <div
-        className="OrdersPageRedirect"
-        style={{ visibility: OrderExist[1] }}
-        // onClick={navigate(-1+'/order')}
+      <a
+        className="OrdersPageRedirectLink"
+        style={{ display: OrderExist[1] }}
+        href="http://localhost:3000/user/order/id"
       >
         See All Orders...
-      </div>
+      </a>
     </div>
   );
 };
