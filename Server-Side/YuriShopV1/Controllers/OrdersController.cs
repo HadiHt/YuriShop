@@ -100,5 +100,11 @@ namespace YuriShopV1.Controllers
 
             return NoContent();
         }
+        [HttpGet("purchases")]
+        public ActionResult<IEnumerable<PurchaseReadDto>> GetAllPurchases()
+        {
+            var purchases = _purchaseRepo.GetAllPurchases();
+            return Ok(_mapper.Map<IEnumerable<PurchaseReadDto>>(purchases));
+        }
     }
 }

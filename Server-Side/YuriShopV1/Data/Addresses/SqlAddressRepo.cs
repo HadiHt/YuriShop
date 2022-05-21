@@ -45,13 +45,13 @@ namespace YuriShopV1.Data.Addresses
             return (_context.SaveChanges() >= 0);    
         }
 
-        public void DeleteAddress(Address address)
-        {
-            if (address == null)
-            {
-                throw new ArgumentNullException(nameof(address));
-            }
-            _context.Address.Remove(address);
-        }
+        //public void DeleteAddress(Address address)
+        //{
+        //    if (address == null)
+        //    {
+        //        throw new ArgumentNullException(nameof(address));
+        //    }
+        //    _context.Address.Remove(address);
+        //}
     }
 }

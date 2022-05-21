@@ -17,6 +17,8 @@ import { Routes, Route } from "react-router-dom";
 import OrderCard from './components/oderCard/OrderCard';
 import Order from './pages/OrderPage/Order';
 import ShopProfile from './pages/ShopProfile/ShoProfile';
+import EditProduct from './pages/EditProduct/EditProduct';
+import EditPurchase from './pages/EditPurchase/EditPurchase';
 
 function App() {
   // const [user,setUser] =useState('')
@@ -38,6 +40,8 @@ function App() {
           <Route path="UserProfile/EditAddress" element={<EditAddress />} />
           <Route path='ShopProfile/AddAProduct' element={<AddAProduct/>} />
           <Route path="ShopProfile" element={<ShopProfile/>} />
+          <Route path="ShopProfile/EditProduct/:id" element={<EditProduct/>} />
+          <Route path="ShopProfile/EditPurchase/:id/:orderId" element={<EditPurchase/>} />
         </Routes>
       </ContextWrapper>
       {/* <Footer /> */}

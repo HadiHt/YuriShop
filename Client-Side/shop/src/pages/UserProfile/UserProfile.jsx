@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import Dashboard from "../../components/Dashboard/Dashboard";
 import Bios from "../../components/Bios/Bios";
 import Address from "../../components/Address/Address";
-import Order from "../../components/Order/Order";
+import LastOrder from "../../components/LastOrder/LastOrder";
 import Wishlist from "../../components/Wishlist/Wishlist";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import { userContext } from "../../contexts/userContext";
@@ -45,7 +45,7 @@ const UserProfile = () => {
         </div>
         <div className="Order" ref={inputRef2}>
           <p className="OrderTitle">ORDERS</p>
-          <Order user3={user} />
+          <LastOrder user3={user} />
         </div>
         <div className="Wishlist">
           <p className="WishlistTitle">WISHLIST</p>

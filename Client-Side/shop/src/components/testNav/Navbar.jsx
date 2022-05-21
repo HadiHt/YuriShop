@@ -64,14 +64,14 @@ const Navbar = () => {
                 <div className={'menu__options ' + navClass}>
                     <li className='navbar__link'>
                         {isGuest&&
-                            <button className='but'>
+                            <button onClick={()=>navigate('/logIn')} className='but'>
                                 Hello Guest! Sign in
                             </button>
                         }
                         {user !== "" && <button className='but' onClick={()=>{navigate('/UserProfile')}}>hello {user.firstName}</button>}
                         {shop !== "" && <button className='but' onClick={()=>{navigate('/ShopProfile')}}>hello {shop.userName}</button>}
                     </li>
-                    <li className='navbar__link'><button onClick={order} className='but'>Orders</button></li>
+                    {shop==""&&<li className='navbar__link'><button onClick={order} className='but'>Orders</button></li>}
                     {shop == "" && <li className='navbar__link'>
                         <button onClick={dotocart} className='but'><i className='fa fa-shopping-cart'>  {cart.length}</i></button>
                     </li>}

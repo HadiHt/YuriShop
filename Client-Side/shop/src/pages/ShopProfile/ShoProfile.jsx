@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import Dashboard from "../../components/Dashboard/Dashboard";
 import Bios from "../../components/Bios/Bios";
 import Address from "../../components/Address/Address";
-import Order from "../../components/Order/Order";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import "../UserProfile/UserProfile.css";
 import { shopContext } from "../../contexts/shopContext";
@@ -13,6 +12,7 @@ import ShopProducts from "../../components/ShopProducts/ShopProducts";
 import { useNavigate } from "react-router-dom";
 import './ShopProfile.css'
 import { imageContext } from "../../contexts/imageContext";
+import ShopOrderView from "../../components/ShopOrderView/ShopOrderView";
 
 const ShopProfile = () => {
   const {setImage}=useContext(imageContext);
@@ -51,7 +51,8 @@ const ShopProfile = () => {
         </div>
         <div className="Order" ref={inputRef2}>
           <p className="OrderTitle">ORDERS</p>
-          <Order user3={shop} />
+          {/* <Order user3={shop} /> */}
+          <ShopOrderView/>
         </div>
         <div className="Wishlist">
           <p className="WishlistTitle">PRODUCTS <button className="AddProductButton" onClick={()=>navigate('AddAProduct')}>Add A Product</button></p>

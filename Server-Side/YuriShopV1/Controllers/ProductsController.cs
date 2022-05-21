@@ -111,5 +111,15 @@ namespace YuriShopV1.Controllers
 
             return NoContent();
         }
+        [HttpPost("list/products")]
+        public ActionResult<IEnumerable<ProductReadDto>> GetProductsByIds(List<int> id)
+        {
+            var Products = _productRepo.GetProductsByIds(id);
+            if (Products != null)
+            {
+                return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(Products));
+            }
+            return NotFound();
+        }
     }
 }

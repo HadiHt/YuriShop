@@ -14,6 +14,7 @@ namespace YuriShopV1.Data.Users
         void CreateProduct(Product product);
         void UpdateProduct(Product product);
         void DeleteProduct(Product product);
+        IEnumerable<Product> GetProductsByIds(List<int> ids);
         bool SaveChanges();
     }
 }
