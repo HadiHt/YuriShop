@@ -142,15 +142,10 @@ namespace YuriShopV1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ShopRefId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("UserRefId")
                         .HasColumnType("int");
 
                     b.HasKey("CardId");
-
-                    b.HasIndex("ShopRefId");
 
                     b.HasIndex("UserRefId");
 
@@ -368,15 +363,9 @@ namespace YuriShopV1.Migrations
 
             modelBuilder.Entity("YuriShopV1.Models.Card", b =>
                 {
-                    b.HasOne("YuriShopV1.Models.Shop", "Shop")
-                        .WithMany()
-                        .HasForeignKey("ShopRefId");
-
                     b.HasOne("YuriShopV1.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserRefId");
-
-                    b.Navigation("Shop");
 
                     b.Navigation("User");
                 });

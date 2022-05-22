@@ -18,7 +18,9 @@ const SignUp = () => {
             Axios.post('http://localhost:5000/api/Users/SignUp', {
                 "email":  userEmail ,
                 "password":  UserPassword 
-            }).then(function (response) { console.log(response.data); })
+            }).then(function (response) { console.log(response.data); 
+            navigate('/')
+            })
                 .catch(function (error) { console.log(error); });
         }
         else {

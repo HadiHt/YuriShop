@@ -17,24 +17,12 @@ const CheckOut = () => {
 }
 
 export const AddOrderPurchase = (orderId,data) => {
-        var object = JSON.stringify({
-            "productState": "pending",
-            "quantity": data.quantity,
-            "productRefId": data.productId,
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            "orderRefId": orderId
-=======
-            "dateOfPurchase": date
->>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
-=======
-            "dateOfPurchase": date
->>>>>>> origin
-=======
-            "dateOfPurchase": date
->>>>>>> d8d94adfeb3748a60ccbeb26c24810953efe4451
-        });
+    var object = JSON.stringify({
+        "productState": "pending",
+        "quantity": data.quantity,
+        "productRefId": data.productId,
+        "orderRefId": orderId
+    });
         var config = {
             method: 'post', url: 'http://localhost:5000/api/Orders/purchase', headers: {
                 'Content-Type': 'application/json'

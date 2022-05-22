@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import Axios from 'axios';
 import './CardValidation.css'
 import { cardContext } from '../../../contexts/cardContext';
+import { userContext } from '../../../contexts/userContext';
 
 const CardValidation = ({ id, actionType, Show }) => {
+    const {user} = useContext(userContext)
     const [cardNb, setCardNb] = useState();
     const [ownerName, setOwnerName] = useState('');
     const [CVV, setCVV] = useState();
@@ -40,7 +42,7 @@ const CardValidation = ({ id, actionType, Show }) => {
                 "userRefId": id,
                 "shopRefId": null
             }).then(function (response) {
-                setCard(id);
+                setCard(user);
                 console.log(card);
                 showError(true);
             }).catch(function (error) { console.log(error); showError(true); });

@@ -78,14 +78,5 @@ namespace YuriShopV1.Data.Products
             }
             _context.Product.Remove(product);
         }
-        public IEnumerable<Product> GetProductsByIds(List<int> ids)
-        {
-            var products = new List<Product>();
-            foreach (var id in ids)
-            {
-                products.Add(_context.Product.FirstOrDefault(p => p.ProductId == id));
-            }
-            return products;
-        }
     }
 }

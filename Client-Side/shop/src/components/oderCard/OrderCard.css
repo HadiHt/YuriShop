@@ -1,0 +1,51 @@
+.order_card{
+    width: 350px;
+    overflow: hidden;
+    height: fit-content;
+    box-shadow: 0 0 15px #ddd;
+    background-color: #ffff;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 15px;
+    position: relative;
+    border: 2px solid #7e7b80;;
+}
+.order_card img{
+    width: 100;
+    height: 200px;
+    display: block;
+    margin: auto;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .3s ease;
+    background-color: rgba(85, 77, 77, 0.384);
+  }
+  
+  .order_card:hover .overlay {
+    opacity: 1;
+  }
+  
+  .iconnnn {
+    color: white;
+    font-size: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .fa-shopping-bag:hover {
+    color: rgb(255, 255, 255);
+  }
