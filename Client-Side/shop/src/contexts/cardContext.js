@@ -19,6 +19,10 @@ export const CardProvider = (props) => {
         } else {
             Axios.get('http://localhost:5000/api/Shops/' + userObject.shopId + '/card')
                 .then(res => {
+<<<<<<< HEAD
+=======
+                    console.log(res.data);
+>>>>>>> b42b33b42f3ff7b6f998dcc6ca2eb86aac7e2f84
                     setcard(res.data);
                 }).catch((err) => {
                     setcard('');
