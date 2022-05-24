@@ -46,7 +46,7 @@ const ProductItem = ({ product, type }) => {
             <div className="product_box">
                 <div className='product_header'>
                     <h2>{product.name}</h2>
-                    <i className='fav fa fa-star'></i>
+                    <i className='fav fa fa-heart'></i>
                 </div>
                 {type === "view" ? <span>{product.price}K L.L</span> : ""}
                 <p>{product.category}</p>

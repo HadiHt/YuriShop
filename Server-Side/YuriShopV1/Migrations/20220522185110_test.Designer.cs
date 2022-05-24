@@ -10,8 +10,8 @@ using YuriShopV1.Data;
 namespace YuriShopV1.Migrations
 {
     [DbContext(typeof(YuriShopContext))]
-    [Migration("20220514110319_addedPurchaseTable")]
-    partial class addedPurchaseTable
+    [Migration("20220522185110_test")]
+    partial class test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -144,15 +144,10 @@ namespace YuriShopV1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ShopRefId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("UserRefId")
                         .HasColumnType("int");
 
                     b.HasKey("CardId");
-
-                    b.HasIndex("ShopRefId");
 
                     b.HasIndex("UserRefId");
 
@@ -370,15 +365,9 @@ namespace YuriShopV1.Migrations
 
             modelBuilder.Entity("YuriShopV1.Models.Card", b =>
                 {
-                    b.HasOne("YuriShopV1.Models.Shop", "Shop")
-                        .WithMany()
-                        .HasForeignKey("ShopRefId");
-
                     b.HasOne("YuriShopV1.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserRefId");
-
-                    b.Navigation("Shop");
 
                     b.Navigation("User");
                 });

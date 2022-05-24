@@ -11,6 +11,7 @@ namespace YuriShopV1.Data.Users
         OrderReadDto GetOrderById(int id);
         void CreateOrder(Order order);
         void UpdateOrder(Order order);
+        void DeleteOrder(Order order);
         bool SaveChanges();
     }
 }

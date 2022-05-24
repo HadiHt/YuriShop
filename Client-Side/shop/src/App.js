@@ -12,11 +12,16 @@ import ContextWrapper from './contexts/ContextWrapper';
 import EditBiosInfo from './pages/EditBiosInfo/EditBiosInfo';
 import EditAddress from './pages/EditAddress/EditAddress';
 import UserProfile from './pages/UserProfile/UserProfile';
+import Admin from './pages/Admin/Admin';
+import ApplicationView from './pages/ApplicationView/ApplicationView'
 
-import {
-  Routes,
-  Route,
-} from "react-router-dom";
+import AddAProduct from './pages/AddAProduct/AddAProduct';
+import { Routes, Route } from "react-router-dom";
+import OrderCard from './components/oderCard/OrderCard';
+import Order from './pages/OrderPage/Order';
+import ShopProfile from './pages/ShopProfile/ShoProfile';
+import EditProduct from './pages/EditProduct/EditProduct';
+import EditPurchase from './pages/EditPurchase/EditPurchase';
 
 function App() {
   // const [user,setUser] =useState('')
@@ -26,16 +31,22 @@ function App() {
       <ContextWrapper>
         <Navbar />
         <Routes>
-        <Route exact path="/" element={<Home />} />
-            <Route path="category/:john" element={<CategoryProducts />} />
-            <Route path="logIn" element={<Login />} />
-            <Route path="signUp" element={<SignUp />} />
-            <Route path="order" element={<CategoryProducts />} />
-            <Route path="product-details/:id" element={<ProductView />} />
-            <Route path='/cart' element={<CartView/>} />
-            <Route path="UserProfile/" element={<UserProfile />} />
-            <Route path="UserProfile/EditBiosInfo" element={<EditBiosInfo/>} />
-            <Route path="UserProfile/EditAddress" element={<EditAddress/>} />
+          <Route exact path="/" element={<Home />} />
+          <Route path="category/:john" element={<CategoryProducts />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/ApplicationView/:id" element={<ApplicationView />} />
+          <Route path="logIn" element={<Login />} />
+          <Route path="signUp" element={<SignUp />} />
+          <Route path="order" element={<Order />} />
+          <Route path="product-details/:id" element={<ProductView />} />
+          <Route path='/cart' element={<CartView />} />
+          <Route path="UserProfile/:id" element={<UserProfile />} />
+          <Route path="UserProfile/EditBiosInfo" element={<EditBiosInfo />} />
+          <Route path="UserProfile/EditAddress" element={<EditAddress />} />
+          <Route path='ShopProfile/AddAProduct' element={<AddAProduct/>} />
+          <Route path="ShopProfile/:id" element={<ShopProfile/>} />
+          <Route path="ShopProfile/EditProduct/:id" element={<EditProduct/>} />
+          <Route path="ShopProfile/EditPurchase/:id/:orderId" element={<EditPurchase/>} />
         </Routes>
       </ContextWrapper>
       {/* <Footer /> */}

@@ -35,6 +35,7 @@ namespace YuriShopV1.Data.Orders
                              OrderId = p.OrderId,
                              OrderState = p.OrderState,
                              TimeCreated = p.TimeCreated,
+                             UserRefId = p.UserRefId,
                              Purchases = _mapper.Map < IEnumerable < PurchaseReadDto >>(_context.Purchase.Where(f => f.OrderRefId == p.OrderId).ToList()).ToList()
                          };
 
@@ -56,6 +57,7 @@ namespace YuriShopV1.Data.Orders
                              OrderId = p.OrderId,
                              OrderState = p.OrderState,
                              TimeCreated = p.TimeCreated,
+                             UserRefId = p.UserRefId,
                              Purchases = _mapper.Map<IEnumerable<PurchaseReadDto>>(_context.Purchase.Where(f => f.OrderRefId == p.OrderId).ToList()).ToList()
                          };
             return orders.FirstOrDefault();
@@ -95,6 +97,16 @@ namespace YuriShopV1.Data.Orders
         public void CreatePurchase(Order order)
         {
             throw new NotImplementedException();
+        }
+
+
+        public void DeleteOrder(Order order)
+        {
+            if (order == null)
+            {
+                throw new ArgumentNullException(nameof(order));
+            }
+            _context.Order.Remove(order);
         }
     }
 }

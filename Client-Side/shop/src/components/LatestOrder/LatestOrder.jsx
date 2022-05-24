@@ -14,6 +14,7 @@ const Order = () => {
   const [Products, SetProducts] = useState([]);
   const [LatestProductsImages, SetLatestProductsImages] = useState([]);
   var productsid = [];
+  var imgproductsid = [];
   var AllPurchases;
   useEffect(() => {
     const GetOrder = async () => {
@@ -39,6 +40,7 @@ const Order = () => {
         ? void 0
         : AllPurchases.forEach((p) => {
             productsid.push(p.productRefId);
+            imgproductsid.push("productid" + p.productRefId);
           });
       const productCall = await Axios.post(
         "http://localhost:5000/api/Products/list/products",
@@ -51,7 +53,7 @@ const Order = () => {
 
       const imageCall = await Axios.post(
         "http://localhost:5000/api/images/Products",
-        productsid.toString()
+        imgproductsid.toString()
       )
         .then((res) => {
           SetLatestProductsImages(res.data);

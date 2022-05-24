@@ -6,15 +6,20 @@ import Axios from "axios";
 import { cardContext } from "../../contexts/cardContext";
 import { set } from "../../contexts/cardContext";
 import { addressContext } from "../../contexts/addressContext";
+import { shopContext } from "../../contexts/shopContext";
+import { orderListContext } from "../../contexts/orderListContext";
+import { allProductContext } from "../../contexts/allProductsContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { user, setUser } = useContext(userContext);
+  const { setUser } = useContext(userContext);
+  const { setShop } = useContext(shopContext);
+  const { setOrders } = useContext(orderListContext);
+  const { setProductss } = useContext(allProductContext);
+  const { setCard } = useContext(cardContext);
   const [wrongCredentials, setWrongCredentials] = useState(false);
   const navigate = useNavigate();
-
-  const s = () => {};
 
   const Auth = () => {
     Axios.post("http://localhost:5000/api/Users/login", {
@@ -22,20 +27,28 @@ const Login = () => {
       password: password,
     })
       .then((res) => {
+        console.log(res.data);
         if (res.data === "") {
           console.log("Bad Credentials");
           setWrongCredentials(true);
         } else {
-          setUser(res.data);
-          setCard(res.data.userId);
-          setAddress(res.data.userId);
+          if (res.data.hasOwnProperty("isAdmin")) {
+            setUser(res.data);
+            res.data.isAdmin == true ? navigate("/admin") : navigate("/");
+          } else {
+            setShop(res.data);
+            navigate("/");
+          }
+          setProductss();
+          setCard(res.data);
+          setAddress(res.data);
+          setOrders(res.data);
           setWrongCredentials(false);
-          navigate("/");
         }
       })
       .catch((err) => console.log(err));
   };
-  const { setCard } = useContext(cardContext);
+
   const { setAddress } = useContext(addressContext);
   return (
     <div className="page login">

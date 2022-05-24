@@ -52,5 +52,14 @@ namespace YuriShopV1.Data.Shops
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void DeleteShop(Shop shop)
+        {
+            if (shop == null)
+            {
+                throw new ArgumentNullException(nameof(shop));
+            }
+            _context.Shop.Remove(shop);
+        }
     }
 }

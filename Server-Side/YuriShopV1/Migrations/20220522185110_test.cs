@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YuriShopV1.Migrations
 {
-    public partial class addedPurchaseTable : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -141,18 +141,11 @@ namespace YuriShopV1.Migrations
                     ExpirationDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CVV = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserRefId = table.Column<int>(type: "int", nullable: true),
-                    ShopRefId = table.Column<int>(type: "int", nullable: true)
+                    UserRefId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Card", x => x.CardId);
-                    table.ForeignKey(
-                        name: "FK_Card_Shop_ShopRefId",
-                        column: x => x.ShopRefId,
-                        principalTable: "Shop",
-                        principalColumn: "ShopId",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Card_User_UserRefId",
                         column: x => x.UserRefId,
@@ -250,11 +243,6 @@ namespace YuriShopV1.Migrations
                 name: "IX_Application_UserRefId",
                 table: "Application",
                 column: "UserRefId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Card_ShopRefId",
-                table: "Card",
-                column: "ShopRefId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Card_UserRefId",

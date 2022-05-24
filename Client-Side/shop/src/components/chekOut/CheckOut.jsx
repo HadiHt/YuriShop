@@ -11,21 +11,20 @@ const CheckOut = () => {
         <div className='Chekout'>
             <img src={process.env.PUBLIC_URL + '/YS_Logo.png'}></img>
             <h3>Summary</h3>
-            <OrderSummary Data={card} AddOrder={AddOrder}/>
+            <OrderSummary Data={card} AddOrder={AddOrderPurchase}/>
         </div>
     )
 }
 
-export const AddOrder = (user,data, date) => {
-        var object = JSON.stringify({
-            "state": "pending",
-            "quantity": data.quantity,
-            "userRefId": user.userId,
-            "productRefId": data.productId,
-            "dateOfPurchase": date
-        });
+export const AddOrderPurchase = (orderId,data) => {
+    var object = JSON.stringify({
+        "productState": "pending",
+        "quantity": data.quantity,
+        "productRefId": data.productId,
+        "orderRefId": orderId
+    });
         var config = {
-            method: 'post', url: 'http://localhost:5000/api/Orders/order', headers: {
+            method: 'post', url: 'http://localhost:5000/api/Orders/purchase', headers: {
                 'Content-Type': 'application/json'
             }, data: object
         };

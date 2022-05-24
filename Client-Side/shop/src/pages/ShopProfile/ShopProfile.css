@@ -1,0 +1,14 @@
+.AddProductButton {
+    background-image: linear-gradient(to right, #464343, #7b7e80);
+    border-radius: 15px;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 7px 14px 7px 14px;
+    text-decoration: none;
+    margin: auto;
+}
+
+.AddProductButton:hover {
+    background-image: linear-gradient(to right, #5c5a5a, #939699);
+    text-decoration: none;
+}

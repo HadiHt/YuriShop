@@ -18,7 +18,6 @@ namespace YuriShopV1.Dtos.Products
         public double Price { get; set; }
         [Required]
         public int Quantity { get; set; }
-
         [ForeignKey("ShopRefId")]
         public Shop Shop { get; set; }
         public int ShopRefId { get; set; }

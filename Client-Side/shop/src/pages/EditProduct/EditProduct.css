@@ -1,0 +1,16 @@
+.AddProductContainer {
+    display: flex;
+    padding-top: 50px;
+    justify-content: center;
+    margin-top: 90px;
+    row-gap: 100px;
+  }
+  @media (max-width:817px){
+    .AddProductContainer{
+      flex-direction: column;
+      row-gap: 0px;
+      width: 75%;
+      margin: auto;
+    }
+  }
+  

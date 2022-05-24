@@ -9,7 +9,7 @@ namespace YuriShopV1.Dtos.Orders
         public int OrderId { get; set; }
         public string OrderState { get; set; }
         public DateTime TimeCreated { get; set; }
-       // public int UserRefId { get; set; }
+        public int UserRefId { get; set; }
         public List<PurchaseReadDto> Purchases { get; set; }
     }
 }

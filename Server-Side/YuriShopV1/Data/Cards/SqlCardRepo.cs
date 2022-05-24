@@ -44,5 +44,14 @@ namespace YuriShopV1.Data.Cards
         {
             return (_context.SaveChanges() >= 0);
         }
+
+        public void DeleteCard(Card card)
+        {
+            if(card == null)
+            {
+                throw new ArgumentNullException(nameof(card));
+            }
+            _context.Card.Remove(card);
+        }
     }
 }
