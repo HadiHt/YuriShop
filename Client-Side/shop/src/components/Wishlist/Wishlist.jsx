@@ -16,6 +16,7 @@ const Wishlist = () => {
   const [ProductImages, SetProductImages] = useState([]);
   const navigate = useNavigate();
   var ids = [];
+  var imagesids = [];
   useEffect(() => {
     const GetWishlist = async () => {
       const orderCall = await Axios.get(
@@ -26,6 +27,7 @@ const Wishlist = () => {
             SetWishlist((prevWishlist) => (prevWishlist = res.data));
             res.data.forEach((p) => {
               ids.push(p.productRefId);
+              imagesids.push("productid" + p.productRefId);
             });
             SetWishlistExist((prevOrder) => (prevOrder = ["none", "block"]));
           } else {
@@ -44,7 +46,7 @@ const Wishlist = () => {
         .catch((err) => console.log(err));
       const imageCall = await Axios.post(
         "http://localhost:5000/api/images/Products",
-        ids.toString()
+        imagesids.toString()
       )
         .then((res) => {
           SetProductImages(res.data);
@@ -55,7 +57,7 @@ const Wishlist = () => {
   }, []);
 
   const changeRoute = (url) => {
-    navigate("/product-details/:" + url);
+    navigate("/product-details/" + url);
   };
   return (
     <div className="WishlistContainer">

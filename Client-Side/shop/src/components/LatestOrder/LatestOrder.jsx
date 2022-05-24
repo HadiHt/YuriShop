@@ -40,7 +40,7 @@ const Order = () => {
         ? void 0
         : AllPurchases.forEach((p) => {
             productsid.push(p.productRefId);
-            imgproductsid.push('productid'+p.productRefId);
+            imgproductsid.push("productid" + p.productRefId);
           });
       const productCall = await Axios.post(
         "http://localhost:5000/api/Products/list/products",

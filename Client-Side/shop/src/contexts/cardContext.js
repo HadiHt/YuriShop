@@ -12,7 +12,6 @@ export const CardProvider = (props) => {
         if (userObject.hasOwnProperty('isAdmin')) {
             Axios.get('http://localhost:5000/api/Users/' + userObject.userId + '/card')
                 .then(res => {
-                    console.log(res.data);
                     setcard(res.data);
                 }).catch((err) => {
                     setcard('');
@@ -20,7 +19,6 @@ export const CardProvider = (props) => {
         } else {
             Axios.get('http://localhost:5000/api/Shops/' + userObject.shopId + '/card')
                 .then(res => {
-                    console.log(res.data);
                     setcard(res.data);
                 }).catch((err) => {
                     setcard('');

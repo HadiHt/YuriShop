@@ -1,0 +1,38 @@
+.ApplicationContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(194, 193, 193);
+  padding: 10px;
+  border: 1px solid black;
+  margin: 5px;
+  border-radius: 5px;
+}
+.ApplicationUnorderedList {
+  list-style-type: none;
+}
+.InnerApplicationContainer {
+  background-color: grey;
+  border: 1px solid black;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.ApplicationUnorderedList {
+  padding: 10px;
+}
+.ApplicationViewButton {
+  background-image: linear-gradient(to right, #6e6b6b, #8c8d8f);
+  border-radius: 25px;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 5px 10px 5px 10px;
+  text-decoration: none;
+  align-self: flex-start;
+  margin: 10px;
+}
+.ApplicationViewButton:hover {
+  background-image: linear-gradient(to right, #5c5a5a, #939699);
+  text-decoration: none;
+}

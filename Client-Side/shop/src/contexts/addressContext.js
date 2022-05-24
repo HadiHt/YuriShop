@@ -10,7 +10,6 @@ export const AddressProvider = (props) => {
         if (userObject.hasOwnProperty('isAdmin')) {
             Axios.get('http://localhost:5000/api/Users/' + userObject.userId + '/address')
                 .then(res => {
-                    console.log(res.data);
                     setaddress(res.data);
                 }).catch((err) => {
                     setaddress([{

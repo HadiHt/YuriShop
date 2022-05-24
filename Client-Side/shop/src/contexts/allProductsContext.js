@@ -8,7 +8,6 @@ export const AllProductsProvider = (props) => {
     const [allProducts, setAllProducts] = useState([]);
 
     function setProductss() {
-        console.log('hi')
         Axios.get('http://localhost:5000/api/Products')
             .then(res => {
                 setAllProducts(res.data)
