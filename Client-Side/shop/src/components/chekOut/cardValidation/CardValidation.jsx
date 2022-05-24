@@ -24,8 +24,9 @@ const CardValidation = ({ id, actionType, Show }) => {
                 "userRefId": id,
                 "shopRefId": null
             }).then(function (response) {
-                setCard(id);
-                console.log(card);
+              //  console.log(response.data)
+                setCard(user);
+             //   console.log(card);
                 showError(true);
             }).catch(function (error) { console.log(error); showError(true); });
         } else { showError(false); }

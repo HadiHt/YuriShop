@@ -20,6 +20,7 @@ export const CardProvider = (props) => {
         } else {
             Axios.get('http://localhost:5000/api/Shops/' + userObject.shopId + '/card')
                 .then(res => {
+                    console.log('hi')
                     console.log(res.data);
                     setcard(res.data);
                 }).catch((err) => {
