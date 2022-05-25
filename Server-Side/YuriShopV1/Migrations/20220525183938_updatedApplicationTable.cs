@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace YuriShopV1.Migrations
 {
-    public partial class test : Migration
+    public partial class updatedApplicationTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -108,7 +108,10 @@ namespace YuriShopV1.Migrations
                 {
                     ApplicationId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Area = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -117,6 +120,7 @@ namespace YuriShopV1.Migrations
                     ShopType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProductsToSell = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ValidationNumber = table.Column<int>(type: "int", nullable: false),
+                    PhoneNumber = table.Column<int>(type: "int", nullable: false),
                     UserRefId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

@@ -195,6 +195,19 @@ namespace YuriShopV1.Controllers
             return CreatedAtRoute(nameof(GetApplicationById), new { Id = applicationReadDto.ApplicationId }, applicationReadDto);
             //return Ok(AddressModel);
         }
+        [HttpDelete("{id}/application")]
+        public ActionResult DeleteApplication(int id)
+        {
+            var ApplicationModelFromRepo = _applicationRepo.GetApplicationById(id);
+            if (ApplicationModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _applicationRepo.DeleteApplication(ApplicationModelFromRepo);
+            _applicationRepo.SaveChanges();
+
+            return NoContent();
+        }
 
         [HttpPut("{id}/address")]
         public ActionResult UpdateAddress(int id, AddressUpdateDto address)

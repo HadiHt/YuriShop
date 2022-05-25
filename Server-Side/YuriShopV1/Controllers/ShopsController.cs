@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using YuriShopV1.Data.Users;
 using YuriShopV1.Dtos.Addresses;
 using YuriShopV1.Dtos.Cards;
@@ -37,7 +39,7 @@ namespace YuriShopV1.Controllers
             var Shops = _shopRepo.GetAllShops();
             return Ok(_mapper.Map<IEnumerable<ShopReadDto>>(Shops));
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetShopById")]
         public ActionResult<ShopReadDto> GetShopById(int id)
         {
             var Shop = _shopRepo.GetShopById(id);
@@ -47,8 +49,22 @@ namespace YuriShopV1.Controllers
             }
             return NotFound();
         }
+        [HttpPost("create")]
+        public ActionResult<ShopReadDto> CreateShop(ShopWriteDto shop)
+        {
+            if (_userRepo.GetUserByEmail(shop.Email) == null && _shopRepo.GetShopByEmail(shop.Email) == null)
+            {
+                var ShopModel = _mapper.Map<Shop>(shop);
+                _shopRepo.CreateShop(ShopModel);
+                _shopRepo.SaveChanges();
 
-        [HttpGet("{id}/address")]
+                var shopReadDto = _mapper.Map<ShopReadDto>(ShopModel);
+                return CreatedAtRoute(nameof(GetShopById), new { Id = shopReadDto.ShopId }, shopReadDto);
+            }
+            return Conflict(new { message = "This Email is already taken!" });
+        }
+
+        [HttpGet("{id}/address", Name = "GetAddressByShopId")]
         public ActionResult<AddressReadDto> GetAddressByShopId(int id)
         {
             var address = _addressRepo.GetAddressByShopId(id);
@@ -57,6 +73,18 @@ namespace YuriShopV1.Controllers
                 return Ok(_mapper.Map<AddressReadDto>(address));
             }
             return NotFound();
+        }
+        [HttpPost("{id}/address")]
+        public ActionResult<AddressReadDto> CreateShopAddress(AddressWriteDto address)
+        {
+            //need to check validation of address 
+            var AddressModel = _mapper.Map<Address>(address);
+            _addressRepo.CreateAddress(AddressModel);
+            _addressRepo.SaveChanges();
+
+            var addressReadDto = _mapper.Map<AddressReadDto>(AddressModel);
+            return CreatedAtRoute(nameof(GetAddressByShopId), new { Id = addressReadDto.AddressId }, addressReadDto);
+            //return Ok(AddressModel);
         }
         [HttpGet("Username/{Username}")]
         public ActionResult<ShopReadDto> GetShopByUsername(string username)
