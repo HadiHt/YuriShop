@@ -1,34 +1,49 @@
 import React from "react";
 import { useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import { useParams, Link } from "react-router-dom";
 import { addressContext } from "../../contexts/addressContext";
-import { Axios } from "axios";
+import { userContext } from "../../contexts/userContext";
+import Axios from "axios";
 import "./Address.css";
 
 const Address = () => {
   const { address, setaddress, setAddress } = useContext(addressContext);
-  address.state != null ? void 0 : (address.state = "Not Specified");
-  address.city != null ? void 0 : (address.city = "Not Specified");
-  address.area != null ? void 0 : (address.area = "Not Specified");
-  address.street != null ? void 0 : (address.street = "Not Specified");
-  address.building != null ? void 0 : (address.building = "Not Specified");
-  address.details != null ? void 0 : (address.details = "Not Specified");
+  const { user, setUser } = useContext(userContext);
+  const [tempAddress, SetTempAddress] = useState(address);
   let navigate = useNavigate();
+  const params = useParams();
+
+  useEffect(() => {
+    if (user.userId !== params.id) {
+      Axios.get("http://localhost:5000/api/users/" + params.id + "/address")
+        .then((res) => {
+          SetTempAddress((prevAddress) => (prevAddress = res.data));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      SetTempAddress((prevAddress) => (prevAddress = address));
+    }
+  }, [params.id]);
+
   const routeChange = () => {
-    let path = `/UserProfile/EditAddress`;
+    let path = "/UserProfile/" + params.id + "/EditAddress";
     navigate(path);
   };
   return (
     <div className="AddressContainer">
       <div className="BottomAddressContainer">
         <span className="AddressDetails">
-          <p>State: {address.state}</p>
-          <p>City: {address.city}</p>
-          <p>Area: {address.area}</p>
-          <p>Street: {address.street}</p>
-          <p>Building: {address.building}</p>
-          <p>More Details: {address.details}</p>
+          <p>State: {tempAddress.state}</p>
+          <p>City: {tempAddress.city}</p>
+          <p>Area: {tempAddress.area}</p>
+          <p>Street: {tempAddress.street}</p>
+          <p>Building: {tempAddress.building}</p>
+          <p>More Details: {tempAddress.details}</p>
         </span>
         <button onClick={routeChange} className="EditAddressButton">
           Edit Address Details

@@ -3,10 +3,12 @@ import "./ApplicationView.css";
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Admin = () => {
   const params = useParams();
   const [Application, SetApplication] = useState([]);
+  let navigate = useNavigate();
 
   useEffect(() => {
     const getApplication = () => {
@@ -71,7 +73,15 @@ const Admin = () => {
             </tr>
             <tr className="ApplicationRow">
               <td>User: </td>
-              <td>{Application.userRefId}</td>
+              <td>
+                <button
+                  onClick={() =>
+                    navigate("/UserProfile/" + Application.userRefId)
+                  }
+                >
+                  Go To User
+                </button>
+              </td>
             </tr>
           </table>
           <div className="ApplicationsButtons">

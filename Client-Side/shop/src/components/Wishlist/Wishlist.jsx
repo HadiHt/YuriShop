@@ -4,23 +4,40 @@ import { useState } from "react";
 import { userContext } from "../../contexts/userContext";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import "./Wishlist.css";
 
 const Wishlist = () => {
   const { user, setUser } = useContext(userContext);
+  const [tempUser, SetTempUser] = useState(user);
   const [Wishlist, SetWishlist] = useState([]);
   const [Products, SetProducts] = useState([]);
   const [WishlistExist, SetWishlistExist] = useState(["none", "block"]);
   const [ProductImages, SetProductImages] = useState([]);
   const navigate = useNavigate();
+  const params = useParams();
   var ids = [];
   var imagesids = [];
+
+  useEffect(() => {
+    if (user.userId != params.id) {
+      Axios.get("http://localhost:5000/api/users/" + params.id)
+        .then((res) => {
+          SetTempUser((prevUser) => (prevUser = res.data));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      SetTempUser((prevUser) => (prevUser = user));
+    }
+  }, [params.id]);
   useEffect(() => {
     const GetWishlist = async () => {
       const orderCall = await Axios.get(
-        "http://localhost:5000/api/users/" + user.userId + "/wishlist"
+        "http://localhost:5000/api/users/" + tempUser.userId + "/wishlist"
       )
         .then((res) => {
           if (res.data != null && res.data.length != 0) {
@@ -54,7 +71,7 @@ const Wishlist = () => {
         .catch((err) => console.log(err));
     };
     GetWishlist();
-  }, []);
+  }, [tempUser]);
 
   const changeRoute = (url) => {
     navigate("/product-details/" + url);
