@@ -40,7 +40,7 @@ function App() {
           <Route path="UserProfile/EditBiosInfo" element={<EditBiosInfo />} />
           <Route path="UserProfile/EditAddress" element={<EditAddress />} />
           <Route path='ShopProfile/AddAProduct' element={<AddAProduct/>} />
-          <Route path="ShopProfile" element={<ShopProfile/>} />
+          <Route path="ShopProfile/:sid" element={<ShopProfile/>} />
           <Route path="ShopProfile/EditProduct/:id" element={<EditProduct/>} />
           <Route path="ShopProfile/EditPurchase/:id/:orderId" element={<EditPurchase/>} />
         </Routes>

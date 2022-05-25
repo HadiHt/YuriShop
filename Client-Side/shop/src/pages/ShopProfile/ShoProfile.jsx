@@ -9,21 +9,23 @@ import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import "../UserProfile/UserProfile.css";
 import { shopContext } from "../../contexts/shopContext";
 import ShopProducts from "../../components/ShopProducts/ShopProducts";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import './ShopProfile.css'
 import { imageContext } from "../../contexts/imageContext";
 import ShopOrderView from "../../components/ShopOrderView/ShopOrderView";
+import axios from "axios";
 
 const ShopProfile = () => {
-  const {setImage}=useContext(imageContext);
+  const { setImage } = useContext(imageContext);
   const navigate = useNavigate();
   const [height, setHeight] = useState([]);
   const inputRef = useRef();
   const inputRef1 = useRef();
   const inputRef2 = useRef();
   const { shop, setUser } = useContext(shopContext);
+  const [tempShop, setTempShop] = useState([]);
+  const params = useParams();
   setImage('');
-
   useEffect(() => {
     setHeight([
       inputRef.current.clientHeight,
@@ -37,13 +39,13 @@ const ShopProfile = () => {
       <div className="Dashboard">
         <div className="DashboardContainer">
           <ProfileHeader user={shop} />
-          <Dashboard value={height} />
+          {/* <Dashboard value={height} /> */}
         </div>
       </div>
       <div className="ProfilePageContentContainer">
         <div className="Bios" ref={inputRef}>
           <p className="BiosTitle">BIOS INFO</p>
-          <Bios user1={shop} />
+          {/* <Bios user1={shop} /> */}
         </div>
         <div className="Address" ref={inputRef1}>
           <p className="AddressTitle">ADDRESS</p>
@@ -52,11 +54,11 @@ const ShopProfile = () => {
         <div className="Order" ref={inputRef2}>
           <p className="OrderTitle">ORDERS</p>
           {/* <Order user3={shop} /> */}
-          <ShopOrderView/>
+          <ShopOrderView />
         </div>
         <div className="Wishlist">
-          <p className="WishlistTitle">PRODUCTS <button className="AddProductButton" onClick={()=>navigate('AddAProduct')}>Add A Product</button></p>
-          <ShopProducts/>
+          <p className="WishlistTitle">PRODUCTS <button className="AddProductButton" onClick={() => navigate('AddAProduct')}>Add A Product</button></p>
+          <ShopProducts />
         </div>
       </div>
     </div>

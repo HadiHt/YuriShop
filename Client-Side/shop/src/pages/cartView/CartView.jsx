@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { cartContext } from '../../contexts/cartContext'
 import './CartView.css'
 import { useNavigate } from 'react-router-dom'
@@ -9,7 +9,9 @@ const CartView = () => {
   const [ hide, setHide ] =useState(false);
   const navigate = useNavigate();
   const { cart, setCart } = useContext(cartContext);
-  const arr = cart.map((data, index) => {
+  const [ arrr, setarrr ] =useState();
+  useEffect(()=>{
+    const arr = cart.map((data, index) => {
     return (
       <div key={index}>
         <ProductItem product={data}
@@ -17,6 +19,8 @@ const CartView = () => {
       </div>
     )
   });
+  setarrr(arr);
+},[cart])
   console.log(cart)
   return (
     <div className='page'>
@@ -28,7 +32,7 @@ const CartView = () => {
         {hide && <CheckOut />}
       </div>
       <div className='cartProducts'>
-        {arr}
+        {arrr}
       </div>
     </div>
   )
