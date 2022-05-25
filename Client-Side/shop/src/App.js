@@ -12,6 +12,8 @@ import ContextWrapper from './contexts/ContextWrapper';
 import EditBiosInfo from './pages/EditBiosInfo/EditBiosInfo';
 import EditAddress from './pages/EditAddress/EditAddress';
 import UserProfile from './pages/UserProfile/UserProfile';
+import Admin from './pages/Admin/Admin';
+import ApplicationView from './pages/ApplicationView/ApplicationView'
 
 import AddAProduct from './pages/AddAProduct/AddAProduct';
 import { Routes, Route } from "react-router-dom";
@@ -31,14 +33,16 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="category/:john" element={<CategoryProducts />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/ApplicationView/:id" element={<ApplicationView />} />
           <Route path="logIn" element={<Login />} />
           <Route path="signUp" element={<SignUp />} />
           <Route path="order" element={<Order />} />
           <Route path="product-details/:id" element={<ProductView />} />
           <Route path='/cart' element={<CartView />} />
-          <Route path="UserProfile/" element={<UserProfile />} />
-          <Route path="UserProfile/EditBiosInfo" element={<EditBiosInfo />} />
-          <Route path="UserProfile/EditAddress" element={<EditAddress />} />
+          <Route path="UserProfile/:id" element={<UserProfile />} />
+          <Route path="UserProfile/:id/EditBiosInfo" element={<EditBiosInfo />} />
+          <Route path="UserProfile/:id/EditAddress" element={<EditAddress />} />
           <Route path='ShopProfile/AddAProduct' element={<AddAProduct/>} />
           <Route path="ShopProfile/:sid" element={<ShopProfile/>} />
           <Route path="ShopProfile/EditProduct/:id" element={<EditProduct/>} />

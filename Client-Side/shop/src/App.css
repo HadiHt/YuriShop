@@ -14,14 +14,14 @@
   min-width: 20px;
   background-color: transparent;
 }
-*{
+* {
   color: rgb(0, 0, 0);
 }
-.icon{
+.icon {
   background-color: transparent;
 }
 
-.but{
+.but {
   border-radius: 15px;
   background-color: transparent;
   border-style: none;
@@ -31,11 +31,11 @@
   cursor: pointer;
   align-items: center;
 }
-.but:hover{
+.but:hover {
   background-color: rgb(69, 70, 131);
   color: white;
 }
-.page{
+.page {
   padding-top: 90px;
 }
 body > #root > div {
