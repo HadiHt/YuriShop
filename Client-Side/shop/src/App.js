@@ -41,8 +41,8 @@ function App() {
           <Route path="product-details/:id" element={<ProductView />} />
           <Route path='/cart' element={<CartView />} />
           <Route path="UserProfile/:id" element={<UserProfile />} />
-          <Route path="UserProfile/EditBiosInfo" element={<EditBiosInfo />} />
-          <Route path="UserProfile/EditAddress" element={<EditAddress />} />
+          <Route path="UserProfile/:id/EditBiosInfo" element={<EditBiosInfo />} />
+          <Route path="UserProfile/:id/EditAddress" element={<EditAddress />} />
           <Route path='ShopProfile/AddAProduct' element={<AddAProduct/>} />
           <Route path="ShopProfile/:id" element={<ShopProfile/>} />
           <Route path="ShopProfile/EditProduct/:id" element={<EditProduct/>} />

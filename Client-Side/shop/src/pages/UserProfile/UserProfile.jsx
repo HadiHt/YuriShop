@@ -15,9 +15,9 @@ import { ContactSupport } from "@material-ui/icons";
 const UserProfile = () => {
   const [height, setHeight] = useState([]);
   const { user, setUser } = useContext(userContext);
-  const inputRef = useRef();
-  const inputRef1 = useRef();
-  const inputRef2 = useRef();
+  const inputRef = useRef(0);
+  const inputRef1 = useRef(0);
+  const inputRef2 = useRef(0);
 
   useEffect(() => {
     setHeight([

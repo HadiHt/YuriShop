@@ -18,7 +18,7 @@ export const AddressProvider = (props) => {
                         area:null,
                         city:null,
                         state:null,
-                        Details:null
+                        details:null
                     }]);
                 })
         }else{
