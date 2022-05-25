@@ -20,7 +20,7 @@ const Bios = (props) => {
   };
   let navigate = useNavigate();
   useEffect(() => {
-    if (props.user1.userId != params.id) {
+    if (props.user1.userId !== params.id) {
       Axios.get("http://localhost:5000/api/users/" + params.id)
         .then((res) => {
           tempUser = res.data;
@@ -47,7 +47,7 @@ const Bios = (props) => {
     setUser((prevUser) => (prevUser = tempUser));
   }, [params.id]);
   const routeChange = () => {
-    let path = `/UserProfile/EditBiosInfo`;
+    let path = "/UserProfile/" + params.id + "/EditBiosInfo";
     navigate(path);
   };
   return (
