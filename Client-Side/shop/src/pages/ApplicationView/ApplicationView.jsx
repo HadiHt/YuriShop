@@ -23,6 +23,64 @@ const Admin = () => {
     getApplication();
   }, []);
 
+  const acceptApplication = () => {
+    Axios.post("http://localhost:5000/api/shops/create", {
+      Username: Application.username,
+      Email: Application.email,
+      Password: Application.password,
+      PhoneNumber: Application.phoneNumber,
+    })
+      .then((res) => {
+        Axios.post(
+          "http://localhost:5000/api/shops/" + res.data.shopId + "/address",
+          {
+            state: Application.state,
+            street: Application.street,
+            city: Application.city,
+            area: Application.area,
+            building: Application.building,
+            details: Application.details,
+            userRefId: null,
+            shopRefId: res.data.shopId,
+          }
+        )
+          .then((res) => {
+            Axios.delete(
+              "http://localhost:5000/api/users/" +
+                Application.applicationId +
+                "/application"
+            )
+              .then((res) => {
+                console.log("Application Accepted");
+                navigate("/admin");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const denyApplication = () => {
+    Axios.delete(
+      "http://localhost:5000/api/users/" +
+        Application.applicationId +
+        "/application"
+    )
+      .then((res) => {
+        console.log("Application Denied");
+        navigate("/admin");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="ApplicationVewPageContainer">
       <div className="ApplicationViewPageInnerContainer">
@@ -38,6 +96,22 @@ const Admin = () => {
             <tr className="ApplicationRow">
               <td>Username: </td>
               <td>{Application.username}</td>
+            </tr>
+            <tr className="ApplicationRow">
+              <td>Email: </td>
+              <td>{Application.email}</td>
+            </tr>
+            <tr className="ApplicationRow">
+              <td>Password: </td>
+              <td>{Application.password}</td>
+            </tr>
+            <tr className="ApplicationRow">
+              <td>Phone number: </td>
+              <td>{Application.phoneNumber}</td>
+            </tr>
+            <tr className="ApplicationRow">
+              <td>City: </td>
+              <td>{Application.state}</td>
             </tr>
             <tr className="ApplicationRow">
               <td>City: </td>
@@ -85,10 +159,18 @@ const Admin = () => {
             </tr>
           </table>
           <div className="ApplicationsButtons">
-            <button className="ApplicationAcceptButton">
+            <button
+              className="ApplicationAcceptButton"
+              onClick={() => acceptApplication()}
+            >
               Accept Application
             </button>
-            <button className="ApplicationDenyButton">Deny Application</button>
+            <button
+              className="ApplicationDenyButton"
+              onClick={() => denyApplication()}
+            >
+              Deny Application
+            </button>
           </div>
         </div>
       </div>
