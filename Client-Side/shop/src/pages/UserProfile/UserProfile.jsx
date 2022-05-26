@@ -41,7 +41,7 @@ const UserProfile = () => {
         </div>
         <div className="Address" ref={inputRef1}>
           <p className="AddressTitle">ADDRESS</p>
-          <Address user2={user} />
+          {/* <Address user2={user} /> */}
         </div>
         <div className="Order" ref={inputRef2}>
           <p className="OrderTitle">ORDERS</p>
