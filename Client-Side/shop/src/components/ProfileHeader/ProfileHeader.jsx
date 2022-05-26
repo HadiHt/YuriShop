@@ -11,6 +11,8 @@ const ProfileHeader = (props) => {
   const [UserImage, SetUserImage] = useState();
   const [ImageExist, SetImageExist] = useState(["none", "block-inline"]);
   const [displayedUsername, SetDisplayedUsername] = useState("");
+  const [imgChange, SetImageChange] = useState(false);
+  var base64String = "";
   let tempUser = {
     email: props.user.email,
     userId: props.user.userId,
@@ -63,20 +65,61 @@ const ProfileHeader = (props) => {
         .catch((err) => console.log(err));
     };
     GetUserImage();
-  }, [params.id]);
+  }, [params.id, imgChange]);
+
+  const importD = () => {
+    let input = document.createElement("input");
+    input.type = "file";
+    input.onchange = (_this) => {
+      let files = Array.from(input.files);
+      var reader = new FileReader();
+      reader.onload = function () {
+        var client = window.location.href;
+        var arr = client.split("/");
+        if (arr[3] == "UserProfile") {
+          base64String = "userId";
+        } else if (arr[3] == "ShopProfile") {
+          base64String = "shopId";
+        }
+        var finishedBase = base64String.concat(
+          params.id,
+          ":",
+          reader.result.replace("data:", "").replace(/^.+,/, "")
+        );
+        Axios.post("http://localhost:5000/api/images/" + arr[3], finishedBase)
+          .then((res) => {
+            SetImageChange((prevValue) => (prevValue = !prevValue));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+      reader.readAsDataURL(files[0]);
+    };
+    input.click();
+  };
+  const ChangeRoute = () => {
+    navigate("/admin");
+  };
   return (
     <div className="ProfileHeaderContainer">
-      <div className="ProfileImage">
+      <div className="ProfileImage" onClick={() => importD()}>
         <img
           style={{ display: ImageExist[1] }}
           className="UserImage"
           src={"data:image/png;base64," + UserImage}
           alt=""
         ></img>
+        <i className="fa fa-camera"></i>
       </div>
       <div className="TopBiosContainer">
         <h3>{displayedUsername}</h3>
       </div>
+      {props.user.isAdmin && (
+        <button className="GoToAdminPage" onClick={() => ChangeRoute()}>
+          Go To Admin Page
+        </button>
+      )}
     </div>
   );
 };
