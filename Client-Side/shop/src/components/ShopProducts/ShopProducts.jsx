@@ -21,7 +21,7 @@ const ShopProducts = () => {
         setData(res.data);
       }).catch(err => console.log(err));
       if(user===""){
-        if(shop.shopId.toString()!==params.sid){
+        if(shop.shopId!=params.sid){
           setCheckUser(false);
         }else{
           setCheckUser(true);

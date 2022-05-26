@@ -6,6 +6,7 @@ import { useParams, Link } from "react-router-dom";
 import "./ProfileHeader.css";
 
 const ProfileHeader = (props) => {
+  console.log(props.user)
   const params = useParams();
   const [user, setUser] = useState(props.user);
   const [UserImage, SetUserImage] = useState();
@@ -16,35 +17,55 @@ const ProfileHeader = (props) => {
     userId: props.user.userId,
     username: props.user.username,
   };
+  console.log(tempUser)
   let splitEmail = tempUser.email.split("@");
   let navigate = useNavigate();
   useEffect(() => {
     const checkParams = async () => {
-      if (props.user.userId != params.id) {
-        Axios.get("http://localhost:5000/api/users/" + params.id)
+      if (props.user.hasOwnProperty('isAdmin')) {
+        if (props.user.userId != params.id) {
+          Axios.get("http://localhost:5000/api/users/" + params.id)
+            .then((res) => {
+              tempUser = res.data;
+              setUser((prevUser) => (prevUser = tempUser));
+              splitEmail = tempUser.email.split("@");
+              tempUser.username != null
+                ? SetDisplayedUsername(
+                  (prevUsername) => (prevUsername = tempUser.username)
+                )
+                : SetDisplayedUsername(
+                  (prevUsername) => (prevUsername = splitEmail[0])
+                );
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          tempUser.username != null
+            ? SetDisplayedUsername(
+              (prevUsername) => (prevUsername = props.user.username)
+            )
+            : SetDisplayedUsername(
+              (prevUsername) => (prevUsername = splitEmail[0])
+            );
+        }
+      } else if (props.user.hasOwnProperty('shopId')) {
+        Axios.get("http://localhost:5000/api/Shops/" + params.id)
           .then((res) => {
             tempUser = res.data;
             setUser((prevUser) => (prevUser = tempUser));
             splitEmail = tempUser.email.split("@");
             tempUser.username != null
               ? SetDisplayedUsername(
-                  (prevUsername) => (prevUsername = tempUser.username)
-                )
+                (prevUsername) => (prevUsername = tempUser.username)
+              )
               : SetDisplayedUsername(
-                  (prevUsername) => (prevUsername = splitEmail[0])
-                );
+                (prevUsername) => (prevUsername = splitEmail[0])
+              );
           })
           .catch((err) => {
             console.log(err);
           });
-      } else {
-        tempUser.username != null
-          ? SetDisplayedUsername(
-              (prevUsername) => (prevUsername = props.user.username)
-            )
-          : SetDisplayedUsername(
-              (prevUsername) => (prevUsername = splitEmail[0])
-            );
       }
     };
     checkParams();

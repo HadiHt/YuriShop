@@ -38,7 +38,7 @@ const ShopProfile = () => {
     <div className="UserProfileContainer">
       <div className="Dashboard">
         <div className="DashboardContainer">
-          <ProfileHeader user={shop} />
+          {/* <ProfileHeader user={shop} /> */}
           {/* <Dashboard value={height} /> */}
         </div>
       </div>
@@ -54,7 +54,7 @@ const ShopProfile = () => {
         <div className="Order" ref={inputRef2}>
           <p className="OrderTitle">ORDERS</p>
           {/* <Order user3={shop} /> */}
-          <ShopOrderView />
+          {/* <ShopOrderView /> */}
         </div>
         <div className="Wishlist">
           <p className="WishlistTitle">PRODUCTS <button className="AddProductButton" onClick={() => navigate('AddAProduct')}>Add A Product</button></p>

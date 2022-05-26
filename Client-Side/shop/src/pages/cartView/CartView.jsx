@@ -21,6 +21,9 @@ const CartView = () => {
   });
   setarrr(arr);
 },[cart])
+useEffect(()=>{
+
+},[arrr])
   console.log(cart)
   return (
     <div className='page'>

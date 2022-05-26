@@ -13,20 +13,18 @@ const ProductItem = ({ product, type }) => {
     const [SHop, setShop] = useState([]);
     const {shop}=useContext(shopContext);
     const {user}=useContext(userContext)
-
     useEffect(() => {
         Axios.get('http://localhost:5000/api/Images/Product/productid' + product.productId)
             .then(res => {
-                console.log(res.data);
+              //  console.log(res.data);
                 setData(res.data);
                 Axios.get('http://localhost:5000/api/Shops/' + product.shopRefId)
                     .then(res => {
-                        console.log(res.data);
+                  //      console.log(res.data);
                         setShop(res.data);
                     }).catch(err => console.log(err))
             }).catch(err => console.log(err))
-    }, [cart]);
-
+    }, [product]);
 
     const removeProductFromCart = (e) => {
         const arr1 = cart.filter((data) => {
