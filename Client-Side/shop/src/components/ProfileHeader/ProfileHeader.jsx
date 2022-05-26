@@ -11,7 +11,8 @@ const ProfileHeader = (props) => {
   const [UserImage, SetUserImage] = useState();
   const [ImageExist, SetImageExist] = useState(["none", "block-inline"]);
   const [displayedUsername, SetDisplayedUsername] = useState("");
-  console.log(props.user)
+  const [imgChange, SetImageChange] = useState(false);
+  var base64String = "";
   let tempUser = {
     email: props.user.email,
     userId: props.user.userId,
@@ -114,17 +115,23 @@ const ProfileHeader = (props) => {
   }, [params.sid || params.id]);
   return (
     <div className="ProfileHeaderContainer">
-      <div className="ProfileImage">
+      <div className="ProfileImage" onClick={() => importD()}>
         <img
           style={{ display: ImageExist[1] }}
           className="UserImage"
           src={"data:image/png;base64," + UserImage}
           alt=""
         ></img>
+        <i className="fa fa-camera"></i>
       </div>
       <div className="TopBiosContainer">
         <h3>{displayedUsername}</h3>
       </div>
+      {props.user.isAdmin && (
+        <button className="GoToAdminPage" onClick={() => ChangeRoute()}>
+          Go To Admin Page
+        </button>
+      )}
     </div>
   );
 };
