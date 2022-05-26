@@ -10,7 +10,13 @@ namespace YuriShopV1.Models
         [Required]
         public int ApplicationId { get; set; }
         [Required]
+        public string Email { get; set; }
+        [Required]
+        public string Password { get; set; }
+        [Required]
         public string Username { get; set; }
+        [Required]
+        public string State { get; set; }
         [Required]
         public string Street { get; set; }
         [Required]
@@ -27,6 +33,8 @@ namespace YuriShopV1.Models
         public string ProductsToSell { get; set; }
         [Required]
         public int ValidationNumber { get; set; }
+        [Required]
+        public int PhoneNumber { get; set; }
 
         [ForeignKey("UserRefId")]
         public User User { get; set; }
