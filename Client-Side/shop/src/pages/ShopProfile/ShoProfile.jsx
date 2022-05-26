@@ -26,6 +26,7 @@ const ShopProfile = () => {
   const [tempShop, setTempShop] = useState([]);
   const params = useParams();
   setImage('');
+  console.log(window.location.href)
   useEffect(() => {
     setHeight([
       inputRef.current.clientHeight,
@@ -33,6 +34,7 @@ const ShopProfile = () => {
       inputRef2.current.clientHeight,
     ]);
   }, []);
+  useEffect(()=>{},[params.sid])
   console.log(shop);
   return (
     <div className="UserProfileContainer">
@@ -54,7 +56,7 @@ const ShopProfile = () => {
         <div className="Order" ref={inputRef2}>
           <p className="OrderTitle">ORDERS</p>
           {/* <Order user3={shop} /> */}
-          {/* <ShopOrderView /> */}
+          <ShopOrderView />
         </div>
         <div className="Wishlist">
           <p className="WishlistTitle">PRODUCTS <button className="AddProductButton" onClick={() => navigate('AddAProduct')}>Add A Product</button></p>

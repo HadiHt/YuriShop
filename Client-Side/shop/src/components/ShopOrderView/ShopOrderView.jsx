@@ -1,13 +1,18 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 import { shopContext } from '../../contexts/shopContext';
+import { userContext } from '../../contexts/userContext';
 import ShopOrderColumn from './ShopOrderColumn';
 import './ShopOrderView.css'
 
 const ShopOrderView = () => {
   const [Data, setData] = useState([]);
+  const params = useParams();
+  const {user} = useContext(userContext)
   const [products, setProducts] = useState([]);
   const [purchases, setPurchases] = useState([]);
+  const [checkuser, setCheckUser] = useState(false);
   const { shop } = useContext(shopContext)
   useEffect(() => {
     var Dta = [];
@@ -23,6 +28,15 @@ const ShopOrderView = () => {
           }).catch(err => console.log(err))
       }
       ).catch(err => console.log(err))
+    if (user === "") {
+      if (shop.shopId != params.sid) {
+        setCheckUser(false);
+      } else {
+        setCheckUser(true);
+      }
+    } else if (shop === "") {
+      setCheckUser(false);
+    }
   }, [])
   var Dta = [];
   const arr = products.map((product, i) => {
@@ -46,8 +60,11 @@ const ShopOrderView = () => {
         <div className='OrderColumnInfo'>quantity</div>
         <div className='OrderColumnInfo'>click here to see more info</div>
       </div>
-      <hr/>
-      {arr}
+      <hr />
+      {checkuser&&<div>
+        {arr}
+      </div>}
+      {!checkuser&&<p>Not authorized to view this content</p>}
     </div>
   )
 }
