@@ -11,7 +11,9 @@
 }
 .ProfileImage {
   background-color: grey;
-  display: flex;
+}
+.ProfileImage:hover .fa-camera {
+  visibility: visible;
 }
 .ProfileImage,
 .UserImage {
@@ -19,7 +21,17 @@
   width: 125px;
   border-radius: 50%;
 }
+.fa-camera {
+  color: grey;
+  visibility: hidden;
+  z-index: 3;
+  position: absolute;
+  font-size: 25px;
+  left: 47%;
+  top: 16%;
+}
 .UserImage {
+  left: 50%;
   z-index: 2;
 }
 .TopBiosContainer > * {
@@ -27,4 +39,28 @@
   border-radius: 10px;
   padding: 7px 14px 7px 14px; */
   color: linear-gradient(to right, #202550, #7e5da2);
+}
+.GoToAdminPage {
+  background-image: linear-gradient(to right, #464343, #7b7e80);
+  border-radius: 25px;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 7px 14px 7px 14px;
+  text-decoration: none;
+}
+.GoToAdminPage:hover {
+  background-image: linear-gradient(to right, #5c5a5a, #939699);
+  text-decoration: none;
+}
+@media screen and (max-width: 1000px) {
+  .fa-camera {
+    left: 45%;
+    top: 16%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .fa-camera {
+    left: 48%;
+    top: 28%;
+  }
 }
