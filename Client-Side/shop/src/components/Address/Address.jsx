@@ -24,7 +24,6 @@ const Address = () => {
     if (shop === "") {
      // console.log(arr)
       if (arr[3] === "ShopProfile") {
-        console.log('ayre b amin')
         if ( params.id!=="") {
           Axios.get("http://localhost:5000/api/Shops/" + params.sid + "/address")
             .then((res) => {
@@ -64,7 +63,7 @@ const Address = () => {
         SetTempAddress((prevAddress) => (prevAddress = address));
       }
     }
-  }, [ params.id]);
+  }, [params.sid || params.id]);
 
   const routeChange = () => {
     let path = "/UserProfile/" + params.id + "/EditAddress";

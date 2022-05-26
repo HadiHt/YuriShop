@@ -43,10 +43,10 @@ function App() {
           <Route path="UserProfile/:id" element={<UserProfile />} />
           <Route path="UserProfile/:id/EditBiosInfo" element={<EditBiosInfo />} />
           <Route path="UserProfile/:id/EditAddress" element={<EditAddress />} />
-          <Route path='ShopProfile/AddAProduct' element={<AddAProduct/>} />
+          <Route path='ShopProfile/:sid/AddAProduct' element={<AddAProduct/>} />
           <Route path="ShopProfile/:sid" element={<ShopProfile/>} />
-          <Route path="ShopProfile/EditProduct/:id" element={<EditProduct/>} />
-          <Route path="ShopProfile/EditPurchase/:id/:orderId" element={<EditPurchase/>} />
+          <Route path="ShopProfile/:sid/EditProduct/:id" element={<EditProduct/>} />
+          <Route path="ShopProfile/:sid/EditPurchase/:id/:orderId" element={<EditPurchase/>} />
         </Routes>
       </ContextWrapper>
       {/* <Footer /> */}

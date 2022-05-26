@@ -4,11 +4,13 @@ import CashMethods from './CashMethods'
 import { cartContext } from '../../../contexts/cartContext';
 import { userContext } from '../../../contexts/userContext';
 import Axios from 'axios';
+import { orderListContext } from '../../../contexts/orderListContext';
 
 const OrderSummary = ({Data,AddOrder}) => {
     const { user } = useContext(userContext);
     const { cart,setCart } = useContext(cartContext);
     const [errorMessage, setErrorMessage] = useState(false);
+    const {setOrders} = useContext(orderListContext)
     var TotalPrice = 0;
     const items = cart.map((data, index) => {
         TotalPrice = TotalPrice + (data.price * data.quantity);
@@ -32,6 +34,7 @@ const OrderSummary = ({Data,AddOrder}) => {
                     AddOrder(response.data.orderId,data);
                 });
                 setCart([]);
+                setOrders(user);
             })
         } else {
             setErrorMessage(true)

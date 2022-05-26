@@ -10,7 +10,7 @@ import "../UserProfile/UserProfile.css";
 import { shopContext } from "../../contexts/shopContext";
 import ShopProducts from "../../components/ShopProducts/ShopProducts";
 import { useNavigate, useParams } from "react-router-dom";
-import './ShopProfile.css'
+import "./ShopProfile.css";
 import { imageContext } from "../../contexts/imageContext";
 import ShopOrderView from "../../components/ShopOrderView/ShopOrderView";
 import axios from "axios";
@@ -22,32 +22,32 @@ const ShopProfile = () => {
   const inputRef = useRef();
   const inputRef1 = useRef();
   const inputRef2 = useRef();
-  const { shop, setUser } = useContext(shopContext);
+  const { shop } = useContext(shopContext);
   const [tempShop, setTempShop] = useState([]);
   const params = useParams();
-  setImage('');
-  console.log(window.location.href)
+  setImage("");
+  console.log(window.location.href);
   useEffect(() => {
     setHeight([
       inputRef.current.clientHeight,
       inputRef1.current.clientHeight,
       inputRef2.current.clientHeight,
     ]);
-  }, []);
-  useEffect(()=>{},[params.sid])
+  }, [params.sid]);
+
   console.log(shop);
   return (
     <div className="UserProfileContainer">
       <div className="Dashboard">
         <div className="DashboardContainer">
-          {/* <ProfileHeader user={shop} /> */}
-          {/* <Dashboard value={height} /> */}
+          <ProfileHeader user={shop} />
+          <Dashboard value={height} />
         </div>
       </div>
       <div className="ProfilePageContentContainer">
         <div className="Bios" ref={inputRef}>
           <p className="BiosTitle">BIOS INFO</p>
-          {/* <Bios user1={shop} /> */}
+          <Bios user1={shop} />
         </div>
         <div className="Address" ref={inputRef1}>
           <p className="AddressTitle">ADDRESS</p>
@@ -59,7 +59,15 @@ const ShopProfile = () => {
           <ShopOrderView />
         </div>
         <div className="Wishlist">
-          <p className="WishlistTitle">PRODUCTS <button className="AddProductButton" onClick={() => navigate('AddAProduct')}>Add A Product</button></p>
+          <p className="WishlistTitle">
+            PRODUCTS{" "}
+            <button
+              className="AddProductButton"
+              onClick={() => navigate("AddAProduct")}
+            >
+              Add A Product
+            </button>
+          </p>
           <ShopProducts />
         </div>
       </div>

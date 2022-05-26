@@ -29,7 +29,7 @@ const ShopProducts = () => {
       }else if(shop===""){
         setCheckUser(false);
       }
-  }, [])
+  }, [params.sid])
 
   const arr = Data.map((data, index) => {
     return (

@@ -37,7 +37,7 @@ const ShopOrderView = () => {
     } else if (shop === "") {
       setCheckUser(false);
     }
-  }, [])
+  }, [params.sid])
   var Dta = [];
   const arr = products.map((product, i) => {
     return purchases.map((purchase, index) => {

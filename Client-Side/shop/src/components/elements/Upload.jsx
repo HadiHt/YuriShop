@@ -11,11 +11,10 @@ const Upload = () => {
             'input[type=file]')['files'][0];
         var reader = new FileReader();
         reader.onload = function () {
-            base64String = reader.result.replace("data:", "")
-                .replace(/^.+,/, "");
+            base64String = reader.result;
           //  console.log(typeof reader.result);
         //    console.log("Base64String about to be printed");
-          //  console.log(base64String);
+            console.log(base64String);
             setImage(base64String);
             var img = document.getElementById('productImage');
             img.src = 'data:image/png;base64,' + base64String;
