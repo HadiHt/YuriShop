@@ -112,10 +112,10 @@ const ProfileHeader = (props) => {
         .catch((err) => console.log(err));
     };
     GetUserImage();}
-  }, [params.sid || params.id]);
+  }, [params.sid, params.id]);
   return (
     <div className="ProfileHeaderContainer">
-      <div className="ProfileImage" onClick={() => importD()}>
+      <div className="ProfileImage" >
         <img
           style={{ display: ImageExist[1] }}
           className="UserImage"
@@ -128,7 +128,7 @@ const ProfileHeader = (props) => {
         <h3>{displayedUsername}</h3>
       </div>
       {props.user.isAdmin && (
-        <button className="GoToAdminPage" onClick={() => ChangeRoute()}>
+        <button className="GoToAdminPage">
           Go To Admin Page
         </button>
       )}

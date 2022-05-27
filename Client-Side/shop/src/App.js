@@ -22,6 +22,7 @@ import Order from './pages/OrderPage/Order';
 import ShopProfile from './pages/ShopProfile/ShoProfile';
 import EditProduct from './pages/EditProduct/EditProduct';
 import EditPurchase from './pages/EditPurchase/EditPurchase';
+import FilteredPage from './pages/FilteredPage/FilteredPage';
 
 function App() {
   // const [user,setUser] =useState('')
@@ -40,6 +41,7 @@ function App() {
           <Route path="order" element={<Order />} />
           <Route path="product-details/:id" element={<ProductView />} />
           <Route path='/cart' element={<CartView />} />
+          <Route path='/filtered-products/:key' element={<FilteredPage/>}/>
           <Route path="UserProfile/:id" element={<UserProfile />} />
           <Route path="UserProfile/:id/EditBiosInfo" element={<EditBiosInfo />} />
           <Route path="UserProfile/:id/EditAddress" element={<EditAddress />} />

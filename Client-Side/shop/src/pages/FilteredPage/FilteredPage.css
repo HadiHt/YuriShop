@@ -1,0 +1,19 @@
+.filter_contsainer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5%;
+  justify-content: center;
+}
+.filter_buttons {
+  background-image: linear-gradient(to right, #6e6b6b, #8c8d8f);
+  border-radius: 25px;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 7px 14px 7px 14px;
+  text-decoration: none;
+  width: 140px;
+}
+.filter_buttons:hover {
+  background-image: linear-gradient(to right, #5c5a5a, #939699);
+  text-decoration: none;
+}
