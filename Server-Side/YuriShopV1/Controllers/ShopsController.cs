@@ -130,5 +130,21 @@ namespace YuriShopV1.Controllers
             else { return Conflict(new { message = "This Username is already taken!" }); }
 
         }
+
+        [HttpPut("{id}/address")]
+        public ActionResult UpdateAddress(int id, AddressUpdateDto address)
+        {
+            var AddressModelFromRepo = _addressRepo.GetAddressByShopId(id);
+            if (AddressModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(address, AddressModelFromRepo);
+            _addressRepo.UpdateAddress(AddressModelFromRepo);
+            _addressRepo.SaveChanges();
+
+            return NoContent();
+        }
+
     }
 }

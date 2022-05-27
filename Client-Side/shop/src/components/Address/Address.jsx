@@ -13,19 +13,19 @@ import { shopContext } from "../../contexts/shopContext";
 const Address = () => {
   const { address, setaddress, setAddress } = useContext(addressContext);
   const { user, setUser } = useContext(userContext);
-  const { shop } = useContext(shopContext)
+  const { shop } = useContext(shopContext);
   const [tempAddress, SetTempAddress] = useState(address);
   let navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
     const location = window.location.href;
-    const arr = location.split('/');
+    const arr = location.split("/");
     if (shop === "") {
-     // console.log(arr)
+      // console.log(arr)
       if (arr[3] === "ShopProfile") {
-        if ( params.id!=="") {
-          Axios.get("http://localhost:5000/api/Shops/" + params.sid + "/address")
+        if (params.id !== "") {
+          Axios.get("http://localhost:5000/api/Shops/" + params.id + "/address")
             .then((res) => {
               SetTempAddress((prevAddress) => (prevAddress = res.data));
             })
@@ -35,8 +35,7 @@ const Address = () => {
         } else {
           SetTempAddress((prevAddress) => (prevAddress = address));
         }
-      }
-      else {
+      } else {
         if (user.userId !== params.id) {
           Axios.get("http://localhost:5000/api/users/" + params.id + "/address")
             .then((res) => {
@@ -49,10 +48,9 @@ const Address = () => {
           SetTempAddress((prevAddress) => (prevAddress = address));
         }
       }
-    }
-    else if (user === "") {
-      if (shop.shopId !== params.sid) {
-        Axios.get("http://localhost:5000/api/Shops/" + params.sid + "/address")
+    } else if (user === "") {
+      if (shop.shopId !== params.id) {
+        Axios.get("http://localhost:5000/api/Shops/" + params.id + "/address")
           .then((res) => {
             SetTempAddress((prevAddress) => (prevAddress = res.data));
           })
@@ -63,10 +61,12 @@ const Address = () => {
         SetTempAddress((prevAddress) => (prevAddress = address));
       }
     }
-  }, [params.sid || params.id]);
+  }, [params.id, shop, user]);
 
   const routeChange = () => {
-    let path = "/UserProfile/" + params.id + "/EditAddress";
+    var client = window.location.href;
+    var arr = client.split("/");
+    let path = "/" + arr[3] + "/" + params.id + "/EditAddress";
     navigate(path);
   };
   return (
@@ -80,9 +80,13 @@ const Address = () => {
           <p>Building: {tempAddress.building}</p>
           <p>More Details: {tempAddress.details}</p>
         </span>
-        <button onClick={routeChange} className="EditAddressButton">
-          Edit Address Details
-        </button>
+        {(user.userId == params.id ||
+          user.isAdmin == true ||
+          shop.shopId == params.id) && (
+          <button onClick={routeChange} className="EditAddressButton">
+            Edit Address Details
+          </button>
+        )}
       </div>
     </div>
   );
