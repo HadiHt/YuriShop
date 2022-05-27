@@ -9,28 +9,32 @@ import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import "../UserProfile/UserProfile.css";
 import { shopContext } from "../../contexts/shopContext";
 import ShopProducts from "../../components/ShopProducts/ShopProducts";
-import { useNavigate } from "react-router-dom";
-import './ShopProfile.css'
+import { useNavigate, useParams } from "react-router-dom";
+import "./ShopProfile.css";
 import { imageContext } from "../../contexts/imageContext";
 import ShopOrderView from "../../components/ShopOrderView/ShopOrderView";
+import axios from "axios";
 
 const ShopProfile = () => {
-  const {setImage}=useContext(imageContext);
+  const { setImage } = useContext(imageContext);
   const navigate = useNavigate();
   const [height, setHeight] = useState([]);
   const inputRef = useRef();
   const inputRef1 = useRef();
   const inputRef2 = useRef();
-  const { shop, setUser } = useContext(shopContext);
-  setImage('');
-
+  const { shop } = useContext(shopContext);
+  const [tempShop, setTempShop] = useState([]);
+  const params = useParams();
+  setImage("");
+  console.log(window.location.href);
   useEffect(() => {
     setHeight([
       inputRef.current.clientHeight,
       inputRef1.current.clientHeight,
       inputRef2.current.clientHeight,
     ]);
-  }, []);
+  }, [params.sid]);
+
   console.log(shop);
   return (
     <div className="UserProfileContainer">
@@ -52,11 +56,19 @@ const ShopProfile = () => {
         <div className="Order" ref={inputRef2}>
           <p className="OrderTitle">ORDERS</p>
           {/* <Order user3={shop} /> */}
-          <ShopOrderView/>
+          <ShopOrderView />
         </div>
         <div className="Wishlist">
-          <p className="WishlistTitle">PRODUCTS <button className="AddProductButton" onClick={()=>navigate('AddAProduct')}>Add A Product</button></p>
-          <ShopProducts/>
+          <p className="WishlistTitle">
+            PRODUCTS{" "}
+            <button
+              className="AddProductButton"
+              onClick={() => navigate("AddAProduct")}
+            >
+              Add A Product
+            </button>
+          </p>
+          <ShopProducts />
         </div>
       </div>
     </div>

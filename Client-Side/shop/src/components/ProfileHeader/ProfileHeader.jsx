@@ -18,10 +18,13 @@ const ProfileHeader = (props) => {
     userId: props.user.userId,
     username: props.user.username,
   };
-  let splitEmail = tempUser.email.split("@");
+  console.log(tempUser.email);
+  let splitEmail = tempUser?.email?.split("@");
   let navigate = useNavigate();
   useEffect(() => {
-    const checkParams = async () => {
+    const location = window.location.href;
+    const arr = location.split('/');
+    if(arr[3]==="UserProfile"){const checkParams = async () => {
       if (props.user.userId != params.id) {
         Axios.get("http://localhost:5000/api/users/" + params.id)
           .then((res) => {
@@ -64,43 +67,52 @@ const ProfileHeader = (props) => {
         })
         .catch((err) => console.log(err));
     };
-    GetUserImage();
-  }, [params.id, imgChange]);
-
-  const importD = () => {
-    let input = document.createElement("input");
-    input.type = "file";
-    input.onchange = (_this) => {
-      let files = Array.from(input.files);
-      var reader = new FileReader();
-      reader.onload = function () {
-        var client = window.location.href;
-        var arr = client.split("/");
-        if (arr[3] == "UserProfile") {
-          base64String = "userId";
-        } else if (arr[3] == "ShopProfile") {
-          base64String = "shopId";
-        }
-        var finishedBase = base64String.concat(
-          params.id,
-          ":",
-          reader.result.replace("data:", "").replace(/^.+,/, "")
-        );
-        Axios.post("http://localhost:5000/api/images/" + arr[3], finishedBase)
+    GetUserImage();}
+    else if(arr[3]==="ShopProfile"){const checkParams = async () => {
+      if (params.sid) {
+        Axios.get("http://localhost:5000/api/Shops/" + params.sid)
           .then((res) => {
-            SetImageChange((prevValue) => (prevValue = !prevValue));
+            tempUser = res.data;
+            setUser((prevUser) => (prevUser = tempUser));
+            splitEmail = tempUser.email.split("@");
+            tempUser.username != null
+              ? SetDisplayedUsername(
+                  (prevUsername) => (prevUsername = tempUser.username)
+                )
+              : SetDisplayedUsername(
+                  (prevUsername) => (prevUsername = splitEmail[0])
+                );
           })
           .catch((err) => {
             console.log(err);
           });
-      };
-      reader.readAsDataURL(files[0]);
+      } else {
+        tempUser.username == undefined
+          ? SetDisplayedUsername(
+              (prevUsername) => (prevUsername = props.user.username)
+            )
+          : SetDisplayedUsername(
+              (prevUsername) => (prevUsername = splitEmail[0])
+            );
+      }
     };
-    input.click();
-  };
-  const ChangeRoute = () => {
-    navigate("/admin");
-  };
+    checkParams();
+    const GetUserImage = async () => {
+      const orderCall = await Axios.get(
+        "http://localhost:5000/api/images/ShopProfile/ShopId" + params.sid
+      )
+        .then((res) => {
+          if (res.data != null && res.data.length !== 0) {
+            SetUserImage(res.data);
+            SetImageExist((prevImg) => (prevImg = ["none", "block-inline"]));
+          } else {
+            SetImageExist((prevImg) => (prevImg = ["block-inline", "none"]));
+          }
+        })
+        .catch((err) => console.log(err));
+    };
+    GetUserImage();}
+  }, [params.sid || params.id]);
   return (
     <div className="ProfileHeaderContainer">
       <div className="ProfileImage" onClick={() => importD()}>

@@ -8,27 +8,62 @@ import { addressContext } from "../../contexts/addressContext";
 import { userContext } from "../../contexts/userContext";
 import Axios from "axios";
 import "./Address.css";
+import { shopContext } from "../../contexts/shopContext";
 
 const Address = () => {
   const { address, setaddress, setAddress } = useContext(addressContext);
   const { user, setUser } = useContext(userContext);
+  const { shop } = useContext(shopContext)
   const [tempAddress, SetTempAddress] = useState(address);
   let navigate = useNavigate();
   const params = useParams();
 
   useEffect(() => {
-    if (user.userId !== params.id) {
-      Axios.get("http://localhost:5000/api/users/" + params.id + "/address")
-        .then((res) => {
-          SetTempAddress((prevAddress) => (prevAddress = res.data));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      SetTempAddress((prevAddress) => (prevAddress = address));
+    const location = window.location.href;
+    const arr = location.split('/');
+    if (shop === "") {
+     // console.log(arr)
+      if (arr[3] === "ShopProfile") {
+        if ( params.id!=="") {
+          Axios.get("http://localhost:5000/api/Shops/" + params.sid + "/address")
+            .then((res) => {
+              SetTempAddress((prevAddress) => (prevAddress = res.data));
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          SetTempAddress((prevAddress) => (prevAddress = address));
+        }
+      }
+      else {
+        if (user.userId !== params.id) {
+          Axios.get("http://localhost:5000/api/users/" + params.id + "/address")
+            .then((res) => {
+              SetTempAddress((prevAddress) => (prevAddress = res.data));
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          SetTempAddress((prevAddress) => (prevAddress = address));
+        }
+      }
     }
-  }, [params.id]);
+    else if (user === "") {
+      if (shop.shopId !== params.sid) {
+        Axios.get("http://localhost:5000/api/Shops/" + params.sid + "/address")
+          .then((res) => {
+            SetTempAddress((prevAddress) => (prevAddress = res.data));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        SetTempAddress((prevAddress) => (prevAddress = address));
+      }
+    }
+  }, [params.sid || params.id]);
 
   const routeChange = () => {
     let path = "/UserProfile/" + params.id + "/EditAddress";

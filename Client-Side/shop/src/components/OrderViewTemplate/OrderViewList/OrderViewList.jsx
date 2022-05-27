@@ -11,9 +11,9 @@ const OrderViewList = () => {
     console.log(allProducts);
     const { orderList,index } = useContext(orderListContext);
     var Data;
-    Data = orderList[index].purchases
+    Data = orderList[index]?.purchases
     console.log(Data)
-    const arr = Data.map((data, index) => {
+    const arr = Data?.map((data, index) => {
         console.log(Data)
         var arr1=[];
         arr1 = allProducts.filter((data1) => {

@@ -3,20 +3,28 @@ import './producrcard.css'
 import { useNavigate } from 'react-router-dom';
 import { cartContext } from '../../../../contexts/cartContext';
 import Axios from 'axios';
+import { shopContext } from '../../../../contexts/shopContext';
+import { userContext } from '../../../../contexts/userContext';
 
 const ProductItem = ({ product, type }) => {
 
     const [Data, setData] = useState([]);
-
-    useEffect(() => {
-        Axios.get('http://localhost:5000/api/Images/Product/productid'+product.productId)
-            .then(res => {
-                console.log(res.data);
-                setData(res.data);
-            }).catch(err => console.log(err))
-    }, []);
-
     const { cart, setCart } = useContext(cartContext);
+    const [SHop, setShop] = useState([]);
+    const {shop}=useContext(shopContext);
+    const {user}=useContext(userContext)
+    useEffect(() => {
+        Axios.get('http://localhost:5000/api/Images/Product/productid' + product.productId)
+            .then(res => {
+              //  console.log(res.data);
+                setData(res.data);
+                Axios.get('http://localhost:5000/api/Shops/' + product.shopRefId)
+                    .then(res => {
+                  //      console.log(res.data);
+                        setShop(res.data);
+                    }).catch(err => console.log(err))
+            }).catch(err => console.log(err))
+    }, [product]);
 
     const removeProductFromCart = (e) => {
         const arr1 = cart.filter((data) => {
@@ -36,6 +44,14 @@ const ProductItem = ({ product, type }) => {
         )
     }
 
+    const navigation = () => {
+        if(user === "" && shop===""){
+            navigate('/logIn')
+        }else{
+            navigate('/ShopProfile/'+SHop.shopId)
+        }
+    }
+
     const imgp = Data;
     const url = product.productId;
     const navigate = useNavigate();
@@ -50,6 +66,7 @@ const ProductItem = ({ product, type }) => {
                 </div>
                 {type === "view" ? <span>{product.price}K L.L</span> : ""}
                 <p>{product.category}</p>
+                <p onClick={navigation} className='shopName'>shop: {SHop.username}</p>
                 {type === "cart" ?
                     <CartCardProduct />
                     : ""}

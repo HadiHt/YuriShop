@@ -10,8 +10,8 @@ using YuriShopV1.Data;
 namespace YuriShopV1.Migrations
 {
     [DbContext(typeof(YuriShopContext))]
-    [Migration("20220525183938_updatedApplicationTable")]
-    partial class updatedApplicationTable
+    [Migration("20220526153519_Update")]
+    partial class Update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

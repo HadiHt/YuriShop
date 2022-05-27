@@ -5,10 +5,12 @@ import "./Bios.css";
 import Axios from "axios";
 import { userContext } from "../../contexts/userContext";
 import { useContext } from "react";
+import { shopContext } from "../../contexts/shopContext";
 
 const Bios = (props) => {
   const params = useParams();
   const [user, setUser] = useState(props.user1);
+  const {shop}=useContext(shopContext);
   let tempUser = {
     email: props.user1.email,
     firstName: props.user1.firstName,
@@ -19,8 +21,11 @@ const Bios = (props) => {
     username: props.user1.username,
   };
   let navigate = useNavigate();
+  const location = window.location.href;
+  const arr = location.split('/');
   useEffect(() => {
-    if (props.user1.userId !== params.id) {
+    if(arr[3]==="UserProfile")
+    {if (props.user1.userId !== params.id) {
       Axios.get("http://localhost:5000/api/users/" + params.id)
         .then((res) => {
           tempUser = res.data;
@@ -29,8 +34,18 @@ const Bios = (props) => {
         .catch((err) => {
           console.log(err);
         });
-    }
-    const tempUsername = tempUser.email.split("@");
+    }}else{
+      if ( params.sid) {
+        Axios.get("http://localhost:5000/api/Shops/" + params.sid)
+          .then((res) => {
+            tempUser = res.data;
+            setUser((prevUser) => (prevUser = tempUser));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    }}
+    const tempUsername = tempUser?.email?.split("@");
     tempUser.phoneNumber != null
       ? tempUser.phoneNumber.toString().length == 7
         ? (tempUser.phoneNumber = "0" + tempUser.phoneNumber)
@@ -40,12 +55,12 @@ const Bios = (props) => {
       ? void 0
       : (tempUser.firstName = "Not Specified");
     tempUser.lastName != null ? void 0 : (tempUser.lastName = "Not Specified");
-    tempUser.username != null ? void 0 : (tempUser.username = tempUsername[0]);
+    // tempUser.username != null ? void 0 : (tempUser.username = tempUsername[0]);
     tempUser.phoneNumber != null && tempUser.phoneNumber != 0
       ? void 0
       : (tempUser.phoneNumber = "Not Specified");
     setUser((prevUser) => (prevUser = tempUser));
-  }, [params.id]);
+  }, [params.id ||params.sid ||arr]);
   const routeChange = () => {
     let path = "/UserProfile/" + params.id + "/EditBiosInfo";
     navigate(path);
@@ -53,8 +68,8 @@ const Bios = (props) => {
   return (
     <div className="BottomBiosContainer">
       <span className="BiosDetails">
-        <p>First Name: {user?.firstName}</p>
-        <p>Last Name: {user?.lastName}</p>
+        {arr[3]==="UserProfile"&&<p>First Name: {user?.firstName}</p>}
+        {arr[3]==="UserProfile"&&<p>Last Name: {user?.lastName}</p>}
         <p>Email Address: {user?.email}</p>
         <p>Username: {user?.username}</p>
         <p>Phone Number: {user?.phoneNumber}</p>
