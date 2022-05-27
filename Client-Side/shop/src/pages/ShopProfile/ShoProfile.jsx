@@ -33,7 +33,7 @@ const ShopProfile = () => {
       inputRef1.current.clientHeight,
       inputRef2.current.clientHeight,
     ]);
-  }, [params.sid]);
+  }, [params.id]);
 
   console.log(shop);
   return (

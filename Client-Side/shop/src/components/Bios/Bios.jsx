@@ -9,8 +9,9 @@ import { shopContext } from "../../contexts/shopContext";
 
 const Bios = (props) => {
   const params = useParams();
-  const [user, setUser] = useState(props.user1);
-  const {shop}=useContext(shopContext);
+  const [User, setUser] = useState(props.user1);
+  const { user } = useContext(userContext);
+  const { shop } = useContext(shopContext);
   let tempUser = {
     email: props.user1.email,
     firstName: props.user1.firstName,
@@ -22,21 +23,11 @@ const Bios = (props) => {
   };
   let navigate = useNavigate();
   const location = window.location.href;
-  const arr = location.split('/');
+  const arr = location.split("/");
   useEffect(() => {
-    if(arr[3]==="UserProfile")
-    {if (props.user1.userId !== params.id) {
-      Axios.get("http://localhost:5000/api/users/" + params.id)
-        .then((res) => {
-          tempUser = res.data;
-          setUser((prevUser) => (prevUser = tempUser));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }}else{
-      if ( params.sid) {
-        Axios.get("http://localhost:5000/api/Shops/" + params.sid)
+    if (arr[3] === "UserProfile") {
+      if (props.user1.userId !== params.id) {
+        Axios.get("http://localhost:5000/api/users/" + params.id)
           .then((res) => {
             tempUser = res.data;
             setUser((prevUser) => (prevUser = tempUser));
@@ -44,7 +35,19 @@ const Bios = (props) => {
           .catch((err) => {
             console.log(err);
           });
-    }}
+      }
+    } else {
+      if (params.id) {
+        Axios.get("http://localhost:5000/api/Shops/" + params.id)
+          .then((res) => {
+            tempUser = res.data;
+            setUser((prevUser) => (prevUser = tempUser));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    }
     const tempUsername = tempUser?.email?.split("@");
     tempUser.phoneNumber != null
       ? tempUser.phoneNumber.toString().length == 7
@@ -60,23 +63,29 @@ const Bios = (props) => {
       ? void 0
       : (tempUser.phoneNumber = "Not Specified");
     setUser((prevUser) => (prevUser = tempUser));
-  }, [params.id ||params.sid ||arr]);
+  }, [params.id]);
   const routeChange = () => {
-    let path = "/UserProfile/" + params.id + "/EditBiosInfo";
+    var client = window.location.href;
+    var arr = client.split("/");
+    let path = "/" + arr[3] + "/" + params.id + "/EditBiosInfo";
     navigate(path);
   };
   return (
     <div className="BottomBiosContainer">
       <span className="BiosDetails">
-        {arr[3]==="UserProfile"&&<p>First Name: {user?.firstName}</p>}
-        {arr[3]==="UserProfile"&&<p>Last Name: {user?.lastName}</p>}
-        <p>Email Address: {user?.email}</p>
-        <p>Username: {user?.username}</p>
-        <p>Phone Number: {user?.phoneNumber}</p>
+        {arr[3] === "UserProfile" && <p>First Name: {User?.firstName}</p>}
+        {arr[3] === "UserProfile" && <p>Last Name: {User?.lastName}</p>}
+        <p>Email Address: {User?.email}</p>
+        <p>Username: {User?.username}</p>
+        <p>Phone Number: {User?.phoneNumber}</p>
       </span>
-      <button onClick={routeChange} className="EditProfileButton">
-        Edit Profile
-      </button>
+      {(tempUser.userId == params.id ||
+        user.isAdmin == true ||
+        shop.shopId == params.id) && (
+        <button onClick={routeChange} className="EditProfileButton">
+          Edit Profile
+        </button>
+      )}
     </div>
   );
 };
