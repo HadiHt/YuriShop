@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+Server-Side/YuriShopV1/.vs/YuriShopV1/DesignTimeBuild/.dtbcache.v2
+Server-Side/YuriShopV1/.vs/YuriShopV1/v17/.futdcache.v1
