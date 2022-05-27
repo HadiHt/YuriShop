@@ -10,6 +10,8 @@ import Axios from "axios";
 import "./AddressEdit.css";
 
 const AddressEdit = () => {
+  var client = window.location.href;
+  var arr = client.split("/");
   const { user, setUser } = useContext(userContext);
   const { address, setaddress, setAddress } = useContext(addressContext);
   const [tempAddress, SetTempAddress] = useState(address);
@@ -17,27 +19,49 @@ const AddressEdit = () => {
   let navigate = useNavigate();
 
   const updateAddress = async () => {
-    Axios.put("http://localhost:5000/api/users/" + params.id + "/address", {
-      state: tempAddress.state,
-      street: tempAddress.street,
-      city: tempAddress.city,
-      area: tempAddress.area,
-      building: tempAddress.building,
-      details: tempAddress.details,
-      userRefId: params.id,
-      shopRefId: null,
-    })
-      .then((res) => {
-        console.log(res.data);
+    if (arr[3] === "UserProfile") {
+      Axios.put("http://localhost:5000/api/users/" + params.id + "/address", {
+        state: tempAddress.state,
+        street: tempAddress.street,
+        city: tempAddress.city,
+        area: tempAddress.area,
+        building: tempAddress.building,
+        details: tempAddress.details,
+        userRefId: params.id,
+        shopRefId: null,
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      if (user.userId == params.id) {
+        setaddress(user);
+      }
+    } else {
+      Axios.put("http://localhost:5000/api/shops/" + params.id + "/address", {
+        state: tempAddress.state,
+        street: tempAddress.street,
+        city: tempAddress.city,
+        area: tempAddress.area,
+        building: tempAddress.building,
+        details: tempAddress.details,
+        userRefId: null,
+        shopRefId: params.id,
+      })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
     routeChange();
   };
 
   const routeChange = () => {
-    let path = "/UserProfile/" + params.id;
+    let path = "/" + arr[3] + "/" + params.id;
     navigate(path);
   };
   return (
