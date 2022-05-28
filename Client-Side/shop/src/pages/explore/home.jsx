@@ -6,6 +6,8 @@ import Axios from 'axios'
 import Category from "../../components/content/category/Category";
 import { cardContext } from "../../contexts/cardContext";
 import { addressContext } from "../../contexts/addressContext";
+import CarouselContainer from "../../components/carousel/CarouselContainer";
+import TestSlider from "../../components/elements/TestSlider";
 
 const Home = () => {
   const [Data, setData] = useState([]);
@@ -28,7 +30,9 @@ const Home = () => {
   return (
     <div className="home page">
       <div className="home__container">
-        <Slider />
+        {/* <Slider /> */}
+        {/* <TestSlider /> */}
+        <CarouselContainer/>
         <div className="home__row">
           {arr}
         </div>
