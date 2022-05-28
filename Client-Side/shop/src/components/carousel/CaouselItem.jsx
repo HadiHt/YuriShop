@@ -1,10 +1,16 @@
-import React from 'react'
-import './Carousel.css'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "./Carousel.css";
 
-const CaouselItem = ({slide}) => {
+const CaouselItem = ({ id, slide }) => {
+  const nav = useNavigate();
   return (
-        <img className='carousel-img' src={slide}></img>
-  )
-}
+    <img
+      onClick={() => nav("/product-details/" + id)}
+      className="carousel-img"
+      src={"data:image/png;base64," + slide}
+    ></img>
+  );
+};
 
-export default CaouselItem
+export default CaouselItem;

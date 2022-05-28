@@ -3,44 +3,10 @@ import React, { useEffect, useState } from "react";
 import CaouselItem from "./CaouselItem";
 import "./Carousel.css";
 
-const Carousel = () => {
+const Carousel = ({Data1,img}) => {
+  //console.log(Data1)
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [Data1, setData1] = useState([]);
-  const [img, setimg] = useState([]);
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/Products")
-      .then((res) => {
-        let HighestToLowest = res.data.sort(
-          (a, b) => b.soldQuantity - a.soldQuantity
-        );
-        //  console.log(HighestToLowest)
-        console.log(HighestToLowest);
-        setData1(HighestToLowest);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  useEffect(() => {
-    var s = [];
-    Data1.map((data) => {
-      console.log("beh");
-      axios
-        .get(
-          "http://localhost:5000/api/Images/Product/productid" + data.productId
-        )
-        .then((res) => {
-          console.log(res.data);
-          s.push("data:image/png;base64," + res.data);
-          if (s.length == 3) {
-            setimg(s);
-            console.log(s);
-          }
-        })
-        .catch((err) => console.log(err));
-    });
-  }, [Data1]);
-
-  const next = () => {
+  const next  = () => {
     if (currentIndex + 1 != Data1.length) {
       setCurrentIndex(currentIndex + 1);
     } else {
@@ -49,6 +15,10 @@ const Carousel = () => {
       }
     }
   };
+  var id
+  if(Data1.length!=0){
+    id=Data1[currentIndex].productId
+  }
   const prev = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
@@ -67,7 +37,7 @@ const Carousel = () => {
         <button className="carousel-control left" onClick={prev}>
           <i className="fa fa-arrow-left"></i>
         </button>
-        <CaouselItem slide={img[currentIndex]} />
+        <CaouselItem id={id} slide={img[currentIndex]} />
         <button className="carousel-control right" onClick={next}>
           <i className="fa fa-arrow-right"></i>
         </button>

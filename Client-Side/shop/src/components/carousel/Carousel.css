@@ -15,6 +15,11 @@
     margin: auto;
     height: 100px;
 }
+.carousels-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
 @media screen and (max-width: 570px) {
     .carousel-container{
         width:91%

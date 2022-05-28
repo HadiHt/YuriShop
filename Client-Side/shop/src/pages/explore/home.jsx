@@ -7,7 +7,6 @@ import Category from "../../components/content/category/Category";
 import { cardContext } from "../../contexts/cardContext";
 import { addressContext } from "../../contexts/addressContext";
 import CarouselContainer from "../../components/carousel/CarouselContainer";
-import TestSlider from "../../components/elements/TestSlider";
 
 const Home = () => {
   const [Data, setData] = useState([]);
