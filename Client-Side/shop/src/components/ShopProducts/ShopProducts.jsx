@@ -27,7 +27,11 @@ const ShopProducts = () => {
         setCheckUser(true);
       }
     } else if (shop === "") {
-      setCheckUser(false);
+      if (user.isAdmin == true) {
+        setCheckUser(true);
+      } else {
+        setCheckUser(false);
+      }
     }
   }, [params.id]);
 
@@ -59,19 +63,19 @@ const ShopProducts = () => {
   return (
     <div className="ShopProductsContainer">
       <div className="OrderColumnContainer">
-        <div className="OrderColumnInfo">picture</div>
-        <div className="OrderColumnInfo">name</div>
-        <div className="OrderColumnInfo">soldQuantity</div>
-        <div className="OrderColumnInfo">price</div>
-        <div className="OrderColumnInfo">available</div>
-        <div className="OrderColumnInfo">{checkuser ? "edit" : "view"}</div>
-        {checkuser && <div className="OrderColumnInfo">mass delete</div>}
+        <div className="OrderColumnInfo">Picture</div>
+        <div className="OrderColumnInfo">Name</div>
+        <div className="OrderColumnInfo">Sold Quantity</div>
+        <div className="OrderColumnInfo">Price</div>
+        <div className="OrderColumnInfo">Available</div>
+        <div className="OrderColumnInfo">{checkuser ? "Edit" : "View"}</div>
+        {checkuser && <div className="OrderColumnInfo">Delete All</div>}
       </div>
       {arr}
       <div className="OrderColumnContainer">
         {checkuser && (
           <button className="OrderColumnInfo" onClick={massDelete}>
-            mass delete
+            Delete All
           </button>
         )}
       </div>

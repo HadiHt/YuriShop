@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { useRef } from "react";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Dashboard from "../../components/Dashboard/Dashboard";
 import Bios from "../../components/Bios/Bios";
 import Address from "../../components/Address/Address";
@@ -9,12 +11,16 @@ import Order from "../../components/LatestOrder/LatestOrder";
 import Wishlist from "../../components/Wishlist/Wishlist";
 import ProfileHeader from "../../components/ProfileHeader/ProfileHeader";
 import { userContext } from "../../contexts/userContext";
+import { shopContext } from "../../contexts/shopContext";
 import "./UserProfile.css";
 import { ContactSupport } from "@material-ui/icons";
 
 const UserProfile = () => {
+  const params = useParams();
+  let navigate = useNavigate();
   const [height, setHeight] = useState([]);
   const { user, setUser } = useContext(userContext);
+  const { shop } = useContext(shopContext);
   const inputRef = useRef(0);
   const inputRef1 = useRef(0);
   const inputRef2 = useRef(0);
@@ -26,6 +32,9 @@ const UserProfile = () => {
       inputRef2.current.clientHeight,
     ]);
   }, []);
+  const navigateToPage = () => {
+    navigate("Application");
+  };
   return (
     <div className="UserProfileContainer">
       <div className="Dashboard">
@@ -51,6 +60,16 @@ const UserProfile = () => {
           <p className="WishlistTitle">WISHLIST</p>
           <Wishlist user4={user} />
         </div>
+        {user != "" && user.userId == params.id && (
+          <div
+            className="ApplyForShop"
+            onClick={() => {
+              navigateToPage();
+            }}
+          >
+            <a className="ApplyForShop">Want To Apply For A Shop?</a>
+          </div>
+        )}
       </div>
     </div>
   );

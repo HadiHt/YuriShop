@@ -35,7 +35,11 @@ const ProductColumn = (product) => {
         setCheckUser(true);
       }
     } else if (shop === "") {
-      setCheckUser(false);
+      if (user.isAdmin == true) {
+        setCheckUser(true);
+      } else {
+        setCheckUser(false);
+      }
     }
   }, [ImgData]);
   const imge = "data:image/png;base64," + ImgData;
@@ -59,7 +63,7 @@ const ProductColumn = (product) => {
         onClick={checkuser ? edit : view}
         className="OrderColumnInfo"
       >
-        {checkuser ? "edit" : "view"}
+        {checkuser ? "Edit" : "View"}
       </button>
       {checkuser && (
         <input
