@@ -171,7 +171,7 @@ const ProfileHeader = (props) => {
 
   return (
     <div className="ProfileHeaderContainer">
-      <div className="ProfileImage" >
+      <div className="ProfileImage" onClick={() => importD()}>
         <img
           style={{ display: ImageExist[1] }}
           className="UserImage"
