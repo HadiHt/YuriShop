@@ -10,60 +10,45 @@ import { shopContext } from "../../contexts/shopContext";
 const Bios = (props) => {
   const params = useParams();
   const [User, setUser] = useState(props.user1);
+  const [visitedUser, setVisistedUser] = useState(null);
   const { user } = useContext(userContext);
   const { shop } = useContext(shopContext);
-  let tempUser = {
-    email: props.user1.email,
-    firstName: props.user1.firstName,
-    lastName: props.user1.lastName,
-    password: props.user1.password,
-    phoneNumber: props.user1.phoneNumber,
-    userId: props.user1.userId,
-    username: props.user1.username,
-  };
+  let tempUser = {};
   let navigate = useNavigate();
   const location = window.location.href;
   const arr = location.split("/");
+
   useEffect(() => {
-    if (arr[3] === "UserProfile") {
-      if (props.user1.userId !== params.id) {
+    if (arr[3] == "UserProfile") {
+      if (props.user1.userId != params.id) {
         Axios.get("http://localhost:5000/api/users/" + params.id)
           .then((res) => {
             tempUser = res.data;
-            setUser((prevUser) => (prevUser = tempUser));
+            setVisistedUser((prevUser) => (prevUser = tempUser));
           })
           .catch((err) => {
             console.log(err);
           });
+      } else {
+        setVisistedUser((prevUser) => (prevUser = User));
       }
-    } else {
-      if (params.id) {
+    } else if (arr[3] === "ShopProfile") {
+      if (props.user1.shopId != params.id) {
         Axios.get("http://localhost:5000/api/Shops/" + params.id)
           .then((res) => {
             tempUser = res.data;
-            setUser((prevUser) => (prevUser = tempUser));
+            setVisistedUser((prevUser) => (prevUser = tempUser));
           })
           .catch((err) => {
             console.log(err);
           });
+      } else {
+        setVisistedUser((prevUser) => (prevUser = User));
       }
     }
     const tempUsername = tempUser?.email?.split("@");
-    tempUser.phoneNumber != null
-      ? tempUser.phoneNumber.toString().length == 7
-        ? (tempUser.phoneNumber = "0" + tempUser.phoneNumber)
-        : void 0
-      : void 0;
-    tempUser.firstName != null
-      ? void 0
-      : (tempUser.firstName = "Not Specified");
-    tempUser.lastName != null ? void 0 : (tempUser.lastName = "Not Specified");
-    // tempUser.username != null ? void 0 : (tempUser.username = tempUsername[0]);
-    tempUser.phoneNumber != null && tempUser.phoneNumber != 0
-      ? void 0
-      : (tempUser.phoneNumber = "Not Specified");
-    setUser((prevUser) => (prevUser = tempUser));
   }, [params.id]);
+
   const routeChange = () => {
     var client = window.location.href;
     var arr = client.split("/");
@@ -73,13 +58,37 @@ const Bios = (props) => {
   return (
     <div className="BottomBiosContainer">
       <span className="BiosDetails">
-        {arr[3] === "UserProfile" && <p>First Name: {User?.firstName}</p>}
-        {arr[3] === "UserProfile" && <p>Last Name: {User?.lastName}</p>}
-        <p>Email Address: {User?.email}</p>
-        <p>Username: {User?.username}</p>
-        <p>Phone Number: {User?.phoneNumber}</p>
+        {arr[3] === "UserProfile" && (
+          <p>
+            First Name:{" "}
+            {visitedUser?.firstName == null
+              ? " Not Specified"
+              : visitedUser?.firstName}
+          </p>
+        )}
+        {arr[3] === "UserProfile" && (
+          <p>
+            Last Name:{" "}
+            {visitedUser?.lastName == null
+              ? " Not Specified"
+              : visitedUser?.lastName}
+          </p>
+        )}
+        <p>Email Address: {visitedUser?.email}</p>
+        <p>
+          Username:{" "}
+          {visitedUser?.username == null
+            ? "Not Specified"
+            : visitedUser?.username}
+        </p>
+        <p>
+          Phone Number:{" "}
+          {visitedUser?.phoneNumber == null
+            ? "Not Specified"
+            : visitedUser?.phoneNumber}
+        </p>
       </span>
-      {(tempUser.userId == params.id ||
+      {(visitedUser?.userId == params.id ||
         user.isAdmin == true ||
         shop.shopId == params.id) && (
         <button onClick={routeChange} className="EditProfileButton">

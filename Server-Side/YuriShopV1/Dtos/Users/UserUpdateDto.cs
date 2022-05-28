@@ -14,6 +14,6 @@ namespace YuriShopV1.Dtos.Users
         [Required]
         public string Password { get; set; }
         public int PhoneNumber { get; set; }
-        public bool isAdmin = false;
+        public bool isAdmin { get; set; }
     }
 }
