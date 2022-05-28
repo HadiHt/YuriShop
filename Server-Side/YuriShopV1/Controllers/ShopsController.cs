@@ -41,6 +41,13 @@ namespace YuriShopV1.Controllers
             var Shops = _shopRepo.GetAllShops();
             return Ok(_mapper.Map<IEnumerable<ShopReadDto>>(Shops));
         }
+
+        [HttpGet("email/{email}")]
+        public ActionResult<ShopReadDto> GetShopByEmail(string email)
+        {
+            var Shop = _shopRepo.GetShopByEmail(email);
+            return Ok(_mapper.Map<ShopReadDto>(Shop));
+        }
         [HttpGet("{id}", Name = "GetShopById")]
         public ActionResult<ShopReadDto> GetShopById(int id)
         {

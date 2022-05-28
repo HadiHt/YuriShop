@@ -1,10 +1,9 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Snackbar, Alert, Alertprops } from "@mui/material";
 import Axios from "axios";
 import "./FillApplication.css";
+import EmailAlreadyTakenSnackbar from "../../components/SnackBars/ErrorSnackBar/EmailAlreadyTakenSnackBar";
 
 const FillApplication = () => {
   // const SnackbarAlert = forwardRef<HTMLDivElement, Alertprops>(
@@ -14,16 +13,8 @@ const FillApplication = () => {
   // )
   const params = useParams();
   let navigate = useNavigate();
-  const [error, SetError] = useState(false);
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    SetError((prevError) => (prevError = false));
-  };
+  const [EmailNotFound, SetEmailNotFound] = useState(false);
+
   const [Application, SetApplication] = useState({
     Email: "",
     Password: "",
@@ -41,15 +32,21 @@ const FillApplication = () => {
     UserRefId: params.id,
   });
   const SendApplication = () => {
-    SetError((prevError) => (prevError = true));
-    // Axios.post("http://localhost:5000/api/Users/Application", Application)
-    //   .then((res) => {
-    //     navigate("/UserProfile/" + params.id);
-    //   })
-    //   .catch((err) => {
-    //     SetError((prevError) => (prevError = true));
-    //     console.log(err);
-    //   });
+    Axios.get(
+      "http://localhost:5000/api/shops/email/" + Application.Email
+    ).then((res) => {
+      if (res.data != null) {
+        SetEmailNotFound(true);
+      } else {
+        Axios.post("http://localhost:5000/api/Users/Application", Application)
+          .then((res) => {
+            navigate("/UserProfile/" + params.id);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
   };
   return (
     <div className="FillApplicationPageContainer">
@@ -161,21 +158,13 @@ const FillApplication = () => {
           </div>
         </div>
       </span>
+      <EmailAlreadyTakenSnackbar
+        open={EmailNotFound}
+        setOpen={SetEmailNotFound}
+      />
       <button onClick={() => SendApplication()} className="SubmitApplication">
         Submit Application
       </button>
-      {/* <Snackbar
-        open={error}
-        autoHideDuration={3000}
-        onClose={handleClose}
-        message="error"
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      ></Snackbar> */}
-      <Snackbar open={error} autoHideDuration={3000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="error">
-          This is an error message!
-        </Alert>
-      </Snackbar>
     </div>
   );
 };
