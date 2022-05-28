@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Search.css";
 import Axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 function SearchBar({ placeholder, data }) {
+    const navigate = useNavigate();
     const [Data, setData] = useState([]);
     useEffect(() => {
         Axios.get('http://localhost:5000/api/Products')
@@ -22,34 +23,48 @@ function SearchBar({ placeholder, data }) {
         } else {
             setshow(true);
         }
-        console.log(show)
+     //   console.log(show)
+    }
+    const submitted = (e) => {
+        if(searched!=''){
+            if (e.which === 13) {
+                navigate('/filtered-products/'+searched)
+                setshow(false)
+                setSearched('')
+            }
+        }else{
+            if (e.which === 13) {
+            //    console.log(searched)
+                navigate('/filtered-products/404-products-not-found')
+            }
+        }
     }
     var arr1 = [];
     if (searched.length > 0) {
         arr1 = Data.filter((data) => {
-            return data.name.match(searched)
+            return data.name.toString().toLowerCase().includes(searched.toLowerCase())
         })
     }
     const arr = arr1.map((data, index) => {
         const url="/product-details/"+data.productId
         return (
-                <Link onClick={()=>{
+                <div onClick={()=>{
                     document.getElementById('searchBar').value='';
-                    setshow(false)
-                }} key={index} className="dataItem" to={url} >
+                    setshow(false);
+                    navigate(url)
+                }} key={index} className="dataItem">
                     <p>{data.name}
                         <strong>{data.price}</strong>
-                        <small>K L.L</small>
                     </p>
-                </Link>
+                </div>
         )
     });
     return (
         <div className="search">
             <div className="searchInputs">
-                <input id = 'searchBar'type="text"placeholder='Search..'value={searched}onChange={HandleChange}/>
+                <input onKeyUp={submitted} id = 'searchBar'type="text"placeholder='Search..'value={searched}onChange={HandleChange}/>
                 <div className="searchIcon">
-                    {!show ? (<i className="fa fa-search" />) : (<i className="fa fa-trash"/>)}
+                    <i className="fa fa-search" />
                 </div>
             </div>
             {show && <div className="dataResult">
