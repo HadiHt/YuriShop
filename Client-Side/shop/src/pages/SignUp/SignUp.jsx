@@ -3,6 +3,8 @@ import "./SignUp.css";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../../contexts/userContext";
 import Axios from "axios";
+import EmailAlreadyTakenSnackbar from "../../components/SnackBars/ErrorSnackBar/EmailAlreadyTakenSnackBar";
+import UserAccountCreated from "../../components/SnackBars/SuccessSnackBar/UserAccountCreated";
 
 const SignUp = () => {
   const [userEmail, setUserEmail] = useState("");
@@ -10,37 +12,48 @@ const SignUp = () => {
   const [EmailError, setEmailError] = useState(false);
   const [passError, setpassError] = useState(false);
   const [conPassError, setconPError] = useState(false);
+  const [EmailNotFound, SetEmailNotFound] = useState(false);
+  const [EmailCreated, SetEmailCreated] = useState(false);
   const { setUser } = useContext(userContext);
   const navigate = useNavigate();
 
   const SignUp = () => {
     if (EmailError === false && passError === false && conPassError === false) {
-      Axios.post("http://localhost:5000/api/Users/SignUp", {
-        email: userEmail,
-        password: UserPassword,
-      })
-        .then(function (response) {
-          Axios.post(
-            "http://localhost:5000/api/Users/" +
-              response.data.userId +
-              "/address",
-            {
-              state: "Not Specified",
-              street: "Not Specified",
-              city: "Not Specified",
-              area: "Not Specified",
-              building: "Not Specified",
-              details: "Not Specified",
-              userRefId: response.data.userId,
-              shopRefId: null,
-            }
-          ).then(function (response) {
-            console.log(response.data);
-          });
-          navigate("/");
+      Axios.post("http://localhost:5000/api/users/Validation/" + userEmail)
+        .then((res) => {
+          Axios.post("http://localhost:5000/api/Users/SignUp", {
+            email: userEmail,
+            password: UserPassword,
+          })
+            .then(function (response) {
+              SetEmailCreated(true);
+              Axios.post(
+                "http://localhost:5000/api/Users/" +
+                  response.data.userId +
+                  "/address",
+                {
+                  state: "Not Specified",
+                  street: "Not Specified",
+                  city: "Not Specified",
+                  area: "Not Specified",
+                  building: "Not Specified",
+                  details: "Not Specified",
+                  userRefId: response.data.userId,
+                  shopRefId: null,
+                }
+              ).then(function (response) {
+                console.log(response.data);
+              });
+              setTimeout(function () {
+                navigate("/");
+              }, 3000);
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
         })
-        .catch(function (error) {
-          console.log(error);
+        .catch((err) => {
+          SetEmailNotFound(true);
         });
     } else {
       console.log("incomplete");
@@ -109,6 +122,11 @@ const SignUp = () => {
             Create your Yuri Account
           </button>
         </div>
+        <EmailAlreadyTakenSnackbar
+          open={EmailNotFound}
+          setOpen={SetEmailNotFound}
+        />
+        <UserAccountCreated open={EmailCreated} setOpen={SetEmailCreated} />
         <p>
           By signing-up you agree to the Yuri Shop Conditions of Use & Sale.
         </p>

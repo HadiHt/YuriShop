@@ -14,12 +14,22 @@ const AddressEdit = () => {
   var arr = client.split("/");
   const { user, setUser } = useContext(userContext);
   const { address, setaddress, setAddress } = useContext(addressContext);
-  const [tempAddress, SetTempAddress] = useState(address);
+  const [tempAddress, SetTempAddress] = useState({
+    state: "",
+    street: "",
+    city: "",
+    area: "",
+    building: "",
+    details: "",
+    userRefId: null,
+    shopRefId: null,
+  });
   const params = useParams();
   let navigate = useNavigate();
 
   const updateAddress = async () => {
-    if (arr[3] === "UserProfile") {
+    if (arr[3] == "UserProfile") {
+      console.log(address);
       Axios.put("http://localhost:5000/api/users/" + params.id + "/address", {
         state: tempAddress.state,
         street: tempAddress.street,
@@ -30,16 +40,26 @@ const AddressEdit = () => {
         userRefId: params.id,
         shopRefId: null,
       })
-        .then((res) => {
-          console.log(res.data);
-        })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
         });
+
       if (user.userId == params.id) {
-        setaddress(user);
+        console.log("setting address");
+        setaddress({
+          state: tempAddress.state,
+          street: tempAddress.street,
+          city: tempAddress.city,
+          area: tempAddress.area,
+          building: tempAddress.building,
+          details: tempAddress.details,
+          userRefId: params.id,
+          shopRefId: null,
+        });
       }
     } else {
+      console.log("inside else");
       Axios.put("http://localhost:5000/api/shops/" + params.id + "/address", {
         state: tempAddress.state,
         street: tempAddress.street,
@@ -57,6 +77,7 @@ const AddressEdit = () => {
           console.log(err);
         });
     }
+    console.log(address);
     routeChange();
   };
 

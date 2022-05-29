@@ -22,8 +22,9 @@ namespace YuriShopV1.Controllers
         private readonly ICardRepo _cardRepo;
         private readonly IUserRepo _userRepo;
         private readonly UserManager _userManager;
+        private readonly AutoMailer _autoMailer;
 
-        public ShopsController(IMapper mapper, IShopRepo shopRepo ,IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo, UserManager userManager)
+        public ShopsController(IMapper mapper, IShopRepo shopRepo ,IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo, UserManager userManager, AutoMailer autoMailer)
         {
             _mapper = mapper;
             _shopRepo = shopRepo;
@@ -31,6 +32,7 @@ namespace YuriShopV1.Controllers
             _cardRepo = cardRepo;
             _userRepo = userRepo;
             _userManager = userManager;
+            _autoMailer = autoMailer;
         }
 
         [HttpGet]
@@ -38,6 +40,13 @@ namespace YuriShopV1.Controllers
         {
             var Shops = _shopRepo.GetAllShops();
             return Ok(_mapper.Map<IEnumerable<ShopReadDto>>(Shops));
+        }
+
+        [HttpGet("email/{email}")]
+        public ActionResult<ShopReadDto> GetShopByEmail(string email)
+        {
+            var Shop = _shopRepo.GetShopByEmail(email);
+            return Ok(_mapper.Map<ShopReadDto>(Shop));
         }
         [HttpGet("{id}", Name = "GetShopById")]
         public ActionResult<ShopReadDto> GetShopById(int id)
@@ -57,6 +66,10 @@ namespace YuriShopV1.Controllers
                 var ShopModel = _mapper.Map<Shop>(shop);
                 _shopRepo.CreateShop(ShopModel);
                 _shopRepo.SaveChanges();
+                string to = ShopModel.Email.ToString();
+                string subject = "Yuri Shop Application Accepted!";
+                string body = "After Our review for your " + ShopModel.Username.ToString() + " shop application. \n It has been decided to accept your Shop qualifications, you can now sign in as a shop with your shop Credentials. \n Email: " + ShopModel.Email.ToString() + ".\n Password: " + ShopModel.Password.ToString() + ". \n With Best Regards \n `Yuri Shop Admins";
+                _autoMailer.SendMail(subject, to, body);
 
                 var shopReadDto = _mapper.Map<ShopReadDto>(ShopModel);
                 return CreatedAtRoute(nameof(GetShopById), new { Id = shopReadDto.ShopId }, shopReadDto);

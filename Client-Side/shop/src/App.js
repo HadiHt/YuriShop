@@ -23,6 +23,7 @@ import ShopProfile from './pages/ShopProfile/ShoProfile';
 import EditProduct from './pages/EditProduct/EditProduct';
 import EditPurchase from './pages/EditPurchase/EditPurchase';
 import FilteredPage from './pages/FilteredPage/FilteredPage';
+import FillApplication from './pages/FillApplication/FillApplication';
 
 function App() {
   // const [user,setUser] =useState('')
@@ -45,6 +46,7 @@ function App() {
           <Route path="UserProfile/:id" element={<UserProfile />} />
           <Route path="UserProfile/:id/EditBiosInfo" element={<EditBiosInfo />} />
           <Route path="UserProfile/:id/EditAddress" element={<EditAddress />} />
+          <Route path="UserProfile/:id/Application" element={<FillApplication />} />
           <Route path='ShopProfile/:id/AddAProduct' element={<AddAProduct/>} />
           <Route path="ShopProfile/:id" element={<ShopProfile/>} />
           <Route path="ShopProfile/:id/EditBiosInfo" element={<EditBiosInfo />} />
