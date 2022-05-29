@@ -5,12 +5,14 @@ import { userContext } from "../../contexts/userContext";
 import "./Dashboard.css";
 
 const Dashboard = (props) => {
-  const {user}=useContext(userContext);
-  const {shop}=useContext(shopContext);
+  const { user } = useContext(userContext);
+  const { shop } = useContext(shopContext);
   const [item1, setItem1] = useState("Selected1");
   const [item2, setItem2] = useState("NotSelected2");
   const [item3, setItem3] = useState("NotSelected3");
   const [item4, setItem4] = useState("NotSelected4");
+  const location = window.location.href;
+  const arr = location.split("/");
   useEffect(() => {
     window.addEventListener("scroll", (event) => {
       window.scrollY < props.value[0] - 70 && window.scrollY >= 0
@@ -37,8 +39,8 @@ const Dashboard = (props) => {
         <li className={item1}>BIOS INFO</li>
         <li className={item2}>ADDRESS</li>
         <li className={item3}>ORDER</li>
-        {user!==''&& <li className={item4}>WISHLIST</li>}
-        {shop!==''&& <li className={item4}>PRODUCTS</li>}
+        {arr[3] == "UserProfile" && <li className={item4}>WISHLIST</li>}
+        {arr[3] == "ShopProfile" && <li className={item4}>PRODUCTS</li>}
       </ul>
     </div>
   );

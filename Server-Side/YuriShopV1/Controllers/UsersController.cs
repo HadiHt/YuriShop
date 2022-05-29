@@ -28,8 +28,9 @@ namespace YuriShopV1.Controllers
         private readonly IWishListRepo _wishlistRepo;
         private readonly IShopRepo _shopRepo;
         private readonly UserManager _userManager;
+        private readonly AutoMailer _autoMailer;
 
-        public UsersController(IMapper mapper,IApplicationRepo applicationRepo,IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo, IWishListRepo wishlistRepo , IShopRepo shopRepo, UserManager userManager)
+        public UsersController(IMapper mapper,IApplicationRepo applicationRepo,IAddressRepo addressRepo, ICardRepo cardRepo, IUserRepo userRepo, IWishListRepo wishlistRepo , IShopRepo shopRepo, UserManager userManager, AutoMailer autoMailer)
         {
             _mapper = mapper;
             _applicationRepo = applicationRepo;
@@ -39,6 +40,7 @@ namespace YuriShopV1.Controllers
             _wishlistRepo = wishlistRepo;
             _shopRepo = shopRepo;
             _userManager = userManager;
+            _autoMailer = autoMailer;
         }
 
         [HttpGet]
@@ -72,6 +74,16 @@ namespace YuriShopV1.Controllers
                 return Ok(Shop);
             }
             return NotFound();
+        }
+
+        [HttpPost("Validation/{email}")]
+        public ActionResult<UserReadDto> ValidateEmail(string email)
+        {
+            if (_userRepo.GetUserByEmail(email) == null && _shopRepo.GetShopByEmail(email) == null)
+            {
+                return Ok(_mapper.Map<UserReadDto>(_userRepo.GetUserByEmail(email)));
+            }
+            return Conflict(new { message = "This Email is already taken!" });
         }
 
         [HttpPost("SignUp")]
@@ -202,6 +214,14 @@ namespace YuriShopV1.Controllers
             if (ApplicationModelFromRepo == null)
             {
                 return NotFound();
+            }
+            var Shop = _shopRepo.GetShopByEmail(ApplicationModelFromRepo.Email);
+            if (Shop == null)
+            {
+                string to = ApplicationModelFromRepo.Email.ToString();
+                string subject = "Yuri Shop Application Denied!";
+                string body = "After Our review for your shop application. \n It has been decided to deny it, since your Shop doesn't meet our shop standards and qualifications. \n With Best Regards \n `Yuri Shop Admins";
+                _autoMailer.SendMail(subject, to, body);
             }
             _applicationRepo.DeleteApplication(ApplicationModelFromRepo);
             _applicationRepo.SaveChanges();

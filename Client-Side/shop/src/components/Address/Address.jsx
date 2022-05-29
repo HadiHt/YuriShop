@@ -21,22 +21,18 @@ const Address = () => {
   useEffect(() => {
     const location = window.location.href;
     const arr = location.split("/");
-    if (shop === "") {
+    if (shop == "") {
       // console.log(arr)
-      if (arr[3] === "ShopProfile") {
-        if (params.id !== "") {
-          Axios.get("http://localhost:5000/api/Shops/" + params.id + "/address")
-            .then((res) => {
-              SetTempAddress((prevAddress) => (prevAddress = res.data));
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        } else {
-          SetTempAddress((prevAddress) => (prevAddress = address));
-        }
+      if (arr[3] == "ShopProfile") {
+        Axios.get("http://localhost:5000/api/Shops/" + params.id + "/address")
+          .then((res) => {
+            SetTempAddress((prevAddress) => (prevAddress = res.data));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       } else {
-        if (user.userId !== params.id) {
+        if (user.userId != params.id) {
           Axios.get("http://localhost:5000/api/users/" + params.id + "/address")
             .then((res) => {
               SetTempAddress((prevAddress) => (prevAddress = res.data));
@@ -46,10 +42,11 @@ const Address = () => {
             });
         } else {
           SetTempAddress((prevAddress) => (prevAddress = address));
+          console.log(address);
         }
       }
-    } else if (user === "") {
-      if (shop.shopId !== params.id) {
+    } else if (user == "") {
+      if (shop.shopId != params.id) {
         Axios.get("http://localhost:5000/api/Shops/" + params.id + "/address")
           .then((res) => {
             SetTempAddress((prevAddress) => (prevAddress = res.data));
@@ -61,7 +58,7 @@ const Address = () => {
         SetTempAddress((prevAddress) => (prevAddress = address));
       }
     }
-  }, [params.id, shop, user]);
+  }, [params.id, shop, user, window.location.href, address]);
 
   const routeChange = () => {
     var client = window.location.href;

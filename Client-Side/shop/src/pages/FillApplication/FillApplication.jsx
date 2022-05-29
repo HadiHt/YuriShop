@@ -32,12 +32,10 @@ const FillApplication = () => {
     UserRefId: params.id,
   });
   const SendApplication = () => {
-    Axios.get(
-      "http://localhost:5000/api/shops/email/" + Application.Email
-    ).then((res) => {
-      if (res.data != null) {
-        SetEmailNotFound(true);
-      } else {
+    Axios.post(
+      "http://localhost:5000/api/users/Validation/" + Application.Email
+    )
+      .then((res) => {
         Axios.post("http://localhost:5000/api/Users/Application", Application)
           .then((res) => {
             navigate("/UserProfile/" + params.id);
@@ -45,8 +43,10 @@ const FillApplication = () => {
           .catch((err) => {
             console.log(err);
           });
-      }
-    });
+      })
+      .catch((err) => {
+        SetEmailNotFound(true);
+      });
   };
   return (
     <div className="FillApplicationPageContainer">

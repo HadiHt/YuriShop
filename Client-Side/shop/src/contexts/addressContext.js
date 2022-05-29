@@ -39,7 +39,7 @@ export const AddressProvider = (props) => {
         }
     }
     return (
-        <addressContext.Provider value={{ address, setaddress, setAddress }}>
+        <addressContext.Provider value={{ address:JSON.parse(window.localStorage.getItem("USER_ADDRESS")) ? JSON.parse(window.localStorage.getItem("USER_ADDRESS")) : address, setaddress, setAddress }}>
             {props.children}
         </addressContext.Provider>
     );

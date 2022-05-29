@@ -9,15 +9,18 @@ import { addressContext } from "../../contexts/addressContext";
 import { shopContext } from "../../contexts/shopContext";
 import { orderListContext } from "../../contexts/orderListContext";
 import { allProductContext } from "../../contexts/allProductsContext";
+import EmailOrPasswordIsUncorrect from "../../components/SnackBars/ErrorSnackBar/EmailOrPasswordIsUncorrect";
+import { localStorage } from "../../LocalStorage";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUser } = useContext(userContext);
-  const { setShop } = useContext(shopContext);
-  const { setOrders } = useContext(orderListContext);
-  const { setProductss } = useContext(allProductContext);
+  const { user, setUser } = useContext(userContext);
+  const { shop, setShop } = useContext(shopContext);
+  const { orderList, setOrders } = useContext(orderListContext);
+  const { allProducts, setProductss } = useContext(allProductContext);
   const { setCard } = useContext(cardContext);
+  const [EmailNotFound, SetEmailNotFound] = useState(false);
   const [wrongCredentials, setWrongCredentials] = useState(false);
   const navigate = useNavigate();
 
@@ -30,6 +33,7 @@ const Login = () => {
         console.log(res.data);
         if (res.data === "") {
           console.log("Bad Credentials");
+          SetEmailNotFound(true);
           setWrongCredentials(true);
         } else {
           if (res.data.hasOwnProperty("isAdmin")) {
@@ -46,7 +50,7 @@ const Login = () => {
           setWrongCredentials(false);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => SetEmailNotFound(true));
   };
 
   const { setAddress } = useContext(addressContext);
@@ -84,6 +88,10 @@ const Login = () => {
             Sign In
           </button>
         </div>
+        <EmailOrPasswordIsUncorrect
+          open={EmailNotFound}
+          setOpen={SetEmailNotFound}
+        />
         <p>
           By signing-in you agree to the Yuri Shop Conditions of Use & Sale.
         </p>
