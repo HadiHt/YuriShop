@@ -1,44 +1,75 @@
-.carousel{
-    display: flex;
-    margin: auto;
+.carousel {
+  display: flex;
+  margin: auto;
 }
-.carousel-container{
+.title {
+    margin-left: 1.6%;
+  width: 100%;
+  text-align: center;
+}
+.detaillist{
+    margin: auto;
     justify-content: center;
-    padding: 20px;
-    border: 2px solid gray;
-    background-color: white;
-    margin: auto;
-    width: 91%;
-    border-radius: 15px;
+    text-align: center;
+    align-items: center;
+    list-style: none;
 }
-.carousel-img{
-    margin: auto;
-    height: 100px;
+.detaillist>li{
+    margin: 0 0 15px 0;
 }
-.carousels-container{
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
+.carousel-container {
+  justify-content: center;
+  padding: 20px 20px 10px 20px;
+  border: 2px solid gray;
+  background-color: white;
+  margin: auto;
+  width: 91%;
+  border-radius: 15px;
+}
+.carousel-img {
+  margin: auto;
+  height: 100px;
+}
+.carousels-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }
 @media screen and (max-width: 570px) {
-    .carousel-container{
-        width:91%
-    }
-    .carousel-img{
-        height:50px
-    }
+  .carousel-container {
+    width: 91%;
+  }
+  .carousel-img {
+    height: 50px;
+  }
 }
-.carousel-control{
-    background-image: linear-gradient(to right, #464343, #7b7e80);
-    border-radius: 100%;
-    padding: 7px 14px 7px 14px;
-    text-decoration: none;
-    margin: auto;
+.carousel-control {
+  background-image: linear-gradient(to right, #464343, #7b7e80);
+  border-radius: 100%;
+  padding: 7px 14px 7px 14px;
+  text-decoration: none;
+  margin: auto;
 }
-.carousel-control>i{
-    color: #ffffff;
+.carousel-control > i {
+  color: #ffffff;
 }
 .carousel-control:hover {
-    background-image: linear-gradient(to right, #5c5a5a, #939699);
-    text-decoration: none;
+  background-image: linear-gradient(to right, #5c5a5a, #939699);
+  text-decoration: none;
+}
+.container-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid #f1f1f1;
+  margin: 0 5px;
+  background: #f1f1f1;
+}
+.dot.active {
+  background: rgb(32, 32, 32);
 }

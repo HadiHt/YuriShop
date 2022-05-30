@@ -34,7 +34,6 @@ const OrderSummary = ({Data,AddOrder}) => {
                     AddOrder(response.data.orderId,data);
                 });
                 setCart([]);
-                setOrders(user);
             })
         } else {
             setErrorMessage(true)

@@ -13,7 +13,7 @@ export const OrderProvider = (props) => {
         Axios.get('http://localhost:5000/api/Orders/' + user.userId + '/user')
             .then(res => {
                 setOrderList(res.data)
-                // console.log(Data)
+                 console.log(res.data)
             }).catch(err => console.log(err))
     }
 

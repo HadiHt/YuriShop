@@ -78,10 +78,10 @@ const CarouselContainer = () => {
   return (
     <div className="carousels-container">
       <div className="carousel-container">
-        <Carousel Data1={Data1} img={img} />
+        <Carousel Data1={Data1} img={img} title={"Best Sellers"}/>
       </div>
       <div className="carousel-container">
-        <Carousel Data1={Data2} img={img2} />
+        <Carousel Data1={Data2} img={img2} title={"Latest Products"}/>
       </div>
     </div>
   );
