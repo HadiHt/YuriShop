@@ -43,6 +43,7 @@ namespace YuriShopV1
                 Configuration.GetConnectionString("YuriConnection")));
 
             services.AddControllers();
+            services.AddTransient<AutoMailer>();
             services.AddTransient<CategoryImageSave>();
             services.AddTransient<CategoryImageUpload>();
             services.AddTransient<UserProfileImageSave>();

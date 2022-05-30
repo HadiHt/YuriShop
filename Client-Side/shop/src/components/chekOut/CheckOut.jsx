@@ -32,6 +32,11 @@ export const AddOrderPurchase = (orderId, data) => {
     },
     data: object,
   };
+  Axios(config)
+    .then(function (response) {})
+    .catch(function (error) {
+      console.log(error);
+    });
   console.log(data.productId);
   Axios.get("http://localhost:5000/api/Products/" + data.productId)
     .then((res) => {

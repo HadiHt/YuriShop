@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, createContext } from "react";
+import { localStorage } from "../LocalStorage";
 
 export const userContext = createContext('');
 
@@ -8,7 +9,7 @@ export const UserProvider = (props) => {
     const [user,setUser] =useState('');
 
     return(
-        <userContext.Provider value={{user,setUser}}>
+        <userContext.Provider value={{user:JSON.parse(window.localStorage.getItem("USER_DATA")) ? JSON.parse(window.localStorage.getItem("USER_DATA")) : user,setUser}}>
             {props.children}
         </userContext.Provider>
     );
