@@ -304,5 +304,18 @@ namespace YuriShopV1.Controllers
             else { return Conflict(new { message = "This Username is already taken!" }); }
             
         }
+        [HttpDelete("{id}/wish")]
+        public ActionResult DeleteProduct(int id)
+        {
+            var wishlist = _wishlistRepo.GetWishListByWishListId(id);
+            if (wishlist == null)
+            {
+                return NotFound();
+            }
+            _wishlistRepo.DeleteWishList(wishlist);
+            _wishlistRepo.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

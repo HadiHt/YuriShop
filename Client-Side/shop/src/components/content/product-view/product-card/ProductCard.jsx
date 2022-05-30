@@ -10,9 +10,12 @@ const ProductItem = ({ product, type }) => {
 
     const [Data, setData] = useState([]);
     const { cart, setCart } = useContext(cartContext);
+    const [ isWishlist, setIsWishlist ] = useState(false);
     const [SHop, setShop] = useState([]);
     const {shop}=useContext(shopContext);
-    const {user}=useContext(userContext)
+    const {user}=useContext(userContext);
+    const [Wishlist, SetWishlist] = useState([]);
+
     useEffect(() => {
         Axios.get('http://localhost:5000/api/Images/Product/productid' + product.productId)
             .then(res => {
@@ -24,7 +27,35 @@ const ProductItem = ({ product, type }) => {
                         setShop(res.data);
                     }).catch(err => console.log(err))
             }).catch(err => console.log(err))
-    }, [product]);
+         Axios.get('http://localhost:5000/api/Users/'+user.userId+'/wishlist')
+            .then(res => {
+                res.data.filter((wProduct)=>{
+                    if(wProduct.productRefId==product.productId){
+                        setIsWishlist(true);
+                        console.log(isWishlist)
+                        SetWishlist(wProduct)
+                    }
+                })
+            }).catch(err => console.log(err))
+    }, [product,isWishlist]);
+
+    const addToWishList = () =>{
+        Axios.post('http://localhost:5000/api/Users/'+user.userId+'/wishlist',
+            {
+                userRefId:user.userId,
+                productRefId:product.productId
+            }
+        )
+            .then(res => {
+                setIsWishlist(true);
+            }).catch(err => console.log(err))
+    }
+    const deleteFromWishList = () =>{
+        Axios.delete('http://localhost:5000/api/Users/'+Wishlist.wishListId+'/wish')
+            .then(res => {
+                setIsWishlist(false);
+            }).catch(err => console.log(err))
+    }
 
     const removeProductFromCart = (e) => {
         const arr1 = cart.filter((data) => {
@@ -62,7 +93,7 @@ const ProductItem = ({ product, type }) => {
             <div className="product_box">
                 <div className='product_header'>
                     <h2>{product.name}</h2>
-                    <i className='fav fa fa-heart'></i>
+                    <i onClick={isWishlist? deleteFromWishList:addToWishList} className={isWishlist? 'red fa fa-heart' : 'grey fa fa-heart'}></i>
                 </div>
                 {type === "view" ? <span>{product.price}K L.L</span> : ""}
                 <p>{product.category}</p>
