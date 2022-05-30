@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using YuriShopV1.Controllers;
 using YuriShopV1.Data;
 using YuriShopV1.Data.Addresses;
 using YuriShopV1.Data.Applications;
@@ -43,6 +44,7 @@ namespace YuriShopV1
                 Configuration.GetConnectionString("YuriConnection")));
 
             services.AddControllers();
+            services.AddTransient<UsersController>();
             services.AddTransient<AutoMailer>();
             services.AddTransient<CategoryImageSave>();
             services.AddTransient<CategoryImageUpload>();
