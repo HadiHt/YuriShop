@@ -1,9 +1,15 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
 using YuriShopV1.Data.Users;
 using YuriShopV1.Dtos.Products;
+using YuriShopV1.Dtos.WishLists;
 using YuriShopV1.Models;
 
 namespace YuriShopV1.Controllers
@@ -18,14 +24,18 @@ namespace YuriShopV1.Controllers
         private readonly IPurchaseRepo _orderRepo;
         private readonly IUserRepo _userRepo;
         private readonly IProductRepo _productRepo;
+        private readonly UsersController _usersController;
+        private readonly IWishListRepo _wishlistRepo;
 
-        public ProductsController(IMapper mapper, ICardRepo cardRepo, IPurchaseRepo orderRepo, IUserRepo userRepo, IProductRepo productRepo)
+        public ProductsController(IMapper mapper, ICardRepo cardRepo, IPurchaseRepo orderRepo, IUserRepo userRepo, IProductRepo productRepo, UsersController usersController, IWishListRepo wishlistRepo)
         {
             _mapper = mapper;
             _cardRepo = cardRepo;
             _orderRepo = orderRepo;
             _userRepo = userRepo;
             _productRepo = productRepo;
+            _usersController = usersController;
+            _wishlistRepo = wishlistRepo;
         }
 
         [HttpGet]
@@ -34,6 +44,27 @@ namespace YuriShopV1.Controllers
             var Products = _productRepo.GetAllProducts();
             return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(Products));
         }
+
+        [HttpGet("Recommended/{id}")]
+        public async Task<string> GetRecommendedProducts(int id)
+        {
+            var wishlist = _wishlistRepo.GetAllWishListsByUserId(id);
+            if (wishlist != null)
+            {
+                var client = new HttpClient();
+                var productID = _mapper.Map<IEnumerable<WishListReadDto>>(wishlist).First().ProductRefId;
+                var response = await client.GetAsync($"http://127.0.0.1:8000/{productID}");
+
+                var result = await response.Content.ReadAsStreamAsync();
+                result.Position = 0;
+                var streamReader = new StreamReader(result);
+                var pythonResult = streamReader.ReadToEnd();
+                return pythonResult;
+            }
+            return null;
+
+        }
+
         [HttpGet("{id}", Name ="GetProductById")]
         public ActionResult<ProductReadDto> GetProductById(int id)
         {
