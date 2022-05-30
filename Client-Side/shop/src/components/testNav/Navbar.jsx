@@ -92,8 +92,11 @@ const Navbar = () => {
               <button
                 className="but"
                 onClick={() => {
-                  window.localStorage.clear();
-                  window.location.reload();
+                  navigate("/");
+                  setTimeout(function () {
+                    window.localStorage.clear();
+                    window.location.reload();
+                  }, 500);
                 }}
               >
                 Log Out
