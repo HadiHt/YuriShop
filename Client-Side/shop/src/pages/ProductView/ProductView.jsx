@@ -42,7 +42,8 @@ function ProductView() {
               type="number"
               id={"quantity-" + Data.productId}
               name="quantity"
-              min={0}
+              placeholder={1}
+              min={1}
               max={Data.quantity}
             />
           </form>

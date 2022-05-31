@@ -16,7 +16,8 @@ const AddToCart = ({ id }) => {
       Axios.get('http://localhost:5000/api/Products/' + e.target.id)
         .then(res => {
           // console.log(res.data);
-          res.data.quantity = document.getElementById('quantity-' + e.target.id).value;
+          var valuee =document.getElementById('quantity-' + e.target.id).value
+          res.data.quantity = valuee==""?1:valuee
           setObject(res.data);
           setCart([...cart,
           res.data]);
