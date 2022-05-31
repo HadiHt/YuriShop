@@ -53,6 +53,7 @@ export const AddOrderPurchase = (orderId, data) => {
         size: data.size,
         price: data.price,
         quantity: res.data.quantity - parseInt(data.quantity),
+        soldQuantity: res.data.soldQuantity + parseInt(data.quantity),
       });
       var config2 = {
         method: "put",
