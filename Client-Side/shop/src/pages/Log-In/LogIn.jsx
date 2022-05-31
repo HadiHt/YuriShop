@@ -10,7 +10,6 @@ import { shopContext } from "../../contexts/shopContext";
 import { orderListContext } from "../../contexts/orderListContext";
 import { allProductContext } from "../../contexts/allProductsContext";
 import EmailOrPasswordIsUncorrect from "../../components/SnackBars/ErrorSnackBar/EmailOrPasswordIsUncorrect";
-import { localStorage } from "../../LocalStorage";
 
 const Login = () => {
   const [email, setEmail] = useState("");

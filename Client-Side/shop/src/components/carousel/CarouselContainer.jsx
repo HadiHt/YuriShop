@@ -41,11 +41,11 @@ const CarouselContainer = () => {
     if (Data1.length != 0) {
       var pids =
         "productid" +
-        Data1[0].productId +
+        Data1[0]?.productId +
         ",productid" +
-        Data1[1].productId +
+        Data1[1]?.productId +
         ",productid" +
-        Data1[2].productId;
+        Data1[2]?.productId;
       axios
         .post("http://localhost:5000/api/images/Products", pids)
         .then((res) => {
@@ -60,11 +60,11 @@ const CarouselContainer = () => {
     if (Data2.length != 0) {
       var pids =
         "productid" +
-        Data2[0].productId +
+        Data2[0]?.productId +
         ",productid" +
-        Data2[1].productId +
+        Data2[1]?.productId +
         ",productid" +
-        Data2[2].productId;
+        Data2[2]?.productId;
       axios
         .post("http://localhost:5000/api/images/Products", pids)
         .then((res) => {
