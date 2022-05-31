@@ -88,6 +88,22 @@ const Navbar = () => {
         </div>
         <div className={"menu__options " + navClass}>
           <li className="navbar__link">
+            {!isGuest && (
+              <button
+                className="but"
+                onClick={() => {
+                  navigate("/");
+                  setTimeout(function () {
+                    window.localStorage.clear();
+                    window.location.reload();
+                  }, 500);
+                }}
+              >
+                Log Out
+              </button>
+            )}
+          </li>
+          <li className="navbar__link">
             {isGuest && (
               <button onClick={() => navigate("/logIn")} className="but">
                 Hello Guest! Sign in

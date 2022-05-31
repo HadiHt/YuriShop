@@ -73,5 +73,14 @@ namespace YuriShopV1.Data.Orders
             }
             _context.Purchase.Remove(purchase);
         }
+
+        public void UpdatePurchase(Purchase purchase)
+        {
+            if (purchase == null)
+            {
+                throw new ArgumentNullException(nameof(purchase));
+            }
+            _context.Purchase.Update(purchase);
+        }
     }
 }
