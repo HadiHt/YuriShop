@@ -6,6 +6,7 @@ import Axios from "axios";
 import "./navbar.css";
 import { cartContext } from "../../contexts/cartContext";
 import { shopContext } from "../../contexts/shopContext";
+import { imageContext } from "../../contexts/imageContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -20,7 +21,8 @@ const Navbar = () => {
   const [Data, setDataa] = useState([]);
   const { user, setUser } = useContext(userContext);
   const { shop, setShop } = useContext(shopContext);
-  if (user !== "") {
+  const {image} = useContext(imageContext);
+  useEffect(()=>{if (user !== "") {
     Axios.get(
       "http://localhost:5000/api/Images/UserProfile/userId" + user.userId
     )
@@ -39,7 +41,7 @@ const Navbar = () => {
         setDataa(res.data);
       })
       .catch((err) => console.log(err));
-  }
+  }},[image])
   if (user === "" && shop === "") {
     isGuest = true;
   } else {

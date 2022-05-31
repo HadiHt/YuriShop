@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../../contexts/userContext";
@@ -10,8 +10,10 @@ import { shopContext } from "../../contexts/shopContext";
 import { orderListContext } from "../../contexts/orderListContext";
 import { allProductContext } from "../../contexts/allProductsContext";
 import EmailOrPasswordIsUncorrect from "../../components/SnackBars/ErrorSnackBar/EmailOrPasswordIsUncorrect";
+import { imageContext } from "../../contexts/imageContext";
 
 const Login = () => {
+  const {image,setPfp}=useContext(imageContext)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { user, setUser } = useContext(userContext);
@@ -51,7 +53,8 @@ const Login = () => {
       })
       .catch((err) => SetEmailNotFound(true));
   };
-
+  useEffect(()=>{setPfp(user,shop)
+    console.log(image)},[user,shop])
   const { setAddress } = useContext(addressContext);
   return (
     <div className="page login">
