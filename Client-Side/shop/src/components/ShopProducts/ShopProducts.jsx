@@ -13,7 +13,8 @@ const ShopProducts = () => {
   const { shop } = useContext(shopContext);
   const { user } = useContext(userContext);
   const [checkuser, setCheckUser] = useState(false);
-  useEffect(() => {
+  const [Deleted, setDeleted] = useState(false);
+  const func = () => {
     Axios.get("http://localhost:5000/api/Products/" + params.id + "/shop")
       .then((res) => {
         console.log(res.data);
@@ -33,6 +34,9 @@ const ShopProducts = () => {
         setCheckUser(false);
       }
     }
+  }
+  useEffect(() => {
+    func()
   }, [params.id]);
 
   const arr = Data.map((data, index) => {
@@ -56,9 +60,13 @@ const ShopProducts = () => {
       )
         .then((res) => {
           console.log(res.data);
+          if(i==toDelete.length-1){
+            func()
+          }
         })
         .catch((err) => console.log(err));
     }
+    
   }
   return (
     <div className="ShopProductsContainer">
@@ -72,6 +80,7 @@ const ShopProducts = () => {
         {checkuser && <div className="OrderColumnInfo">Delete All</div>}
       </div>
       {arr}
+      {console.log(checkuser)}
       <div className="OrderColumnContainer">
         {checkuser && (
           <button className="OrderColumnInfo" onClick={massDelete}>

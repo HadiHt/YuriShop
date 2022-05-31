@@ -10,15 +10,13 @@ const Carousel = ({ Data1, img, title }) => {
     if (currentIndex + 1 != Data1.length) {
       setCurrentIndex(currentIndex + 1);
     } else {
-      {
-        setCurrentIndex(0);
-      }
+      setCurrentIndex(0);
     }
   };
   setTimeout(next, 3000);
   var id;
   if (Data1.length != 0) {
-    id = Data1[currentIndex].productId;
+    id = Data1[currentIndex]?.productId;
   }
   const prev = () => {
     if (currentIndex > 0) {

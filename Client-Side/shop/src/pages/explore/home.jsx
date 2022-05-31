@@ -12,7 +12,6 @@ import { shopContext } from "../../contexts/shopContext";
 import { orderListContext } from "../../contexts/orderListContext";
 import { allProductContext } from "../../contexts/allProductsContext";
 import EmailOrPasswordIsUncorrect from "../../components/SnackBars/ErrorSnackBar/EmailOrPasswordIsUncorrect";
-import { localStorage } from "../../LocalStorage";
 
 const Home = () => {
   const [Data, setData] = useState([]);
@@ -36,7 +35,7 @@ const Home = () => {
     // console.log(allProducts);
     // console.log(address);
  //   window.localStorage.clear();
-    localStorage(user, address, allProducts);
+    //localStorage(user, address, allProducts);
     //console.log(user);
   }, []);
 
