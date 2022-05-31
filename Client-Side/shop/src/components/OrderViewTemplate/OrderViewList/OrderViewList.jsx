@@ -22,7 +22,7 @@ const OrderViewList = () => {
         console.log(arr1);
         return (
             <div key={index} className='RowOfContents'>
-                <div>{arr1[0].name}</div>
+                <div>{arr1[0]?.name}</div>
                 <div>{data.productState}</div>
             </div>
         )

@@ -7,6 +7,7 @@ import Category from "../../components/content/category/Category";
 import { cardContext } from "../../contexts/cardContext";
 import { userContext } from "../../contexts/userContext";
 import { addressContext } from "../../contexts/addressContext";
+import CarouselContainer from "../../components/carousel/CarouselContainer";
 import { shopContext } from "../../contexts/shopContext";
 import { orderListContext } from "../../contexts/orderListContext";
 import { allProductContext } from "../../contexts/allProductsContext";
@@ -29,13 +30,13 @@ const Home = () => {
       })
       .catch((err) => console.log(err));
 
-    console.log(user);
-    console.log(shop);
-    console.log(orderList);
-    console.log(allProducts);
-    console.log(address);
-    window.localStorage.clear();
-    //localStorage(user, address, allProducts);
+    // console.log(user);
+    // console.log(shop);
+    // console.log(orderList);
+    // console.log(allProducts);
+    // console.log(address);
+ //   window.localStorage.clear();
+    localStorage(user, address, allProducts);
     //console.log(user);
   }, []);
 
@@ -47,8 +48,12 @@ const Home = () => {
   return (
     <div className="home page">
       <div className="home__container">
-        <Slider />
-        <div className="home__row">{arr}</div>
+        {/* <Slider /> */}
+        {/* <TestSlider /> */}
+        <CarouselContainer/>
+        <div className="home__row">
+          {arr}
+        </div>
       </div>
     </div>
   );

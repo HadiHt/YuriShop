@@ -4,39 +4,58 @@ import SlideClick from "./SlideClick";
 import Axios from "axios";
 
 const Slider = () => {
-  const [Data, setData] = useState([]);
   const [images, setimg] = useState("");
-  useEffect(() => {
-    Axios.get("http://localhost:5000/api/Products/Category/electronics")
-      .then((res) => {
-        setData(res.data);
+  const [Data1,setData1] = useState([]);
+  const [slideIndex,setSlideIndex] = useState()
+useEffect(() => {
+  var s = [];
+  Axios
+    .get("http://localhost:5000/api/Products")
+    .then((res) => {
+      let HighestToLowest = res.data.sort((a, b) => b.soldQuantity - a.soldQuantity);
+      //  console.log(HighestToLowest)
+      console.log(HighestToLowest);
+      setData1(HighestToLowest);
+      Data1.map((data)=>{
+          Axios.get('http://localhost:5000/api/Images/Product/productid' + data.productId)
+          .then(res => {
+              console.log(res.data);
+              s.push(
+                "data:image/png;base64,"+res.data
+              )
+              if(s.length===3){
+                setimg(s)
+                console.log(s);
+              }
+          }).catch(err => console.log(err))
       })
-      .catch((err) => console.log(err));
-  }, []);
-  const [slideIndex, setSlideIndex] = useState(1);
+    })
+    .catch((err) => console.log(err));
+}, []);
+
+useEffect(()=>{
+
+},[slideIndex])
 
   const nextSlide = () => {
-    if (slideIndex !== Data.length) {
+    if (slideIndex !== Data1.length) {
       setSlideIndex(slideIndex + 1);
-    } else if (slideIndex === Data.length) {
+    } else if (slideIndex === Data1.length) {
       setSlideIndex(1);
     }
-    setimg(Data[slideIndex - 1].image);
   };
 
   const prevSlide = () => {
     if (slideIndex !== 1) {
       setSlideIndex(slideIndex - 1);
     } else if (slideIndex === 1) {
-      setSlideIndex(Data.length);
+      setSlideIndex(Data1.length);
     }
-    setimg(Data[slideIndex - 1].image);
   };
 
   const moveDot = (index) => {
-    setimg(Data[slideIndex - 1].image);
   };
-
+  console.log(images)
   return (
     <div className="slider-container">
       <div className="picContainer">
@@ -47,7 +66,7 @@ const Slider = () => {
             slideIndex === slideIndex + 1 ? "slide active-anim" : "slide"
           }
         >
-          <img src={"data:image/png;base64," + images} />
+          <img src={images[slideIndex]} />
         </div>
         <SlideClick direction="next" moveSlide={nextSlide} />
       </div>

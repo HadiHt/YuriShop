@@ -106,5 +106,29 @@ namespace YuriShopV1.Controllers
             var purchases = _purchaseRepo.GetAllPurchases();
             return Ok(_mapper.Map<IEnumerable<PurchaseReadDto>>(purchases));
         }
+        [HttpGet("{id}/purchase")]
+        public ActionResult<PurchaseReadDto> GetPurchaseById(int id)
+        {
+            var purchase = _purchaseRepo.GetPurchaseById(id);
+            if (purchase != null)
+            {
+                return Ok(purchase);
+            }
+            return NotFound();
+        }
+        [HttpPut("{id}/purchase")]
+        public ActionResult UpdatePurchase(int id, PurchaseUpdateDto purchase)
+        {
+            var PurchaseModelFromRepo = _purchaseRepo.GetPurchaseById(id);
+            if (PurchaseModelFromRepo == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(purchase, PurchaseModelFromRepo);
+            _purchaseRepo.UpdatePurchase(PurchaseModelFromRepo);
+            _purchaseRepo.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace YuriShopV1.Data.Users
         //IEnumerable<OrderJoinedPurchases> GetAllOrdersByUserId(int id);
         Purchase GetPurchaseById(int id);
         void CreatePurchase(Purchase purchase);
-        //void UpdatePurchase(Order order);
+        void UpdatePurchase(Purchase purchase);
         void DeletePurchase(Purchase purchase);
         bool SaveChanges();
     }
