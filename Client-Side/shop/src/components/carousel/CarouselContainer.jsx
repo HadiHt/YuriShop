@@ -12,6 +12,7 @@ const CarouselContainer = () => {
   const [img, setimg] = useState([]);
   const [img2, setimg2] = useState([]);
   const [img3, setimg3] = useState([]);
+  const [recommended, SetRecommended] = useState(false);
 
   useEffect(() => {
     axios
@@ -35,16 +36,19 @@ const CarouselContainer = () => {
       .then((res) => {
         var rpids = Object.keys(res.data);
         var products = [];
-        rpids.map((rpid) => {
+        console.log(res.data);
+        rpids.map((rpid, index) => {
           axios
             .get("http://localhost:5000/api/Products/" + rpid)
             .then((res) => {
               products.push(res.data);
+              if (3 == products.length) {
+                setData3(products);
+              }
               //console.log(latest);
               //setData2(latest);
             });
           console.log(products);
-          setData3(products);
         });
         //   setData2(latest);
       })
@@ -67,11 +71,11 @@ const CarouselContainer = () => {
     if (Data1.length != 0) {
       var pids =
         "productid" +
-        Data1[0]?.productId +
+        Data1[0].productId +
         ",productid" +
-        Data1[1]?.productId +
+        Data1[1].productId +
         ",productid" +
-        Data1[2]?.productId;
+        Data1[2].productId;
       axios
         .post("http://localhost:5000/api/images/Products", pids)
         .then((res) => {
@@ -86,11 +90,11 @@ const CarouselContainer = () => {
     if (Data2.length != 0) {
       var pids =
         "productid" +
-        Data2[0]?.productId +
+        Data2[0].productId +
         ",productid" +
-        Data2[1]?.productId +
+        Data2[1].productId +
         ",productid" +
-        Data2[2]?.productId;
+        Data2[2].productId;
       axios
         .post("http://localhost:5000/api/images/Products", pids)
         .then((res) => {
@@ -101,24 +105,35 @@ const CarouselContainer = () => {
     }
   }, [Data2]);
   useEffect(() => {
-    //   console.log("beh");
+    console.log("beh");
     if (Data3.length != 0) {
+      console.log("first if");
       var pids =
         "productid" +
-        Data3[0]?.productId +
+        Data3[0].productId +
         ",productid" +
-        Data3[1]?.productId +
+        Data3[1].productId +
         ",productid" +
-        Data3[2]?.productId;
+        Data3[2].productId;
       axios
         .post("http://localhost:5000/api/images/Products", pids)
         .then((res) => {
+          console.log(res.data.length + " lenght");
           console.log(res.data);
           setimg3(res.data);
+          if (res.data.length != 0) {
+            console.log("inside if");
+            SetRecommended(true);
+          }
+          console.log("outside if");
         })
         .catch((err) => console.log(err));
     }
   }, [Data3]);
+
+  useEffect(() => {
+    console.log("test");
+  }, [recommended]);
 
   return (
     <div className="carousels-container">
@@ -126,12 +141,12 @@ const CarouselContainer = () => {
         <Carousel Data1={Data1} img={img} title={"Best Sellers"} />
       </div>
       <div className="carousel-container">
-        {Data3.length == 0 && (
+        {recommended == false && (
           <Carousel Data1={Data2} img={img2} title={"Latest Products"} />
         )}
         {/* <Carousel Data1={Data2} img={img2} title={"Latest Products"}/> */}
-        {Data3.length != 0 && (
-          <Carousel Data1={Data3} img={img3} title={"Yuri Recommendations"} />
+        {recommended == true && (
+          <Carousel Data1={Data3} img={img3} title={"Yuri's Recommendations"} />
         )}
       </div>
     </div>

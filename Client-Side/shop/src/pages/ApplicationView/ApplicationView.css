@@ -29,7 +29,8 @@ tr.ApplicationRow {
   justify-content: space-around;
 }
 .ApplicationAcceptButton,
-.ApplicationDenyButton {
+.ApplicationDenyButton,
+.GotoUserButton {
   background-image: linear-gradient(to right, #6e6b6b, #8c8d8f);
   border-radius: 25px;
   color: #ffffff;
@@ -39,7 +40,8 @@ tr.ApplicationRow {
   width: 140px;
 }
 .ApplicationAcceptButton:hover,
-.ApplicationDenyButton:hover {
+.ApplicationDenyButton:hover,
+.GotoUserButton:hover {
   background-image: linear-gradient(to right, #5c5a5a, #939699);
   text-decoration: none;
 }

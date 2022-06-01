@@ -122,7 +122,7 @@ const Admin = () => {
               <td>{Application.phoneNumber}</td>
             </tr>
             <tr className="ApplicationRow">
-              <td>City: </td>
+              <td>State: </td>
               <td>{Application.state}</td>
             </tr>
             <tr className="ApplicationRow">
@@ -161,6 +161,7 @@ const Admin = () => {
               <td>User: </td>
               <td>
                 <button
+                  className="GotoUserButton"
                   onClick={() =>
                     navigate("/UserProfile/" + Application.userRefId)
                   }

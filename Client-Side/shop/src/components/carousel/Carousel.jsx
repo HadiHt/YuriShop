@@ -12,7 +12,6 @@ const Carousel = ({ Data1, img, title }) => {
     } else {
       setCurrentIndex(0);
     }
-    console.log(currentIndex);
   };
   setTimeout(next, 3000);
   var id;
