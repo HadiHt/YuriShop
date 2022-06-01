@@ -41,11 +41,6 @@ export const AddOrderPurchase = (orderId, data) => {
   Axios.get("http://localhost:5000/api/Products/" + data.productId)
     .then((res) => {
       console.log(res.data);
-      Axios(config)
-        .then(function (response) {})
-        .catch(function (error) {
-          console.log(error);
-        });
       var object2 = JSON.stringify({
         name: data.name,
         category: data.category,
@@ -53,10 +48,12 @@ export const AddOrderPurchase = (orderId, data) => {
         size: data.size,
         price: data.price,
         quantity: res.data.quantity - parseInt(data.quantity),
+        soldQuantity: res.data.soldQuantity + parseInt(data.quantity),
       });
       var config2 = {
         method: "put",
-        url: "http://localhost:5000/api/Products/"+data.productId+"/product",
+        url:
+          "http://localhost:5000/api/Products/" + data.productId + "/product",
         headers: {
           "Content-Type": "application/json",
         },

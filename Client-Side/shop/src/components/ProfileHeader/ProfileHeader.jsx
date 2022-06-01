@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { shopContext } from "../../contexts/shopContext";
 import { userContext } from "../../contexts/userContext";
+import { imageContext } from "../../contexts/imageContext";
 import "./ProfileHeader.css";
 
 const ProfileHeader = (props) => {
@@ -18,6 +19,8 @@ const ProfileHeader = (props) => {
   const [ImageExist, SetImageExist] = useState(["none", "block-inline"]);
   const [displayedUsername, SetDisplayedUsername] = useState("");
   const [imgChange, SetImageChange] = useState(false);
+  const { image, setPfp } = useContext(imageContext);
+
   var base64String = "";
   var tempUser;
   if (shop === "") {
@@ -156,6 +159,7 @@ const ProfileHeader = (props) => {
         Axios.post("http://localhost:5000/api/images/" + arr[3], finishedBase)
           .then((res) => {
             SetImageChange((prevValue) => (prevValue = !prevValue));
+            setPfp(user, shop);
           })
           .catch((err) => {
             console.log(err);

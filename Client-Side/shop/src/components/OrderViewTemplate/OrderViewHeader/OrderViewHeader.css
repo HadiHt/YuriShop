@@ -1,20 +1,23 @@
-.OrderViewHeader{
-    background-color: grey;
-    border-top-right-radius: 11px;
-    border-top-left-radius: 11px;
-    width: 100%;
+.OrderViewHeader {
+  background-image: linear-gradient(to right, #818181, #979a9c);
+  border-top-right-radius: 11px;
+  border-top-left-radius: 11px;
+  width: 100%;
 }
-.OrderPreviewLogo{
-    text-align: center;
-    padding-right: 40px;
-    padding-left: 40px;
+.OrderPreviewLogo {
+  text-align: center;
+  padding-right: 40px;
+  padding-left: 40px;
 }
-.OrderPreviewLogo img{
-    font-size: 40pt;
-    border-radius: 100%;
-    background-color: white;
-    color: black;
-    border: 2px solid rgb(90, 85, 85);
-    width: 50%;
-    height: 60%;
+.OrderPreviewLogo img {
+  font-size: 40pt;
+  border-radius: 100%;
+  background-color: white;
+  color: black;
+  border: 2px solid rgb(90, 85, 85);
+  width: 50%;
+  height: 60%;
+}
+.OrderViewHeaderText {
+  color: white;
 }

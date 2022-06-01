@@ -1,7 +1,21 @@
-.ShopProductsContainer{
-    border-radius: 8px;
-    border: 2px solid rgb(126 123 128);
-    background-color: white;
-    display: flex;
-    flex-direction: column;
+.ShopProductsContainer {
+  border-radius: 8px;
+  border: 2px solid rgb(126 123 128);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+.DeleteAllButton {
+  background-image: linear-gradient(to right, #818181, #979a9c);
+  border-radius: 25px;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 7px 14px 7px 14px;
+  text-decoration: none;
+  width: 20%;
+  margin-top: 5px;
+}
+.DeleteAllButton:hover {
+  background-image: linear-gradient(to right, #747171, #aaadaf);
+  text-decoration: none;
 }

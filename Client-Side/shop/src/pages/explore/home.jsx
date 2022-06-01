@@ -35,8 +35,8 @@ const Home = () => {
     // console.log(orderList);
     // console.log(allProducts);
     // console.log(address);
- //   window.localStorage.clear();
-    localStorage(user, address, allProducts);
+    //   window.localStorage.clear();
+    //  localStorage(user, address, allProducts);
     //console.log(user);
   }, []);
 
@@ -50,10 +50,8 @@ const Home = () => {
       <div className="home__container">
         {/* <Slider /> */}
         {/* <TestSlider /> */}
-        <CarouselContainer/>
-        <div className="home__row">
-          {arr}
-        </div>
+        <CarouselContainer />
+        <div className="home__row">{arr}</div>
       </div>
     </div>
   );

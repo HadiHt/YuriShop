@@ -1,14 +1,30 @@
-.ShopOrderColumnContainer{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    align-items: center;
-    margin-bottom: 10px;
+.ShopOrderColumnContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 10px;
 }
-.ShopOrderColumnInfo{
-    flex: 1;
+.ShopOrderColumnInfo {
+  flex: 1;
 }
-.pimage{
-    width:75px;
+.pimage {
+  width: 75px;
+}
+.ShopOrderColumnbutn {
+  background-image: linear-gradient(to right, #818181, #979a9c);
+  border-radius: 25px;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 7px 14px 7px 14px;
+  text-decoration: none;
+  width: 40%;
+}
+.ShopOrderdiv {
+  flex: 1;
+}
+.ShopOrderColumnbutn:hover {
+  background-image: linear-gradient(to right, #747171, #aaadaf);
+  text-decoration: none;
 }

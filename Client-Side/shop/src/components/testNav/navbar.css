@@ -11,7 +11,7 @@
   align-items: center;
 }
 .logo_And_Search {
-  flex: 3;
+  flex: 2;
 }
 .menu__options {
   flex: 1;
@@ -19,9 +19,10 @@
 .co {
   display: flex;
   align-items: center;
-  background: rgb(70, 67, 67);
+  background: rgb(104, 104, 104);
   color: white;
   width: 100%;
+  column-gap: 20px;
   list-style: none;
 }
 .navbar__logo {
@@ -40,7 +41,7 @@
   display: none;
 }
 .navbar__link :hover {
-  background-color: rgb(92, 97, 97);
+  background-color: rgb(144, 145, 145);
   border-radius: 15px;
   color: white;
   cursor: pointer;
@@ -48,6 +49,9 @@
 .navbar__link {
   width: 100%;
   flex: 1;
+}
+.userProfile {
+  padding-right: 20px;
 }
 .userProfile img {
   border-radius: 100%;
@@ -58,6 +62,11 @@
 }
 .coll {
   display: none;
+}
+@media (max-width: 1000px) {
+  .logo_And_Search {
+    flex: 3;
+  }
 }
 @media (max-width: 700px) {
   .navbar__toogle {
@@ -85,11 +94,11 @@
   }
 }
 .navbar__link button {
-  color: rgb(221, 214, 214);
+  color: white;
 }
 .navbar__link button {
-  color: rgb(221, 214, 214);
+  color: white;
 }
 i {
-  color: rgb(221, 214, 214);
+  color: white;
 }

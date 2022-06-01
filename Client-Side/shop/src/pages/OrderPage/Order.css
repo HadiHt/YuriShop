@@ -1,28 +1,29 @@
 .OrderPageContainer {
-    margin-top: 90px;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    padding-top: 25px;
-  }
+  margin-top: 90px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
 .OrdersContainer {
-    flex: 3;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    justify-items: center;
-    align-items: center;
-    justify-content: flex-start;
-    padding-right: 20px;
-    border-right: solid 1px grey;
-  }
+  border-radius: 8px;
+  margin: 0px 0px 30px 30px;
+  border: 2px solid rgb(126 123 128);
+  background-color: white;
+  flex: 3;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  border-right: solid 1px grey;
+}
 .OrderPreview {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-.orderPreviewContent{
-    position: fixed;
-    padding-left: 40px;
-    padding-top: 60px ;
-    width: 19vw;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.orderPreviewContent {
+  position: fixed;
+  padding-left: 40px;
+  padding-top: 60px;
+  width: 19vw;
 }

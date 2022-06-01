@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import { userContext } from "../../contexts/userContext";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useParams, Link } from "react-router-dom";
 import Axios from "axios";
 import "./LatestOrder.css";
@@ -16,6 +17,7 @@ const Order = () => {
   const [Products, SetProducts] = useState([]);
   const [LatestProductsImages, SetLatestProductsImages] = useState([]);
   const params = useParams();
+  let navigate = useNavigate();
   let User = tempUser;
   var productsid = [];
   var imgproductsid = [];
@@ -105,13 +107,13 @@ const Order = () => {
           </div>
         ))}
       </div>
-      <a
+      <div
         className="OrdersPageRedirectLink"
         style={{ display: OrderExist[1] }}
-        href="http://localhost:3000/user/order/id"
+        onClick={() => navigate("/order")}
       >
         See All Orders...
-      </a>
+      </div>
     </div>
   );
 };

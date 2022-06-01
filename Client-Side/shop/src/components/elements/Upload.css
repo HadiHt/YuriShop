@@ -1,22 +1,22 @@
-.uploadContainer{
-    margin-top: 60px;
+.uploadContainer {
+  margin-top: 60px;
 }
-.productImage{
-    margin: auto;
-    width: 200px;
-    height: 200px;
+.productImage {
+  margin: auto;
+  width: 200px;
+  height: 200px;
 }
 .custom-file-input::-webkit-file-upload-button {
-    background-image: linear-gradient(to right, #464343, #7b7e80);
-    border-radius: 15px;
-    color: #ffffff;
-    font-size: 13px;
-    padding: 7px 14px 7px 14px;
-    text-decoration: none;
-    margin-bottom: 10px;
-  }
+  background-image: linear-gradient(to right, #818181, #979a9c);
+  border-radius: 25px;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 7px 14px 7px 14px;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
 
 .custom-file-input:hover::-webkit-file-upload-button {
-    background-image: linear-gradient(to right, #5c5a5a, #939699);
-    text-decoration: none;
+  background-image: linear-gradient(to right, #747171, #aaadaf);
+  text-decoration: none;
 }

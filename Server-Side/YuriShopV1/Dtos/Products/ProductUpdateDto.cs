@@ -18,6 +18,7 @@ namespace YuriShopV1.Dtos.Products
         public double Price { get; set; }
         [Required]
         public int Quantity { get; set; }
+        public int SoldQuantity { get; set; }
 
     }
 }

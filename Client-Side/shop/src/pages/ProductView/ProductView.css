@@ -1,55 +1,81 @@
-.detail{
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 15px;
-    border: 2px solid #7e7b80;
-    width: 75%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    font-size: 150%;
-    background-color: white;
+.ProductViewMainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.detail img{
-    margin: 20px;
-    height: 450px;
-    object-fit: cover;
-    display: block;
+.detail {
+  border-radius: 15px;
+  border: 2px solid #7e7b80;
+  width: 45%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  font-size: 150%;
+  background-color: white;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
 }
-.box-detail{
-    max-width: 500px;
-    width: 100%;
-    margin: 5px 20px;
+
+.detail img {
+  margin: 20px;
+  height: 450px;
+  display: block;
+  width: 90%;
 }
-.box-detail .row{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.box-detail h2{
-    text-transform: uppercase;
-    color: rgb(105, 103, 103);
-    letter-spacing: 2px;
-    font-weight: 2rem;
-}
-.box-detail p{
-    line-height: 1.5;
-    margin: 10px 0;
-    opacity: 0.8;
-}
-.cart{
-    margin-top: 10px;
-    border-radius: 15px;
-    background-color: rgb(70, 67, 67);
-    color: darkgrey;
-    border-style: none;
-    width: 100px;
-    height: 53px;
-    font-size: 11pt;
-    cursor: pointer;
-    align-items: center;
+@media screen and (max-width: 1000px) {
+  .detail img {
+    width: 80%;
+    height: 400px;
   }
-  .cart:hover{
-    background-color:  #7e7b80;
-    color: white;
+}
+@media screen and (max-width: 800px) {
+  .detail img {
+    width: 65%;
+    height: 330px;
   }
+}
+@media screen and (max-width: 600px) {
+  .detail img {
+    width: 60%;
+    height: 200px;
+  }
+}
+.box-detail {
+  max-width: 500px;
+  width: 100%;
+  margin: 5px 20px;
+}
+.box-detail .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.box-detail h2 {
+  text-transform: uppercase;
+  color: rgb(105, 103, 103);
+  letter-spacing: 2px;
+  font-weight: 2rem;
+}
+.box-detail p {
+  line-height: 1.5;
+  margin: 10px 0;
+  opacity: 0.8;
+}
+.ButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0px 5px 0px;
+}
+.CartButton {
+  background-image: linear-gradient(to right, #818181, #979a9c);
+  border-radius: 25px;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 7px 14px 7px 14px;
+  text-decoration: none;
+}
+.CartButton:hover {
+  background-image: linear-gradient(to right, #747171, #aaadaf);
+  text-decoration: none;
+}

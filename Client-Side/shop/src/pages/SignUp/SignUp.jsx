@@ -30,13 +30,16 @@ const SignUp = () => {
           })
             .then(function (response) {
               SetEmailCreated(true);
-              const finishedBase = "userId"+response.data.userId+":"+defaultPfp;
-              console.log(finishedBase)
+              const finishedBase =
+                "userId" + response.data.userId + ":" + defaultPfp;
+              console.log(finishedBase);
               Axios.post(
                 "http://localhost:5000/api/images/UserProfile",
                 finishedBase
               )
-                .then((res) => {console.log("done")})
+                .then((res) => {
+                  console.log("done");
+                })
                 .catch((err) => {
                   console.log("error");
                 });
@@ -101,13 +104,6 @@ const SignUp = () => {
 
   return (
     <div className="page signup">
-      <Link to="/">
-        <div className="signup__logo">
-          <h2>
-            logo <i className="fa fa-instagram"></i>
-          </h2>
-        </div>
-      </Link>
       <div className="signup__container">
         <h1>Sign-Up</h1>
         <div>
@@ -140,7 +136,7 @@ const SignUp = () => {
           setOpen={SetEmailNotFound}
         />
         <UserAccountCreated open={EmailCreated} setOpen={SetEmailCreated} />
-        <p>
+        <p className="AgreeText">
           By signing-up you agree to the Yuri Shop Conditions of Use & Sale.
         </p>
       </div>

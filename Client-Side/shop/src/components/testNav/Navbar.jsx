@@ -6,6 +6,7 @@ import Axios from "axios";
 import "./navbar.css";
 import { cartContext } from "../../contexts/cartContext";
 import { shopContext } from "../../contexts/shopContext";
+import { imageContext } from "../../contexts/imageContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -20,26 +21,29 @@ const Navbar = () => {
   const [Data, setDataa] = useState([]);
   const { user, setUser } = useContext(userContext);
   const { shop, setShop } = useContext(shopContext);
-  if (user !== "") {
-    Axios.get(
-      "http://localhost:5000/api/Images/UserProfile/userId" + user.userId
-    )
-      .then((res) => {
-        //    console.log(res.data);
-        setDataa(res.data);
-      })
-      .catch((err) => console.log(err));
-  }
-  if (shop !== "") {
-    Axios.get(
-      "http://localhost:5000/api/Images/ShopProfile/shopId" + shop.shopId
-    )
-      .then((res) => {
-        //    console.log(res.data);
-        setDataa(res.data);
-      })
-      .catch((err) => console.log(err));
-  }
+  const { image } = useContext(imageContext);
+  useEffect(() => {
+    if (user !== "") {
+      Axios.get(
+        "http://localhost:5000/api/Images/UserProfile/userId" + user.userId
+      )
+        .then((res) => {
+          //    console.log(res.data);
+          setDataa(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+    if (shop !== "") {
+      Axios.get(
+        "http://localhost:5000/api/Images/ShopProfile/shopId" + shop.shopId
+      )
+        .then((res) => {
+          //    console.log(res.data);
+          setDataa(res.data);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [image]);
   if (user === "" && shop === "") {
     isGuest = true;
   } else {
@@ -88,22 +92,6 @@ const Navbar = () => {
         </div>
         <div className={"menu__options " + navClass}>
           <li className="navbar__link">
-            {!isGuest && (
-              <button
-                className="but"
-                onClick={() => {
-                  navigate("/");
-                  setTimeout(function () {
-                    window.localStorage.clear();
-                    window.location.reload();
-                  }, 500);
-                }}
-              >
-                Log Out
-              </button>
-            )}
-          </li>
-          <li className="navbar__link">
             {isGuest && (
               <button onClick={() => navigate("/logIn")} className="but">
                 Hello Guest! Sign in
@@ -116,7 +104,7 @@ const Navbar = () => {
                   navigate("/UserProfile/" + user.userId);
                 }}
               >
-                hello {user.firstName}
+                Hello {user.firstName}
               </button>
             )}
             {shop !== "" && (
@@ -126,7 +114,7 @@ const Navbar = () => {
                   navigate("/ShopProfile/" + shop.shopId);
                 }}
               >
-                hello {shop.userName}
+                Hello {shop.userName}
               </button>
             )}
           </li>
@@ -144,6 +132,19 @@ const Navbar = () => {
               </button>
             </li>
           )}
+          <li className="navbar__link">
+            {!isGuest && (
+              <button
+                className="but"
+                onClick={() => {
+                  navigate("/");
+                  window.location.reload();
+                }}
+              >
+                Log Out
+              </button>
+            )}
+          </li>
         </div>
         {user !== "" || shop !== "" ? (
           <li className="normal userProfile">

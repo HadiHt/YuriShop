@@ -58,14 +58,14 @@ const ShopOrderView = () => {
   return (
     <div className="ShopOrderContainer">
       <div className="OrderColumnContainer">
-        <div className="OrderColumnInfo">picture</div>
-        <div className="OrderColumnInfo">name</div>
-        <div className="OrderColumnInfo">quantity</div>
-        <div className="OrderColumnInfo">click here to see more info</div>
+        <div className="OrderColumnInfo">Picture</div>
+        <div className="OrderColumnInfo">Name</div>
+        <div className="OrderColumnInfo">Quantity</div>
+        <div className="OrderColumnInfo">Click Here To See More Info</div>
       </div>
       <hr />
       {checkuser && <div>{arr}</div>}
-      {!checkuser && <p>Not authorized to view this content</p>}
+      {!checkuser && <p>Not Authorized To View This Content</p>}
     </div>
   );
 };

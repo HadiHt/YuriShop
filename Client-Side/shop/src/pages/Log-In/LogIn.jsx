@@ -3,6 +3,7 @@ import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../../contexts/userContext";
 import Axios from "axios";
+import { useEffect } from "react";
 import { cardContext } from "../../contexts/cardContext";
 import { set } from "../../contexts/cardContext";
 import { addressContext } from "../../contexts/addressContext";
@@ -11,8 +12,10 @@ import { orderListContext } from "../../contexts/orderListContext";
 import { allProductContext } from "../../contexts/allProductsContext";
 import EmailOrPasswordIsUncorrect from "../../components/SnackBars/ErrorSnackBar/EmailOrPasswordIsUncorrect";
 import { localStorage } from "../../LocalStorage";
+import { imageContext } from "../../contexts/imageContext";
 
 const Login = () => {
+  const { image, setPfp } = useContext(imageContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { user, setUser } = useContext(userContext);
@@ -52,18 +55,13 @@ const Login = () => {
       })
       .catch((err) => SetEmailNotFound(true));
   };
-
+  useEffect(() => {
+    setPfp(user, shop);
+    console.log(image);
+  }, [user, shop]);
   const { setAddress } = useContext(addressContext);
   return (
     <div className="page login">
-      <div className="navbar__logo">
-        {" "}
-        <img
-          onClick={() => navigate("/")}
-          alt=""
-          src={process.env.PUBLIC_URL + "/YS_Logo.png"}
-        ></img>
-      </div>
       <div className="login__container">
         <h1>Sign-in</h1>
         <div>
@@ -92,7 +90,7 @@ const Login = () => {
           open={EmailNotFound}
           setOpen={SetEmailNotFound}
         />
-        <p>
+        <p className="AgreeText">
           By signing-in you agree to the Yuri Shop Conditions of Use & Sale.
         </p>
         <button

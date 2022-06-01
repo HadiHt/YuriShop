@@ -1,76 +1,77 @@
 .searchInputs {
-    display: flex;
+  display: flex;
 }
 .search {
-    align-items: center;
-    width:70%;
-    flex: 4;
+  align-items: center;
+  width: 100%;
+  flex: 4;
 }
 .search input {
-    height: 12px;
-    padding: 10px;
-    border: none;
-    border-radius: 15px 0px 0px 15px;
-    width: 60%;
+  height: 12px;
+  padding: 10px;
+  border: none;
+  border-radius: 15px 0px 0px 15px;
+  width: 100%;
 }
 
 .searchIcon {
-    padding: 5px;
-    height: 22px !important;
-    background-color: #7e7b80;
-    align-items: center;
-    border-radius: 0 15px 15px 0;
-    cursor: pointer;
-    width: 22px !important;
+  padding: 5px;
+  height: 22px !important;
+  background-color: #7e7b80;
+  align-items: center;
+  border-radius: 0 15px 15px 0;
+  cursor: pointer;
+  width: 22px !important;
 }
 
 input:focus {
-    outline: none;
+  outline: none;
 }
 
 .searchIcon svg {
-    font-size: 35px;
+  font-size: 35px;
 }
-
+.fa-search {
+  color: white;
+}
 .dataResult {
-    position: absolute;
-    border-radius: 15px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    overflow: hidden;
-    overflow-y: auto;
-    width: 40%;
+  position: absolute;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
+  overflow-y: auto;
+  width: 40%;
 }
-@media (max-width:720px) {
-    .dataResult{
-        width:30%
-    }
+@media (max-width: 720px) {
+  .dataResult {
+    width: 30%;
+  }
 }
-
 
 .dataResult::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .dataResult .dataItem {
-    height: 12px;
-    padding: 10px;
-    border: none;
-    border-radius: 15px 0px 0px 15px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    color: black;
+  height: 12px;
+  padding: 10px;
+  border: none;
+  border-radius: 15px 0px 0px 15px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: black;
 }
 
 .dataItem p {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .dataItem:hover {
-    background-color: lightgrey;
+  background-color: lightgrey;
 }

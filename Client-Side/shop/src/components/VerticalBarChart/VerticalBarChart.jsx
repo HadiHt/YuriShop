@@ -56,29 +56,44 @@ const VerticalBarChart = () => {
     labels,
     datasets: [
       {
-        label: "Arts",
+        label: "Art",
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "rgba(120,190,33, 0.5)",
       },
       {
         label: "Books",
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        backgroundColor: "rgba(146, 200, 50, 0.5)",
       },
       {
-        label: "Clothings",
+        label: "Fashion",
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: "rgba(54, 12, 35, 0.5)",
+        backgroundColor: "rgba(156, 240, 96, 0.5)",
       },
       {
         label: "Electronics",
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: "rgba(154, 12, 35, 0.5)",
+        backgroundColor: "rgba(136, 255, 46, 0.5)",
       },
       {
         label: "Furniture",
         data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        backgroundColor: "rgba(123, 170, 35, 0.5)",
+      },
+      {
+        label: "Accessories",
+        data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+        backgroundColor: "rgba(113, 160, 95, 0.5)",
+      },
+      {
+        label: "Beauty",
+        data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+        backgroundColor: "rgba(100, 150, 75, 0.5)",
+      },
+      {
+        label: "Toys",
+        data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+        backgroundColor: "rgba(60, 170, 85, 0.5)",
       },
     ],
   };

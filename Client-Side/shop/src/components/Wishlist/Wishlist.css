@@ -24,7 +24,7 @@
   float: right;
   top: 0%;
   margin-left: auto;
-  background-image: linear-gradient(to right, #464343, #7b7e80);
+  background-image: linear-gradient(to right, #818181, #979a9c);
   border-radius: 25px;
   color: #ffffff;
   font-size: 13px;
@@ -33,6 +33,6 @@
   text-decoration: none;
 }
 .redirectToProduct:hover {
-  background-image: linear-gradient(to right, #5c5a5a, #939699);
+  background-image: linear-gradient(to right, #747171, #aaadaf);
   text-decoration: none;
 }

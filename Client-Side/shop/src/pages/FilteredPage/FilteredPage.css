@@ -4,6 +4,11 @@
   column-gap: 5%;
   justify-content: center;
 }
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .filter_buttons {
   background-image: linear-gradient(to right, #6e6b6b, #8c8d8f);
   border-radius: 25px;

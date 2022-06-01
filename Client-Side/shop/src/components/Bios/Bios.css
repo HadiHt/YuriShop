@@ -33,7 +33,7 @@
   /*test  */
 }
 .EditProfileButton {
-  background-image: linear-gradient(to right, #6e6b6b, #8c8d8f);
+  background-image: linear-gradient(to right, #818181, #979a9c);
   border-radius: 25px;
   color: #ffffff;
   font-size: 13px;
@@ -42,6 +42,6 @@
 }
 
 .EditProfileButton:hover {
-  background-image: linear-gradient(to right, #5c5a5a, #939699);
+  background-image: linear-gradient(to right, #747171, #aaadaf);
   text-decoration: none;
 }

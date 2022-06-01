@@ -1,3 +1,7 @@
 .VerticalBarChartContainer {
-  padding: 50px 100px 100px 100px;
+  background-color: white;
+  border-radius: 8px;
+  border: 2px solid rgb(126 123 128);
+  margin: 15px;
+  border-radius: 5px;
 }

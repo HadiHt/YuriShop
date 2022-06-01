@@ -58,13 +58,15 @@ const ProductColumn = (product) => {
       <div className="OrderColumnInfo">
         {product.product.quantity - product.product.soldQuantity}
       </div>
-      <button
-        id={product.product.productId}
-        onClick={checkuser ? edit : view}
-        className="OrderColumnInfo"
-      >
-        {checkuser ? "Edit" : "View"}
-      </button>
+      <div className="OrderColumnInfo">
+        <button
+          id={product.product.productId}
+          onClick={checkuser ? edit : view}
+          className="OrderColumnBotnn"
+        >
+          {checkuser ? "Edit" : "View"}
+        </button>
+      </div>
       {checkuser && (
         <input
           id={product.product.productId}

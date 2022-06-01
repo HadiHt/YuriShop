@@ -10,6 +10,7 @@ import { shopContext } from "../../contexts/shopContext";
 const Bios = (props) => {
   const params = useParams();
   const [User, setUser] = useState(props.user1);
+  console.log(props.user1);
   const [visitedUser, setVisistedUser] = useState(null);
   const { user } = useContext(userContext);
   const { shop } = useContext(shopContext);

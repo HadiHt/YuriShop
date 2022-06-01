@@ -7,10 +7,10 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PieChart = () => {
   const data = {
-    labels: ["Arts", "Books", "Clothings", "Electronics", "Furniture"],
+    labels: ["Adidas Shoes", "IPhone 8", "Shirt", "Couch", "LipStick"],
     datasets: [
       {
-        label: "# of Votes",
+        label: "Most Sold Products",
         data: [12, 19, 3, 5, 2, 3],
         backgroundColor: [
           "rgba(255, 99, 132, 0.2)",

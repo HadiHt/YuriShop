@@ -32,6 +32,7 @@ function App() {
       {/* <Header /> */}
       <ContextWrapper>
         <Navbar />
+
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="category/:john" element={<CategoryProducts />} />

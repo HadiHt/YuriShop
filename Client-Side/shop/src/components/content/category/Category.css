@@ -1,24 +1,27 @@
 .category {
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    margin: 10px;
-    padding: 20px;
-    background-color: white;
-    border: 2px solid #7e7b80;;
-    box-shadow: 0 0 15px #ddd;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 10px;
+  padding: 20px 30px 40px 30px;
+  background-color: white;
+  border: 2px solid #7e7b80;
+  box-shadow: 0 0 15px #ddd;
 
-    width: 25%;
+  width: 25%;
 }
 .category__info {
-    height: 100px;
-    margin-bottom: 15px;
+  height: 30px;
+  margin-bottom: 15px;
 }
-.category>img {
-    float: left;
-    width: 90%;
-    height: 90%;
-    object-fit: cover;
+.category > img {
+  float: left;
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+}
+.CatImages {
+  border: 2px solid rgb(191, 194, 194);
 }

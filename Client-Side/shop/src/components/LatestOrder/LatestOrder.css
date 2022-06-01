@@ -25,6 +25,7 @@
   color: rgb(0, 81, 255);
   font-size: 10px;
   padding-left: 20px;
+  cursor: pointer;
 }
 .OrdersPageRedirectLink:hover {
   background-color: white;

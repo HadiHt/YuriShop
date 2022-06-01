@@ -9,4 +9,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 8px;
+  border: 2px solid rgb(126 123 128);
+  background-color: white;
+  margin: 0px 15px 10px 15px;
 }

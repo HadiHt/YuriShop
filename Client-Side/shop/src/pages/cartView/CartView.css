@@ -1,33 +1,39 @@
-.cartProducts{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    justify-items: center;
+.CartViewPage {
+  padding-top: 90px;
 }
-.buttonsContainer{
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    margin-top: 5px;
+.cartProducts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 50px 20px 50px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid rgb(126 123 128);
+  background-color: white;
 }
-.hoemBut{
-    margin:auto;
+.buttonsContainer {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-top: 5px;
 }
-.Buttonn{
-    height: 30px;
-    background-color: rgb(70, 67, 67);
-    color: darkgrey;
-    border-radius: 15px;
-    border-radius: 15px;
-    color: darkgrey;
-    margin: auto;
-    width: 25%px;
-    border: 2px solid rgb(78, 75, 75);
+.hoemBut {
+  margin: auto;
 }
-.Buttonn:hover{
-    background-color:  #7e7b80;
-    color: white;
+.Buttonn {
+  margin: auto;
+  background-image: linear-gradient(to right, #818181, #979a9c);
+  border-radius: 25px;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 7px 14px 7px 14px;
+  text-decoration: none;
 }
-.checkAndButtons{
-    display: flex;
-    flex-direction: column;
+.Buttonn:hover {
+  background-image: linear-gradient(to right, #747171, #aaadaf);
+  text-decoration: none;
+}
+.checkAndButtons {
+  display: flex;
+  flex-direction: column;
 }

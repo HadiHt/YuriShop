@@ -29,25 +29,31 @@ function ProductView() {
   const imge = "data:image/png;base64," + Data.image;
   return (
     <div className="page">
-      <div className="detail">
-        <img src={"data:image/png;base64," + ImgData} alt="" />
-        <div className="box-detail">
-          <div className="row">
-            <h2>{Data.name}</h2>
+      <div className="ProductViewMainContainer">
+        <div className="detail">
+          <img src={"data:image/png;base64," + ImgData} alt="" />
+          <div className="box-detail">
+            <div className="row">
+              <h2>{Data.name}</h2>
+            </div>
+            <span>Price: {Data.price}K L.L</span>
+            <div>Color: {Data.color}</div>
+            <div>Size Available: {Data.size}</div>
+            <form>
+              <label>Quantity (Max:{Data.quantity}):</label>
+              <input
+                type="number"
+                id={"quantity-" + Data.productId}
+                name="quantity"
+                placeholder={1}
+                min={1}
+                max={Data.quantity}
+              />
+            </form>
+            <div className="ButtonContainer">
+              <AddToCart id={Data.productId} />
+            </div>
           </div>
-          <span>{Data.price}K L.L</span>
-          <form>
-            <label>Quantity (Max:{Data.quantity}):</label>
-            <input
-              type="number"
-              id={"quantity-" + Data.productId}
-              name="quantity"
-              min={0}
-              max={Data.quantity}
-            />
-          </form>
-
-          <AddToCart id={Data.productId} />
         </div>
       </div>
     </div>

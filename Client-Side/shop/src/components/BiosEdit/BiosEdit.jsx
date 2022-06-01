@@ -19,28 +19,27 @@ const BiosEdit = (props) => {
   let navigate = useNavigate();
   const params = useParams();
 
-  console.log(tempUser);
-  useEffect(() => {
-    if (arr[3] === "UserProfile") {
-      if (user.userId !== params.id) {
-        Axios.get("http://localhost:5000/api/users/" + params.id)
-          .then((res) => {
-            SetTempUser((prevUser) => (prevUser = res.data));
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    } else {
-      Axios.get("http://localhost:5000/api/shops/" + params.id)
-        .then((res) => {
-          SetTempShop((prevShop) => (prevShop = res.data));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [params.id, window.location.href]);
+  // useEffect(() => {
+  //   if (arr[3] === "UserProfile") {
+  //     if (user.userId !== params.id) {
+  //       Axios.get("http://localhost:5000/api/users/" + params.id)
+  //         .then((res) => {
+  //           SetTempUser((prevUser) => (prevUser = res.data));
+  //         })
+  //         .catch((err) => {
+  //           console.log(err);
+  //         });
+  //     }
+  //   } else {
+  //     Axios.get("http://localhost:5000/api/shops/" + params.id)
+  //       .then((res) => {
+  //         SetTempShop((prevShop) => (prevShop = res.data));
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // }, [params.id, window.location.href]);
 
   const routeChange = () => {
     var client = window.location.href;
@@ -49,9 +48,11 @@ const BiosEdit = (props) => {
     navigate(path);
   };
   const updateUser = () => {
-    if (arr[3] === "UserProfile") {
+    if (arr[3] == "UserProfile") {
       if (user.userId == params.id) {
+        console.log(tempUser);
         setUser(tempUser);
+        console.log(tempUser);
       }
       Axios.put(
         "http://localhost:5000/api/Users/" + params.id + "/user",
